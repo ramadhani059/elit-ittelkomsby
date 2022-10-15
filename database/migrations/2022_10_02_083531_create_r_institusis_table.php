@@ -16,12 +16,7 @@ return new class extends Migration
         Schema::create('r_institusis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->boolean('role_ktp');
-            $table->boolean('role_karpeg_ktm');
-            $table->boolean('role_ijazah');
-            $table->boolean('role_download');
-            $table->boolean('role_baca');
-            $table->boolean('role_booking');
+            $table->string('tipe_institusi');
             $table->timestamps();
         });
     }
