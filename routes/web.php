@@ -43,6 +43,7 @@ Route::get('getInstitusi/{id}', [DropDownController::class, 'getInstitusi']);
 Route::get('getJenisAnggota/{id}', [DropDownController::class, 'getJenisAnggota']);
 
 Route::middleware(['auth'])->group(function () {
+
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
         Route::resource('dashboard', DashboardController::class);
