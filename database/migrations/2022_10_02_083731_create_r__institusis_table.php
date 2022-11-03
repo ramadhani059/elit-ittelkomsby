@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('r_institusis', function (Blueprint $table) {
+        Schema::create('r__institusis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('tipe_institusi');
+            $table->unsignedBigInteger('tipe_institusi');
             $table->timestamps();
+
+            $table->foreign('tipe_institusi')->references('id')->on('r__jenis__keanggotaans');
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_institusis');
+        Schema::dropIfExists('r__institusis');
     }
 };

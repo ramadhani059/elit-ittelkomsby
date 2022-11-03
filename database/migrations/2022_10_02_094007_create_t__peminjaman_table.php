@@ -13,20 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('t_peminjaman', function (Blueprint $table) {
+        Schema::create('t__peminjaman', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_buku');
             $table->unsignedBigInteger('id_anggota');
             $table->string('kode_booking');
             $table->dateTime('tgl_pinjam');
+            $table->dateTime('batas_pinjam');
             $table->dateTime('tgl_kembali');
             $table->integer('total_denda');
             $table->string('jenis_jaminan');
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('id_buku')->references('id')->on('m_bukus');
-            $table->foreign('id_anggota')->references('id')->on('m_anggotas');
+            $table->foreign('id_buku')->references('id')->on('m__bukus');
+            $table->foreign('id_anggota')->references('id')->on('m__anggotas');
         });
     }
 
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_peminjaman');
+        Schema::dropIfExists('t__peminjaman');
     }
 };

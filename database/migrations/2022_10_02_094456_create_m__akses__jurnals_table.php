@@ -13,10 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('r_penerbits', function (Blueprint $table) {
+        Schema::create('m__akses__jurnals', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
+            $table->unsignedBigInteger('id_admin');
+            $table->string('judul');
+            $table->string('img_original');
+            $table->string('img_encrypt');
+            $table->string('kategori');
+            $table->string('link');
             $table->timestamps();
+
+            $table->foreign('id_admin')->references('id')->on('m__admins');
         });
     }
 
@@ -27,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_penerbits');
+        Schema::dropIfExists('m__akses__jurnals');
     }
 };

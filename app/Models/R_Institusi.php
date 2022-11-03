@@ -13,4 +13,9 @@ class R_Institusi extends Model
     {
         return $this->hasMany(M_Anggota::class);
     }
+
+    public function jenis_keanggotaan()
+    {
+        return $this->belongsTo(R_Jenis_Keanggotaan::class);
+    }
 }

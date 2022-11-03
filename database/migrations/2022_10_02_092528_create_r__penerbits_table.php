@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('m_pengarangs', function (Blueprint $table) {
+        Schema::create('r__penerbits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_pengarangs');
+        Schema::dropIfExists('r__penerbits');
     }
 };

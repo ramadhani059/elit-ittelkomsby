@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('m_bukus', function (Blueprint $table) {
+        Schema::create('m__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_admin');
             $table->unsignedBigInteger('id_penerbit');
@@ -36,14 +36,14 @@ return new class extends Migration
             $table->string('cover_encrypt')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_admin')->references('id')->on('m_admins');
-            $table->foreign('id_penerbit')->references('id')->on('r_penerbits');
-            $table->foreign('id_pengarang')->references('id')->on('m_pengarangs');
-            $table->foreign('id_penyunting')->references('id')->on('r_sirkulasis');
-            $table->foreign('id_subjek')->references('id')->on('r_subjeks');
-            $table->foreign('id_jenis_buku')->references('id')->on('r_jenis_bukus');
-            $table->foreign('id_sirkulasi')->references('id')->on('r_sirkulasis');
-            $table->foreign('id_file')->references('id')->on('r_files');
+            $table->foreign('id_admin')->references('id')->on('m__admins');
+            $table->foreign('id_penerbit')->references('id')->on('r__penerbits');
+            $table->foreign('id_pengarang')->references('id')->on('m__pengarangs');
+            $table->foreign('id_penyunting')->references('id')->on('m__penyuntings');
+            $table->foreign('id_subjek')->references('id')->on('r__subjeks');
+            $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus');
+            $table->foreign('id_sirkulasi')->references('id')->on('r__sirkulasis');
+            $table->foreign('id_file')->references('id')->on('r__files');
         });
     }
 
@@ -54,6 +54,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_bukus');
+        Schema::dropIfExists('m__bukus');
     }
 };

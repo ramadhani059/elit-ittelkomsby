@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('r_subjeks', function (Blueprint $table) {
+        Schema::create('r__sirkulasis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
+            $table->integer('batas_booking');
+            $table->integer('biaya_sewa');
+            $table->integer('denda_harian');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_subjeks');
+        Schema::dropIfExists('r__sirkulasis');
     }
 };

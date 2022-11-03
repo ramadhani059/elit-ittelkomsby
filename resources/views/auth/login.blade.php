@@ -140,7 +140,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="form-password-toggle mb-4">
+                                <div class="form-password-toggle mb-3">
                                     <label class="form-label" for="basic-default-password12">Password</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
@@ -167,7 +167,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-4">
                                     <div class="d-grid gap-2 col-lg-12 mx-auto">
                                         <button class="btn btn-danger btn-lg" type="submit">Login</button>
                                     </div>
@@ -175,104 +175,242 @@
                             </form>
                         </div>
                       <div class="tab-pane fade" id="navs-justified-register" role="tabpanel">
-                        <div class="mb-3">
-                          <label for="defaultFormControlInput" class="form-label">
-                            Nama Lengkap
-                          </label>
-                          <div class="input-group">
-                            <span class="input-group-text" id="basic-addon11">
-                              <i class="bx bxs-user"></i>
-                            </span>
-                            <input
-                              type="email"
-                              class="form-control"
-                              placeholder="Your Full Name"
-                              aria-describedby="basic-addon13"
-                            />
-                          </div>
-                          <div id="defaultFormControlHelp" class="form-text text-danger">
-                            Please Enter Your Full Name
-                          </div>
-                        </div>
-                        <div class="form-password-toggle mb-3">
-                          <label class="form-label" for="basic-default-password12">Password</label>
-                          <div class="input-group">
-                            <span class="input-group-text" id="basic-addon11">
-                              <i class="bx bxs-lock-alt"></i>
-                            </span>
-                            <input
-                              type="password"
-                              class="form-control"
-                              id="basic-default-password12"
-                              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                              aria-describedby="basic-default-password2"
-                            />
-                            <span id="basic-default-password2" class="input-group-text cursor-pointer"
-                              ><i class="bx bx-hide"></i
-                            ></span>
-                          </div>
-                          <div id="defaultFormControlHelp" class="form-text text-danger">
-                            Please Enter Your Password
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="defaultFormControlInput" class="form-label">
-                            Nomor Handphone
-                          </label>
-                          <div class="input-group">
-                            <span class="input-group-text" id="basic-addon11">
-                              <i class="bx bxs-phone"></i>
-                            </span>
-                            <input
-                              type="tel"
-                              class="form-control"
-                              placeholder="08xxxxxxxxxx"
-                              aria-describedby="basic-addon13"
-                            />
-                          </div>
-                          <div id="defaultFormControlHelp" class="form-text text-danger">
-                            Please Enter Your Mobile Phone
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="defaultFormControlInput" class="form-label">
-                            Alamat
-                          </label>
-                          <div class="input-group">
-                            <span class="input-group-text" id="basic-addon11">
-                              <i class="bx bxs-home"></i>
-                            </span>
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Your Address"
-                              aria-describedby="basic-addon13"
-                            />
-                          </div>
-                          <div id="defaultFormControlHelp" class="form-text text-danger">
-                            Please Enter Your Address
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="defaultFormControlInput" class="form-label">
-                            Jenis Keanggotaan
-                          </label>
-                          <div class="input-group">
-                            <span class="input-group-text" id="basic-addon11">
-                              <i class="bx bxs-user"></i>
-                            </span>
-                            <select class="form-select" id="kota" name="kota">
-                              <option value=""></option>
-                              <option value="1">Umum</option>
-                              <option value="2">Alumni ITTelkom Surabaya</option>
-                              <option value="3">Lemdikti YPT</option>
-                              <option value="4">Perguruan Tinggi Asuh</option>
-                            </select>
-                          </div>
-                          <div id="defaultFormControlHelp" class="form-text text-danger">
-                            This Field is Required
-                          </div>
-                        </div>
+                        <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" id="registerForm">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="defaultFormControlInput" class="form-label">
+                                    Nama Lengkap
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon11">
+                                        <i class="bx bxs-user"></i>
+                                    </span>
+                                    <input
+                                        id="fullname"
+                                        type="text"
+                                        class="form-control @error('fullname') is-invalid @enderror"
+                                        name="fullname"
+                                        placeholder="Your Full Name"
+                                        aria-describedby="basic-addon13"
+                                        value="{{ old('fullname')}}"
+                                        autocomplete="fullname"
+                                    />
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                    <span class="errorTxt" id="fullname-errorMsg"></span>
+                                </div>
+                            </div>
+                            <div class="form-password-toggle mb-3">
+                                <label class="form-label" for="basic-default-password12">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon11">
+                                        <i class="bx bxs-lock-alt"></i>
+                                    </span>
+                                    <input
+                                        id="password_register"
+                                        type="password"
+                                        class="form-control @error('password_register') is-invalid @enderror"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="basic-default-password2"
+                                        name="password_register"
+                                        value="{{ old('password_register')}}"
+                                        autocomplete="current-password"
+                                    />
+                                    <span id="basic-default-password2" class="input-group-text cursor-pointer">
+                                        <i class="bx bx-hide"></i>
+                                    </span>
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                    <span class="errorTxt" id="password_register-errorMsg"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="defaultFormControlInput" class="form-label">
+                                    Nomor Handphone
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon11">
+                                        <i class="bx bxs-phone"></i>
+                                    </span>
+                                    <input
+                                        id="telp"
+                                        type="tel"
+                                        class="form-control @error('telp') is-invalid @enderror"
+                                        name="telp"
+                                        placeholder="08xxxxxxxxxx"
+                                        aria-describedby="basic-addon13"
+                                        value="{{ old('telp')}}"
+                                        autocomplete="tel-national"
+                                    />
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                    <span class="errorTxt" id="telp-errorMsg"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="defaultFormControlInput" class="form-label">
+                                    Alamat
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon11">
+                                        <i class="bx bxs-home"></i>
+                                    </span>
+                                    <input
+                                        id="address"
+                                        type="text"
+                                        class="form-control @error('address') is-invalid @enderror"
+                                        name="address"
+                                        placeholder="Your Address"
+                                        aria-describedby="basic-addon13"
+                                        value="{{ old('address')}}"
+                                        autocomplete="address-line1"
+                                    />
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                    <span class="errorTxt" id="address-errorMsg"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="defaultFormControlInput" class="form-label">
+                                    Jenis Keanggotaan
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon11">
+                                        <i class="bx bxs-user"></i>
+                                    </span>
+                                    <select class="form-select jenisanggota @error('jenisanggota') is-invalid @enderror" id="jenisanggota" name="jenisanggota">
+                                        <option value=""></option>
+                                        @foreach ($jenis_keanggotaan as $jenisanggota)
+                                            <option value="{{ $jenisanggota->id}}">{{ $jenisanggota->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                    <span class="errorTxt" id="jenisanggota-errorMsg"></span>
+                                </div>
+                            </div>
+                            @foreach ($jenis_keanggotaan as $jenisanggota)
+                                <div class="some" id="some_{{ $jenisanggota->id }}" style="display: none;">
+                                    @if ($jenisanggota->role_institusi == 1)
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                Nama Institusi
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-buildings"></i>
+                                                </span>
+                                                <select class="form-select namainstitusi @error('namainstitusi') is-invalid @enderror" id="namainstitusi_{{ $jenisanggota->id }}" name="namainstitusi_{{ $jenisanggota->id }}">
+                                                    <option value=""></option>
+
+                                                </select>
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="namainstitusi_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
+                                        <div class="addinstitusi" id="addinstitusi" style="display: none;">
+                                            <div class="mb-3">
+                                                <label for="defaultFormControlInput" class="form-label">
+                                                    Tambah Nama Institusi
+                                                </label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon11">
+                                                        <i class="bx bxs-buildings"></i>
+                                                    </span>
+                                                    <input
+                                                        id="tambahinstitusi_{{ $jenisanggota->id }}"
+                                                        type="text"
+                                                        class="form-control @error('tambahinstitusi') is-invalid @enderror"
+                                                        name="tambahinstitusi_{{ $jenisanggota->id }}"
+                                                        placeholder="Add Your Institution"
+                                                        aria-describedby="basic-addon13"
+                                                    />
+                                                </div>
+                                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                    <span class="errorTxt" id="tambahinstitusi_{{ $jenisanggota->id }}-errorMsg"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="mb-3">
+                                        <label for="defaultFormControlInput" class="form-label">
+                                            Email Institusi
+                                        </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon11">
+                                                <i class="bx bx-at"></i>
+                                            </span>
+                                            <input
+                                                id="email_register_{{ $jenisanggota->id }}"
+                                                type="email"
+                                                class="form-control @error('email_register') is-invalid @enderror"
+                                                name="email_register_{{ $jenisanggota->id }}"
+                                                placeholder="name@example.com"
+                                                aria-describedby="basic-addon13"
+                                                autocomplete="email"
+                                            />
+                                        </div>
+                                        <div id="defaultFormControlHelp" class="form-text text-danger">
+                                            <span class="errorTxt" id="email_register_{{ $jenisanggota->id }}-errorMsg"></span>
+                                        </div>
+                                    </div>
+                                    @if ($jenisanggota->role_ktp == 1)
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                KTP
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-id-card"></i>
+                                                </span>
+                                                <input class="form-control" type="file" id="filektp_{{ $jenisanggota->id }}" name="filektp_{{ $jenisanggota->id }}" />
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="filektp_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($jenisanggota->role_karpeg_ktm == 1)
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                Karpeg/KTM
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-id-card"></i>
+                                                </span>
+                                                <input class="form-control" type="file" id="filekarpegktm_{{ $jenisanggota->id }}" name="filekarpegktm_{{ $jenisanggota->id }}" />
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="filekarpegktm_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($jenisanggota->role_ijazah == 1)
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                Ijazah
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-file"></i>
+                                                </span>
+                                                <input class="form-control" type="file" id="fileijazah_{{ $jenisanggota->id }}" name="fileijazah_{{ $jenisanggota->id }}" />
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="fileijazah_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                            <div class="mt-4">
+                                <div class="d-grid gap-2 col-lg-12 mx-auto">
+                                    <button class="btn btn-danger btn-lg" type="submit">Register</button>
+                                </div>
+                            </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -303,17 +441,70 @@
 
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
 
-    <!-- wajib jquery  -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
+    <!-- AJAX -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
     <!-- js untuk select2  -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- JS untuk Validation -->
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/additional-methods.js"></script>
+    <script src="{{ asset('assets/js/validate.js') }}"></script>
+
+    <!-- Dropdown -->
     <script>
         $(document).ready(function () {
-            $("#kota").select2({
+
+            $("#jenisanggota").select2({
                 theme: 'bootstrap4',
-                placeholder: "Please Select"
+                placeholder: "Please Select",
+            });
+
+            $('#jenisanggota').on('change',function(){
+                $(".some").hide();
+                var some = $(this).find('option:selected').val();
+                /* console.log(some); */
+                $("#some_" + some).show();
+
+                $("#namainstitusi_" + some).show().select2({
+                    theme: 'bootstrap4',
+                    placeholder: "Please Select",
+                });
+
+                $.ajax({
+                    url: '/getJenisAnggota/'+some,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(anggota){
+                        $.ajax({
+                            url: '/getInstitusi/'+some,
+                            type: "GET",
+                            dataType: "json",
+                            success: function(data){
+                                $('select[name="namainstitusi_'+ some +'"]').empty();
+                                $('select[name="namainstitusi_'+ some +'"]').append('<option value="">Please Select</option>');
+                                $.each(anggota, function(index, nama){
+                                    if(nama.role_add_institusi){
+                                        $('select[name="namainstitusi_'+ some +'"]').append('<option value="add">Add Your Institution</option>');
+                                    }
+                                })
+                                $.each(data, function(key, value){
+                                    $('select[name="namainstitusi_'+ some +'"]').append('<option value="'+ value.id +'">'+ value.nama +'</option>');
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('.namainstitusi').on('change',function(){
+                $(".addinstitusi").hide();
+                var target = $(this).find('option:selected').val();
+                /* console.log(target); */
+                if (target == 'add'){
+                    $("#addinstitusi").show();
+                };
             });
         });
     </script>

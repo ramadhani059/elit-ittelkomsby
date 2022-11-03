@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('r_files', function (Blueprint $table) {
+        Schema::create('r__files', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('cover_laporan')->nullable();
             $table->string('disclimer')->nullable();
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_files');
+        Schema::dropIfExists('r__files');
     }
 };

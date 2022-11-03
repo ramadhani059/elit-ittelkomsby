@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('t_donasi_bukus', function (Blueprint $table) {
+        Schema::create('t__donasi__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_anggota');
             $table->unsignedBigInteger('id_penerbit');
@@ -33,13 +33,13 @@ return new class extends Migration
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('id_anggota')->references('id')->on('m_anggotas');
-            $table->foreign('id_penerbit')->references('id')->on('r_penerbits');
-            $table->foreign('id_pengarang')->references('id')->on('m_pengarangs');
-            $table->foreign('id_penyunting')->references('id')->on('r_sirkulasis');
-            $table->foreign('id_subjek')->references('id')->on('r_subjeks');
-            $table->foreign('id_jenis_buku')->references('id')->on('r_jenis_bukus');
-            $table->foreign('id_file')->references('id')->on('r_files');
+            $table->foreign('id_anggota')->references('id')->on('m__anggotas');
+            $table->foreign('id_penerbit')->references('id')->on('r__penerbits');
+            $table->foreign('id_pengarang')->references('id')->on('m__pengarangs');
+            $table->foreign('id_penyunting')->references('id')->on('m__penyuntings');
+            $table->foreign('id_subjek')->references('id')->on('r__subjeks');
+            $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus');
+            $table->foreign('id_file')->references('id')->on('r__files');
         });
     }
 
@@ -50,6 +50,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_donasi_bukus');
+        Schema::dropIfExists('t__donasi__bukus');
     }
 };

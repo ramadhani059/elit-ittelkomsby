@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('m_admins', function (Blueprint $table) {
+        Schema::create('m__admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user');
             $table->string('nama_lengkap');
             $table->bigInteger('no_hp');
             $table->string('alamat');
-            $table->string('ktp_original');
-            $table->string('ktp_encrypt');
-            $table->string('karpeg_ktm_original');
-            $table->string('karpeg_ktm_encrypt');
+            $table->string('ktp_original')->nullable();
+            $table->string('ktp_encrypt')->nullable();
+            $table->string('karpeg_ktm_original')->nullable();
+            $table->string('karpeg_ktm_encrypt')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_admins');
+        Schema::dropIfExists('m__admins');
     }
 };

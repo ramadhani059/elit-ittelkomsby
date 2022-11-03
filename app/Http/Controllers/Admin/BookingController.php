@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\R_Institusi;
-use App\Models\R_Jenis_Keanggotaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +35,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request);
+        //
     }
 
     /**

@@ -13,10 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('r_jenis_bukus', function (Blueprint $table) {
+        Schema::create('r__jenis__keanggotaans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->boolean('role_file');
+            $table->boolean('role_ktp');
+            $table->boolean('role_karpeg_ktm');
+            $table->boolean('role_ijazah');
+            $table->boolean('role_download');
+            $table->boolean('role_baca');
+            $table->boolean('role_booking');
+            $table->boolean('role_institusi');
+            $table->boolean('role_add_institusi');
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_jenis_bukus');
+        Schema::dropIfExists('r__jenis__keanggotaans');
     }
 };

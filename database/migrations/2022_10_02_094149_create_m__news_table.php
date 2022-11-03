@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('m_galleries', function (Blueprint $table) {
+        Schema::create('m__news', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_admin');
             $table->string('judul');
+            $table->string('isi');
+            $table->date('tanggal');
             $table->string('img_original');
             $table->string('img_encrypt');
             $table->timestamps();
 
-            $table->foreign('id_admin')->references('id')->on('m_admins');
+            $table->foreign('id_admin')->references('id')->on('m__admins');
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_galleries');
+        Schema::dropIfExists('m__news');
     }
 };
