@@ -78,21 +78,21 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item @if($route == 'dashboard.index') active @endif">
-              <a href="{{ route('dashboard.index') }}" class="menu-link">
+            <li class="menu-item @if($route == 'dashboard-admin.index') active @endif">
+              <a href="{{ route('dashboard-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item @if($route == 'catalog-admin.index' && 'catalog-admin.edit' && 'catalog-admin.create' && 'catalog-admin.show') active open @endif">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div data-i18n="Account Settings">Katalog Buku</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
+                <li class="menu-item @if($route == 'catalog-admin.index' && 'catalog-admin.edit' && 'catalog-admin.create' && 'catalog-admin.show') active @endif">
+                  <a href="{{ route('catalog-admin.index') }}" class="menu-link">
                     <div data-i18n="Account">List Buku</div>
                   </a>
                 </li>
@@ -190,46 +190,24 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                  />
-                </div>
-              </div>
+              @yield('search-navbar')
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
+
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                        <div class="media align-items-center d-flex ">
+                            <div class="media-body d-none d-lg-block f-grow-1 me-4">
+                                <span class="fw-semibold d-block">{{ Auth::user() -> nama_lengkap }}</span>
                             </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
-                          </div>
+                            <div class="avatar avatar-online ">
+                                <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
                         </div>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
+                    </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>

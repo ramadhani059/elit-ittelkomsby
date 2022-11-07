@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\M_Admin;
-use App\Models\M_Anggota;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class CatalogAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,16 +14,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Dashboard Admin | ELIT ITTelkom Surabaya';
+        $pageTitle = 'Catalog Buku | ELIT ITTelkom Surabaya';
 
-        $admin = M_Admin::all();
+        // $product = Product::all();
 
-        $anggota = M_Anggota::all();
-
-        return view('admin/dashboard', [
+        return view('admin/catalog/index', [
             'pageTitle' => $pageTitle,
-            'admin' => $admin,
-            'anggota' => $anggota,
+            // 'product' => $product
         ]);
     }
 

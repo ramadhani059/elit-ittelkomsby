@@ -439,11 +439,11 @@ button.list-group-item-primary.active {
 .menu.bg-primary .menu-item.disabled .menu-link,
 .menu.bg-primary .menu-horizontal-prev.disabled,
 .menu.bg-primary .menu-horizontal-next.disabled {
-  color: #b0b2ff !important;
+  color: #111827 !important;
 }
 .menu.bg-primary .menu-item.open:not(.menu-item-closing) > .menu-toggle,
 .menu.bg-primary .menu-item.active > .menu-link {
-  color: #fff;
+  color: #2B3544;
 }
 .menu.bg-primary .menu-item.active > .menu-link:not(.menu-toggle) {
   background-color: #2B3544;
@@ -457,7 +457,7 @@ button.list-group-item-primary.active {
 .menu.bg-primary .menu-inner > .menu-item.menu-item-closing .menu-item.open .menu-sub,
 .menu.bg-primary .menu-inner > .menu-item.menu-item-closing .menu-item.open .menu-toggle {
   background: transparent;
-  color: #e0e1ff;
+  color: #2B3544;
 }
 .menu.bg-primary .menu-inner-shadow {
   background: linear-gradient(#2B3544 41%, rgba(105, 108, 255, 0.11) 95%, rgba(105, 108, 255, 0));
@@ -483,7 +483,7 @@ button.list-group-item-primary.active {
   background-color: #2B3544;
 }
 .menu.bg-primary .menu-inner > .menu-item.open .menu-item.active > .menu-link::before {
-  background-color: #fff;
+  background-color: #2B3544;
 }
 .menu.bg-primary .menu-inner > .menu-item.open .menu-item.open > .menu-toggle::before,
 .menu.bg-primary .menu-inner > .menu-item.open .menu-item.active > .menu-link::before {
@@ -679,7 +679,7 @@ a:hover {
   color: #fff;
 }
 .bg-menu-theme .menu-item.active > .menu-link:not(.menu-toggle) {
-  background-color: #fff;
+  background-color: #1F2937;
 }
 .bg-menu-theme.menu-horizontal .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle) {
   background-color: white;
@@ -759,7 +759,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 .bg-menu-theme .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle):before {
   background-color: #fff !important;
-  border: 3px solid #e7e7ff !important;
+  border: 3px solid #111827 !important;
 }
 
 .app-brand .layout-menu-toggle {

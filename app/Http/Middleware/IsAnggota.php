@@ -17,7 +17,7 @@ class IsAnggota
     public function handle(Request $request, Closure $next)
     {
         if($request->user()->level == 'admin'){
-            return redirect('/dashboard');
+            return redirect('/admin/dashboard-admin');
         } else {
             return $next($request);
         }
