@@ -3,6 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Buku;
+use App\Models\M_Pengarang;
+use App\Models\M_Penyunting;
+use App\Models\R_Jenis_Buku;
+use App\Models\R_Penerbit;
+use App\Models\R_Sirkulasi;
+use App\Models\R_Subjek;
 use Illuminate\Http\Request;
 
 class CatalogAdminController extends Controller
@@ -16,11 +23,11 @@ class CatalogAdminController extends Controller
     {
         $pageTitle = 'Catalog Buku | ELIT ITTelkom Surabaya';
 
-        // $product = Product::all();
+        $catalog = M_Buku::all();
 
         return view('admin/catalog/index', [
             'pageTitle' => $pageTitle,
-            // 'product' => $product
+            'catalog' => $catalog
         ]);
     }
 
@@ -31,7 +38,17 @@ class CatalogAdminController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = 'Tambah Buku | Dashboard';
+
+        // ELOQUENT
+        $jenisbuku = R_Jenis_Buku::all();
+        $subjek = R_Subjek::all();
+        $pengarang = M_Pengarang::all();
+        $penyunting = M_Penyunting::all();
+        $penerbit = R_Penerbit::all();
+        $sirkulasi = R_Sirkulasi::all();
+
+        return view('admin.catalog.add', compact('pageTitle', 'jenisbuku', 'subjek', 'pengarang', 'penyunting', 'penerbit', 'sirkulasi'));
     }
 
     /**

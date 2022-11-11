@@ -18,6 +18,8 @@
 
     <meta name="description" content="" />
 
+    <!-- Progressive Web App -->
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
 
@@ -85,13 +87,13 @@
               </a>
             </li>
 
-            <li class="menu-item @if($route == 'catalog-admin.index' && 'catalog-admin.edit' && 'catalog-admin.create' && 'catalog-admin.show') active open @endif">
+            <li class="menu-item {{  (request()->is('admin/catalog-admin*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div data-i18n="Account Settings">Katalog Buku</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item @if($route == 'catalog-admin.index' && 'catalog-admin.edit' && 'catalog-admin.create' && 'catalog-admin.show') active @endif">
+                <li class="menu-item {{  (request()->is('admin/catalog-admin*')) ? 'active' : '' }}">
                   <a href="{{ route('catalog-admin.index') }}" class="menu-link">
                     <div data-i18n="Account">List Buku</div>
                   </a>

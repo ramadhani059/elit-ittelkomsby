@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Anggota;
 use App\Models\R_Institusi;
 use App\Models\R_Jenis_Keanggotaan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -38,7 +41,53 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request);
+        $jenisanggota = $request->jenisanggota;
+
+        if($jenisanggota != null):
+            $user = new User;
+            $anggota = new M_Anggota;
+            $user->nama_lengkap = $request->fullname;
+            $user->password = Hash::make($request->password_register);
+            $user->email = $request->{'email_register_'.$jenisanggota};
+            $user->level = 'anggota';
+            $user->save();
+
+            $anggota->id_user = $user->id;
+            $anggota->id_jenis_keanggotaan = $jenisanggota;
+            $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
+            $anggota->no_hp = $request->telp;
+            $anggota->alamat = $request->address;
+
+            // Get File Image
+            $ktp = $request->file('filektp_'.$jenisanggota);
+            $karpegktm = $request->file('filekarpegktm_'.$jenisanggota);
+            $ijazah = $request->file('fileijazah_'.$jenisanggota);
+
+            // Store File Image
+            if ($ktp != null){
+                $ktp->store('public/user/ktp');
+                $anggota->ktp_original = $ktp->getClientOriginalName();
+                $anggota->ktp_encrypt = $ktp->hashName();
+            }
+
+            if ($karpegktm != null){
+                $karpegktm->store('public/user/karpegktm');
+                $anggota->karpeg_ktm_original = $karpegktm->getClientOriginalName();
+                $anggota->karpeg_ktm_encrypt = $karpegktm->hashName();
+            }
+
+            if ($ijazah != null){
+                $ijazah->store('public/user/ijazah');
+                $anggota->ijazah_original = $ijazah->getClientOriginalName();
+                $anggota->ijazah_encrypt = $ijazah->hashName();
+            }
+
+            $anggota->save();
+
+        endif;
+
+        return redirect()->route('login');
+
     }
 
     /**
