@@ -11,12 +11,12 @@ class M_Anggota extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User', 'id_user');
     }
 
     public function jenis_keanggotaan()
     {
-        return $this->belongsTo(R_Jenis_Keanggotaan::class);
+        return $this->belongsTo('App\Models\R_Jenis_Keanggotaan', 'id_jenis_keanggotaan');
     }
 
     public function institusi()

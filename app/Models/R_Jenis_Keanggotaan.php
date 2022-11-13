@@ -11,11 +11,11 @@ class R_Jenis_Keanggotaan extends Model
 
     public function anggota()
     {
-        return $this->hasMany(M_Anggota::class);
+        return $this->hasMany('App\Models\M_Anggota', 'id_jenis_keanggotaan');
     }
 
     public function institusi()
     {
-        return $this->hasMany(R_Institusi::class);
+        return $this->hasMany('App\Models\R_Institusi', 'tipe_institusi');
     }
 }

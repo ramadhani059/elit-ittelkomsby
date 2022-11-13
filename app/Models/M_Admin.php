@@ -11,7 +11,7 @@ class M_Admin extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User', 'id_user');
     }
 
     public function akses_jurnal()

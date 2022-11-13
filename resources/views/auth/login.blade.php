@@ -207,7 +207,7 @@
                                         <i class="bx bxs-lock-alt"></i>
                                     </span>
                                     <input
-                                        id="password_register"
+                                        id="bxs-lock-alt"
                                         type="password"
                                         class="form-control @error('password_register') is-invalid @enderror"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"

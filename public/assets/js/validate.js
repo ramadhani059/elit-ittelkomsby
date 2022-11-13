@@ -2,7 +2,9 @@ $(document).ready(function () {
     let rules = new Object();
     let messages = new Object();
 
-
+    $.validator.addMethod('filesize', function (value, element, param) {
+        return this.optional(element) || (element.files[0].size <= param)
+    }, 'File size must be less than {0} byte');
 
     rules['fullname']={
         required: true
@@ -26,6 +28,38 @@ $(document).ready(function () {
         required: true
     };
     messages['jenisanggota']={ required: 'This field is required' };
+    rules['level']={
+        required: true
+    };
+    messages['level']={ required: 'This field is required' };
+    rules['emailadmin']={
+        required: true
+    };
+    messages['emailadmin']={ required: 'This field is required' };
+    rules['filektp_admin']={
+        required: true,
+        extension: "png|jpe?g|gif",
+        filesize: 3145728,
+    };
+    messages['filektp_admin']={
+        required: 'This field is required',
+        extension: 'Format yang diterima : png, jpg, jpeg, gif ',
+        filesize: 'File size must be less than 3 MB',
+    };
+    rules['filekarpegktm_admin']={
+        required: true,
+        extension: "png|jpe?g|gif",
+        filesize: 3145728,
+    };
+    messages['filekarpegktm_admin']={
+        required: 'This field is required',
+        extension: 'Format yang diterima : png, jpg, jpeg, gif ',
+        filesize: 'File size must be less than 3 MB',
+    };
+    rules['namajeniskeanggotaan']={
+        required: true
+    };
+    messages['namajeniskeanggotaan']={ required: 'This field is required' };
 
     $('#jenisanggota').on('change',function(){
         const contoh = $(this).find('option:selected').val();
@@ -50,27 +84,42 @@ $(document).ready(function () {
             rules[this.name] = {
                 required: true,
                 extension: "png|jpe?g|gif",
+                filesize: 3145728,
             };
             console.log(contoh);
-            messages[this.name] = { required: 'This field is required' };
+            messages[this.name] = {
+                required: 'This field is required',
+                extension: 'Format yang diterima : png, jpg, jpeg, gif ',
+                filesize: 'File size must be less than 3 MB',
+            };
         });
 
         $('input[name="filekarpegktm_'+ contoh +'"]').each(function() {
             rules[this.name] = {
                 required: true,
                 extension: "png|jpe?g|gif",
+                filesize: 3145728,
             };
             console.log(contoh);
-            messages[this.name] = { required: 'This field is required' };
+            messages[this.name] = {
+                required: 'This field is required',
+                extension: 'Format yang diterima : png, jpg, jpeg, gif ',
+                filesize: 'File size must be less than 3 MB',
+            };
         });
 
         $('input[name="fileijazah_'+ contoh +'"]').each(function() {
             rules[this.name] = {
                 required: true,
-                extension: "docx|rtf|doc|pdf",
+                extension: "pdf",
+                filesize: 10485760,
             };
             console.log(contoh);
-            messages[this.name] = { required: 'This field is required' };
+            messages[this.name] = {
+                required: 'This field is required',
+                extension: 'Format yang diterima : pdf',
+                filesize: 'File size must be less than 10 MB',
+            };
         });
 
         $('input[name="tambahinstitusi_'+ contoh +'"]').each(function() {

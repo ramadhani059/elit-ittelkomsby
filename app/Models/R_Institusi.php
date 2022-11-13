@@ -16,6 +16,6 @@ class R_Institusi extends Model
 
     public function jenis_keanggotaan()
     {
-        return $this->belongsTo(R_Jenis_Keanggotaan::class);
+        return $this->belongsTo('App\Models\R_Jenis_Keanggotaan', 'tipe_institusi');
     }
 }

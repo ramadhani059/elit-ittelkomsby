@@ -33,6 +33,7 @@
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
@@ -43,6 +44,10 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+
+    <!-- Helpers -->
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
 
     <!-- Page CSS -->
     @yield('css')
@@ -112,19 +117,19 @@
               </ul>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item {{  (request()->is('user*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Account Settings">User</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
+                <li class="menu-item {{  (request()->is('user/user-admin*')) ? 'active' : '' }}">
+                  <a href="{{ route('user-admin.index') }}" class="menu-link">
                     <div data-i18n="Account">List User</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
+                <li class="menu-item {{  (request()->is('user/jenis-keanggotaan*')) ? 'active' : '' }}">
+                  <a href="{{ route('jenis-keanggotaan.index') }}" class="menu-link">
                     <div data-i18n="Notifications">Jenis Keanggotaan</div>
                   </a>
                 </li>

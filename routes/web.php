@@ -50,13 +50,13 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['is_admin'])->group(function () {
         Route::resource('admin/dashboard-admin', DashboardController::class);
         Route::resource('buku/catalog-admin', CatalogAdminController::class);
-        Route::resource('admin/user-admin', UserController::class);
+        Route::resource('user/user-admin', UserController::class);
         Route::resource('admin/booking-admin', BookingAdminController::class);
         Route::resource('admin/donasi-admin', DonasiAdminController::class);
         Route::resource('admin/news-admin', NewsAdminController::class);
         Route::resource('admin/information-admin', InformationAdminController::class);
         Route::resource('admin/gallery-admin', GalleryAdminController::class);
-        Route::resource('admin/jenis-keanggotaan', JenisAnggotaController::class);
+        Route::resource('user/jenis-keanggotaan', JenisAnggotaController::class);
         Route::resource('buku/jenis-buku', JenisBukuController::class);
         Route::resource('buku/sirkulasi', SirkulasiController::class);
         Route::resource('admin/akses-jurnal', AksesJurnalController::class);

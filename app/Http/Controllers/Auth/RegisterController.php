@@ -67,6 +67,7 @@ class RegisterController extends Controller
             $anggota->id_jenis_keanggotaan = $jenisanggota;
             $anggota->no_hp = $request->telp;
             $anggota->alamat = $request->address;
+            $anggota->status = 'Belum Terverifikasi';
 
             // Get File Image
             $ktp = $request->file('filektp_'.$jenisanggota);

@@ -44,11 +44,11 @@ class User extends Authenticatable
 
     public function admin()
     {
-        return $this->hasOne(M_Admin::class);
+        return $this->hasOne('App\Models\M_Admin', 'id_user');
     }
 
     public function anggota()
     {
-        return $this->hasOne(M_Anggota::class);
+        return $this->hasOne('App\Models\M_Anggota', 'id_user');
     }
 }

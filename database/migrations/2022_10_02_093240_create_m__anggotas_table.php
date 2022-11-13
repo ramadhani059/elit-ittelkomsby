@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_institusi');
             $table->bigInteger('no_hp');
             $table->string('alamat');
+            $table->string('status');
             $table->string('ktp_original')->nullable();
             $table->string('ktp_encrypt')->nullable();
             $table->string('karpeg_ktm_original')->nullable();
