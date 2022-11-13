@@ -11,7 +11,7 @@ class R_Jenis_Buku extends Model
 
     public function buku()
     {
-        return $this->hasMany(M_Buku::class);
+        return $this->hasMany('App\Models\M_Buku', 'id_jenis_buku');
     }
 
     public function donasi_buku()

@@ -742,7 +742,7 @@
                             <span class="input-group-text" id="basic-addon11">
                                 <i class="bx bxs-file-pdf"></i>
                             </span>
-                            <input class="form-control" type="file" id="fileproposalpdf" name="fileproposalpdf" />
+                            <input class="form-control" type="file" id="fileproposalpdf" name="fileproposalpdf"  />
                         </div>
                         <div id="defaultFormControlHelp" class="form-text text-danger">
                             <span class="errorTxt" id="fileproposalpdf-errorMsg"></span>

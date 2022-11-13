@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Buku;
+use App\Models\R_Jenis_Buku;
 use Illuminate\Http\Request;
 
 class JenisBukuController extends Controller
@@ -14,7 +16,14 @@ class JenisBukuController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = 'Jenis Buku | ELIT ITTelkom Surabaya';
+
+        $jenisbuku = R_Jenis_Buku::all();
+
+        return view('admin/jenisbuku/index', [
+            'pageTitle' => $pageTitle,
+            'jenisbuku' => $jenisbuku
+        ]);
     }
 
     /**
@@ -24,7 +33,9 @@ class JenisBukuController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = 'Tambah Jenis Buku | Dashboard';
+
+        return view('admin.jenisbuku.add', compact('pageTitle'));
     }
 
     /**
@@ -35,7 +46,13 @@ class JenisBukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jenisbuku = new R_Jenis_Buku;
+
+        $jenisbuku->nama = $request->namajenisbuku;
+        $jenisbuku->role_file = $request->role_file;
+        $jenisbuku->save();
+
+        return redirect()->route('jenis-buku.index');
     }
 
     /**
@@ -80,6 +97,10 @@ class JenisBukuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jenisbuku = R_Jenis_Buku::find($id);
+
+        $jenisbuku->delete();
+
+        return redirect()->route('jenis-buku.index');
     }
 }

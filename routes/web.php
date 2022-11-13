@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
         Route::resource('admin/dashboard-admin', DashboardController::class);
-        Route::resource('admin/catalog-admin', CatalogAdminController::class);
+        Route::resource('buku/catalog-admin', CatalogAdminController::class);
         Route::resource('admin/user-admin', UserController::class);
         Route::resource('admin/booking-admin', BookingAdminController::class);
         Route::resource('admin/donasi-admin', DonasiAdminController::class);
@@ -57,8 +57,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('admin/information-admin', InformationAdminController::class);
         Route::resource('admin/gallery-admin', GalleryAdminController::class);
         Route::resource('admin/jenis-keanggotaan', JenisAnggotaController::class);
-        Route::resource('admin/jenis-buku', JenisBukuController::class);
-        Route::resource('admin/sirkulasi', SirkulasiController::class);
+        Route::resource('buku/jenis-buku', JenisBukuController::class);
+        Route::resource('buku/sirkulasi', SirkulasiController::class);
         Route::resource('admin/akses-jurnal', AksesJurnalController::class);
     });
 

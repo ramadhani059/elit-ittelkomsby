@@ -88,24 +88,24 @@
               </a>
             </li>
 
-            <li class="menu-item {{  (request()->is('admin/catalog-admin*')) ? 'active open' : '' }}">
+            <li class="menu-item {{  (request()->is('buku*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div data-i18n="Account Settings">Katalog Buku</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item {{  (request()->is('admin/catalog-admin*')) ? 'active' : '' }}">
+                <li class="menu-item {{  (request()->is('buku/catalog-admin*')) ? 'active' : '' }}">
                   <a href="{{ route('catalog-admin.index') }}" class="menu-link">
                     <div data-i18n="Account">List Buku</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
+                <li class="menu-item {{  (request()->is('buku/jenis-buku*')) ? 'active' : '' }}">
+                  <a href="{{ route('jenis-buku.index') }}" class="menu-link">
                     <div data-i18n="Notifications">Jenis Buku</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="#" class="menu-link">
+                <li class="menu-item {{  (request()->is('buku/sirkulasi*')) ? 'active' : '' }}">
+                  <a href="{{ route('sirkulasi.index') }}" class="menu-link">
                     <div data-i18n="Notifications">Sirkulasi Buku</div>
                   </a>
                 </li>

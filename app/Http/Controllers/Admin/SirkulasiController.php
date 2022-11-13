@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\R_Sirkulasi;
 use Illuminate\Http\Request;
 
 class SirkulasiController extends Controller
@@ -14,7 +15,14 @@ class SirkulasiController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = 'Sirkulasi Buku | ELIT ITTelkom Surabaya';
+
+        $sirkulasi = R_Sirkulasi::all();
+
+        return view('admin/sirkulasi/index', [
+            'pageTitle' => $pageTitle,
+            'sirkulasi' => $sirkulasi
+        ]);
     }
 
     /**
@@ -24,7 +32,9 @@ class SirkulasiController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = 'Tambah Sirkulasi Buku | Dashboard';
+
+        return view('admin.sirkulasi.add', compact('pageTitle'));
     }
 
     /**
@@ -35,7 +45,16 @@ class SirkulasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sirkulasi = new R_Sirkulasi;
+
+        $sirkulasi->nama = $request->namasirkulasi;
+        $sirkulasi->batas_booking = $request->bataspeminjaman;
+        $sirkulasi->biaya_sewa = $request->biayasewa;
+        $sirkulasi->denda_harian = $request->dendaharian;
+
+        $sirkulasi->save();
+
+        return redirect()->route('sirkulasi.index');
     }
 
     /**
@@ -80,6 +99,10 @@ class SirkulasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sirkulasi = R_Sirkulasi::find($id);
+
+        $sirkulasi->delete();
+
+        return redirect()->route('sirkulasi.index');
     }
 }

@@ -268,6 +268,33 @@ $(document).ready(function () {
         extension: 'Format yang diterima : pdf ',
         filesize: 'File size must be less than 10 MB',
     };
+    rules['namajenisbuku']={
+        required: true
+    };
+    messages['namajenisbuku']={ required: 'This field is required' };
+    rules['role_file']={
+        required: true
+    };
+    messages['role_file']={ required: 'This field is required' };
+    rules['namasirkulasi']={
+        required: true
+    };
+    messages['namasirkulasi']={ required: 'This field is required' };
+    rules['bataspeminjaman']={
+        required: true,
+        digits: true,
+    };
+    messages['bataspeminjaman']={ required: 'This field is required' };
+    rules['biayasewa']={
+        required: true,
+        digits: true,
+    };
+    messages['biayasewa']={ required: 'This field is required' };
+    rules['dendaharian']={
+        required: true,
+        digits: true,
+    };
+    messages['dendaharian']={ required: 'This field is required' };
 
     myValidate();
 
