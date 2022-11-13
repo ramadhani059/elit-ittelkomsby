@@ -9,44 +9,39 @@ class M_Buku extends Model
 {
     use HasFactory;
 
-    public function admin()
-    {
-        return $this->belongsTo(M_Admin::class);
-    }
-
     public function penyunting()
     {
-        return $this->belongsTo(M_Penyunting::class);
+        return $this->belongsTo('App\Models\M_Penyunting', 'id_penyunting');
     }
 
     public function jenis_buku()
     {
-        return $this->belongsTo(R_Jenis_Buku::class);
+        return $this->belongsTo('App\Models\R_Jenis_Buku', 'id_jenis_buku');
     }
 
     public function subjek()
     {
-        return $this->belongsTo(R_Subjek::class);
+        return $this->belongsTo('App\Models\R_Subjek', 'id_subjek');
     }
 
     public function pengarang()
     {
-        return $this->belongsTo(M_Pengarang::class);
+        return $this->belongsTo('App\Models\M_Pengarang', 'id_pengarang');
     }
 
     public function penerbit()
     {
-        return $this->belongsTo(R_Penerbit::class);
+        return $this->belongsTo('App\Models\R_Penerbit', 'id_penerbit');
     }
 
     public function sirkulasi()
     {
-        return $this->belongsTo(R_Sirkulasi::class);
+        return $this->belongsTo('App\Models\R_Sirkulasi', 'id_sirkulasi');
     }
 
     public function file()
     {
-        return $this->belongsTo(R_File::class);
+        return $this->belongsTo('App\Models\R_File', 'id_file');
     }
 
     public function peminjaman()

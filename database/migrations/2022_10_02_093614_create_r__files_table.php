@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('r__files', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('file_pdf')->nullable();
+            $table->string('cover_original')->nullable();
+            $table->string('cover_encrypt')->nullable();
             $table->string('cover_laporan')->nullable();
             $table->string('disclimer')->nullable();
             $table->string('lembar_pengesahan')->nullable();
@@ -22,6 +25,7 @@ return new class extends Migration
             $table->string('lembar_persembahan')->nullable();
             $table->string('kata_pengantar')->nullable();
             $table->string('daftar_isi')->nullable();
+            $table->string('daftar_gambar')->nullable();
             $table->string('daftar_tabel')->nullable();
             $table->string('bab_1')->nullable();
             $table->string('bab_2')->nullable();

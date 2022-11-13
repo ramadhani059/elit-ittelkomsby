@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
+    @yield('css')
 
     <!-- Helpers -->
     <script src="../assets/vendor/js/helpers.js"></script>
@@ -313,5 +314,9 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+    <!-- Script -->
+    @yield('script')
   </body>
 </html>

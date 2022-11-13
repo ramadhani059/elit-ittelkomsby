@@ -42,19 +42,29 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $jenisanggota = $request->jenisanggota;
+        $tambahinstitusi = $request->{'namainstitusi_'.$jenisanggota};
 
         if($jenisanggota != null):
             $user = new User;
             $anggota = new M_Anggota;
+            $institusi = new R_Institusi;
             $user->nama_lengkap = $request->fullname;
             $user->password = Hash::make($request->password_register);
             $user->email = $request->{'email_register_'.$jenisanggota};
             $user->level = 'anggota';
             $user->save();
 
+            if ($tambahinstitusi == 'add'){
+                $institusi->nama = $request->{'tambahinstitusi_'.$jenisanggota};
+                $institusi->tipe_institusi = $jenisanggota;
+                $institusi->save();
+                $anggota->id_institusi = $institusi->id;
+            } else {
+                $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
+            }
+
             $anggota->id_user = $user->id;
             $anggota->id_jenis_keanggotaan = $jenisanggota;
-            $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
             $anggota->no_hp = $request->telp;
             $anggota->alamat = $request->address;
 

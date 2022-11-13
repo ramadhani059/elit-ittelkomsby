@@ -17,8 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->integer('batas_booking');
-            $table->integer('biaya_sewa');
-            $table->integer('denda_harian');
+            $table->integer('biaya_sewa')->nullable();
+            $table->integer('denda_harian')->nullable();
             $table->timestamps();
         });
     }

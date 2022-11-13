@@ -44,6 +44,7 @@ Route::get('getInstitusi/{id}', [DropDownController::class, 'getInstitusi']);
 Route::get('getJenisAnggota/{id}', [DropDownController::class, 'getJenisAnggota']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('getJenisBuku/{id}', [DropDownController::class, 'getJenisBuku']);
 
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
