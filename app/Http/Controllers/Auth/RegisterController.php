@@ -48,9 +48,8 @@ class RegisterController extends Controller
             $user = new User;
             $anggota = new M_Anggota;
             $institusi = new R_Institusi;
-            $user->nama_lengkap = $request->fullname;
             $user->password = Hash::make($request->password_register);
-            $user->email = $request->{'email_register_'.$jenisanggota};
+            $user->email = $request->email;
             $user->level = 'anggota';
             $user->save();
 
@@ -59,15 +58,19 @@ class RegisterController extends Controller
                 $institusi->tipe_institusi = $jenisanggota;
                 $institusi->save();
                 $anggota->id_institusi = $institusi->id;
+            } elseif ($tambahinstitusi == null){
+                $anggota->id_institusi = 7;
             } else {
                 $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
             }
 
             $anggota->id_user = $user->id;
             $anggota->id_jenis_keanggotaan = $jenisanggota;
+            $anggota->nama_lengkap = $request->fullname;
             $anggota->no_hp = $request->telp;
             $anggota->alamat = $request->address;
-            $anggota->status = 'Belum Terverifikasi';
+            $anggota->status = 'Aktif';
+            $anggota->verifikasi = 'Belum Terverifikasi';
 
             // Get File Image
             $ktp = $request->file('filektp_'.$jenisanggota);

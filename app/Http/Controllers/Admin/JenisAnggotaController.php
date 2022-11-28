@@ -57,7 +57,11 @@ class JenisAnggotaController extends Controller
         $roleinstitusi = $request->role_institusi;
         $roleaddinstitusi = $request->role_add_institusi;
 
+        $roleuser = $request->statususer;
+
         $jenisanggota->nama = $request->namajeniskeanggotaan;
+        $jenisanggota->batas_booking = $request->bataspeminjaman;
+        $jenisanggota->jumlah_pinjam = $request->jumlahpinjam;
 
         if($rolektp == "1"){
             $jenisanggota->role_ktp = 1;
@@ -105,6 +109,12 @@ class JenisAnggotaController extends Controller
             $jenisanggota->role_add_institusi = 1;
         } else {
             $jenisanggota->role_add_institusi = 0;
+        }
+
+        if($roleuser == "1"){
+            $jenisanggota->role_user = 1;
+        } else {
+            $jenisanggota->role_user = 0;
         }
 
         $jenisanggota->save();

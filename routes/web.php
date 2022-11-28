@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AksesJurnalController;
+use App\Http\Controllers\Admin\AkuisisiBukuController;
 use App\Http\Controllers\Admin\BookingAdminController;
 use App\Http\Controllers\Admin\CatalogAdminController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -9,10 +10,12 @@ use App\Http\Controllers\Admin\GalleryAdminController;
 use App\Http\Controllers\Admin\InformationAdminController;
 use App\Http\Controllers\Admin\JenisAnggotaController;
 use App\Http\Controllers\Admin\JenisBukuController;
+use App\Http\Controllers\Admin\KoleksiBukuController;
 use App\Http\Controllers\Admin\NewsAdminController;
 use App\Http\Controllers\Admin\SirkulasiController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Anggota\CatalogController;
+use App\Http\Controllers\Anggota\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Component\DropDownController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +33,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('anggota/home');
+});
+
+Route::get('/catalog', function () {
+    return view('anggota/katalog');
+});
+
+Route::get('/detail-buku', function () {
+    return view('anggota/detailbuku');
 });
 
 Auth::routes([
@@ -49,6 +60,8 @@ Route::middleware(['auth'])->group(function () {
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
         Route::resource('admin/dashboard-admin', DashboardController::class);
+        Route::resource('admin/akuisisi-buku', AkuisisiBukuController::class);
+        Route::resource('buku/koleksi-buku', KoleksiBukuController::class);
         Route::resource('buku/catalog-admin', CatalogAdminController::class);
         Route::resource('user/user-admin', UserController::class);
         Route::resource('admin/booking-admin', BookingAdminController::class);
@@ -60,11 +73,15 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('buku/jenis-buku', JenisBukuController::class);
         Route::resource('buku/sirkulasi', SirkulasiController::class);
         Route::resource('admin/akses-jurnal', AksesJurnalController::class);
+        Route::get('getUser/{id}', [DropDownController::class, 'getUser']);
+        Route::get('getAnggota/{id}', [DropDownController::class, 'getAnggota']);
+        Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
     });
 
     // For Consumen
     Route::middleware(['is_anggota'])->group(function () {
+
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-        Route::resource('/catalog', CatalogController::class);
+        // Route::resource('/catalog', CatalogController::class);
     });
 });

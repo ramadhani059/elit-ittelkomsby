@@ -21,7 +21,7 @@
             <form action="{{ route('jenis-keanggotaan.store') }}" method="POST" enctype="multipart/form-data" id="katalogForm">
               @csrf
               <div class="row">
-                <div class="col-sm-12 mb-3">
+                <div class="col-sm-6 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
                         Nama Jenis Keanggotaan
                     </label>
@@ -43,6 +43,72 @@
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">
                         <span class="errorTxt" id="namajeniskeanggotaan-errorMsg"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label for="defaultFormControlInput" class="form-label">
+                        Batas Peminjaman Buku
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon11">
+                            <i class="bx bxs-calendar"></i>
+                        </span>
+                        <input
+                            id="bataspeminjaman"
+                            type="text"
+                            class="form-control @error('bataspeminjaman') is-invalid @enderror"
+                            name="bataspeminjaman"
+                            value="{{ old('bataspeminjaman') }}"
+                            placeholder="Enter The Limit For Borrowing Books"
+                            aria-describedby="basic-addon13"
+                            required
+                            autofocus
+                        />
+                    </div>
+                    <div id="defaultFormControlHelp" class="form-text text-danger">
+                        <span class="errorTxt" id="bataspeminjaman-errorMsg"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label for="defaultFormControlInput" class="form-label">
+                        Jumlah Peminjaman Buku
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon11">
+                            <i class="bx bxs-book"></i>
+                        </span>
+                        <input
+                            id="jumlahpinjam"
+                            type="text"
+                            class="form-control @error('jumlahpinjam') is-invalid @enderror"
+                            name="jumlahpinjam"
+                            value="{{ old('jumlahpinjam') }}"
+                            placeholder="Enter The Loan Amount"
+                            aria-describedby="basic-addon13"
+                            required
+                            autofocus
+                        />
+                    </div>
+                    <div id="defaultFormControlHelp" class="form-text text-danger">
+                        <span class="errorTxt" id="jumlahpinjam-errorMsg"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label for="defaultFormControlInput" class="form-label">
+                        Status User
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon11">
+                            <i class="bx bxs-user"></i>
+                        </span>
+                        <select class="form-select statususer @error('statususer') is-invalid @enderror" id="statususer" name="statususer">
+                            <option value=""></option>
+                            <option value="0">Non Mahasiswa</option>
+                            <option value="1">Mahasiswa</option>
+                        </select>
+                    </div>
+                    <div id="defaultFormControlHelp" class="form-text text-danger">
+                        <span class="errorTxt" id="statususer-errorMsg"></span>
                     </div>
                 </div>
               </div>
@@ -123,7 +189,7 @@
 
     <script>
         $(document).ready(function () {
-            $("#role_file").select2({
+            $("#statususer").select2({
                 theme: 'bootstrap4',
                 placeholder: "Please Select",
             });

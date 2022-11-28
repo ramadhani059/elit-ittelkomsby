@@ -33,9 +33,15 @@ $(document).ready(function () {
     };
     messages['level']={ required: 'This field is required' };
     rules['emailadmin']={
-        required: true
+        required: true,
+        email: true,
     };
     messages['emailadmin']={ required: 'This field is required' };
+    rules['email']={
+        required: true,
+        email: true,
+    };
+    messages['email']={ required: 'This field is required' };
     rules['filektp_admin']={
         required: true,
         extension: "png|jpe?g|gif",
@@ -75,7 +81,10 @@ $(document).ready(function () {
 
 
         $('input[name="email_register_'+ contoh +'"]').each(function() {
-            rules[this.name] = { required: true };
+            rules[this.name] = {
+                required: true,
+                email: true,
+            };
             console.log(contoh);
             messages[this.name] = { required: 'This field is required' };
         });
@@ -123,6 +132,22 @@ $(document).ready(function () {
         });
 
         $('input[name="tambahinstitusi_'+ contoh +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+            console.log(contoh);
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="fakultas_'+ contoh +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+            console.log(contoh);
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="jurusan_'+ contoh +'"]').each(function() {
             rules[this.name] = {
                 required: true,
             };

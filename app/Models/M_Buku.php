@@ -24,11 +24,6 @@ class M_Buku extends Model
         return $this->belongsTo('App\Models\R_Subjek', 'id_subjek');
     }
 
-    public function pengarang()
-    {
-        return $this->belongsTo('App\Models\M_Pengarang', 'id_pengarang');
-    }
-
     public function penerbit()
     {
         return $this->belongsTo('App\Models\R_Penerbit', 'id_penerbit');
@@ -44,8 +39,23 @@ class M_Buku extends Model
         return $this->belongsTo('App\Models\R_File', 'id_file');
     }
 
-    public function peminjaman()
+    public function peminjaman_buku()
     {
-        return $this->hasMany(T_Peminjaman::class);
+        return $this->hasMany('App\Models\T_Peminjaman_Buku', 'id_buku');
+    }
+
+    public function pengarang_place()
+    {
+        return $this->hasMany('App\Models\R_Pengarang_Place', 'id_buku');
+    }
+
+    public function eksemplar()
+    {
+        return $this->hasMany('App\Models\M_Eksemplar', 'id_buku');
+    }
+
+    public function akuisisi()
+    {
+        return $this->hasMany('App\Models\R_Akuisisi_Buku', 'id_buku');
     }
 }

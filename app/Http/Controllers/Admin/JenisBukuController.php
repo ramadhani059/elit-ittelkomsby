@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\M_Buku;
 use App\Models\R_Jenis_Buku;
+use App\Models\R_Koleksi_Buku;
 use Illuminate\Http\Request;
 
 class JenisBukuController extends Controller
@@ -35,7 +36,9 @@ class JenisBukuController extends Controller
     {
         $pageTitle = 'Tambah Jenis Buku | Dashboard';
 
-        return view('admin.jenisbuku.add', compact('pageTitle'));
+        $koleksibuku = R_Koleksi_Buku::all();
+
+        return view('admin.jenisbuku.add', compact('pageTitle', 'koleksibuku'));
     }
 
     /**
@@ -48,6 +51,7 @@ class JenisBukuController extends Controller
     {
         $jenisbuku = new R_Jenis_Buku;
 
+        $jenisbuku->id_koleksi = $request->koleksibuku;
         $jenisbuku->nama = $request->namajenisbuku;
         $jenisbuku->role_file = $request->role_file;
         $jenisbuku->save();

@@ -57,15 +57,16 @@ class UserController extends Controller
 
         if ($role == 'admin'){
             $admin = new M_Admin;
-            $user->nama_lengkap = $request->fullname;
             $user->password = Hash::make($request->password_register);
             $user->email = $request->emailadmin;
             $user->level = $request->level;
             $user->save();
 
             $admin->id_user = $user->id;
+            $admin->nama_lengkap = $request->fullname;
             $admin->no_hp = $request->telp;
             $admin->alamat = $request->address;
+            $admin->status = 'Active';
 
             // Get File Image
             $ktpadmin = $request->file('filektp_admin');
@@ -90,9 +91,9 @@ class UserController extends Controller
             $anggota = new M_Anggota;
             $institusi = new R_Institusi;
             $jenisanggota = $request->jenisanggota;
+            $namainstitusi = $request->{'namainstitusi_'.$jenisanggota};
             $tambahinstitusi = $request->{'namainstitusi_'.$jenisanggota};
             $user->email = $request->{'email_register_'.$jenisanggota};
-            $user->nama_lengkap = $request->fullname;
             $user->password = Hash::make($request->password_register);
             $user->level = $request->level;
             $user->save();
@@ -103,14 +104,22 @@ class UserController extends Controller
                 $institusi->save();
                 $anggota->id_institusi = $institusi->id;
             } else {
-                $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
+                if ($namainstitusi == null){
+                    $anggota->id_institusi = 7;
+                } else {
+                    $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
+                }
             }
 
             $anggota->id_user = $user->id;
+            $anggota->nama_lengkap = $request->fullname;
             $anggota->id_jenis_keanggotaan = $jenisanggota;
             $anggota->no_hp = $request->telp;
             $anggota->alamat = $request->address;
-            $anggota->status = 'Belum Terverifikasi';
+            $anggota->prodi = $request->{'jurusan_'.$jenisanggota};
+            $anggota->fakultas = $request->{'fakultas_'.$jenisanggota};
+            $anggota->status = 'Active';
+            $anggota->verifikasi = 'Belum Terverifikasi';
 
             $anggota->save();
         }

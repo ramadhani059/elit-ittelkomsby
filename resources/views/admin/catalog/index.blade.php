@@ -58,7 +58,7 @@
                     <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->judul), 15, $end='...') ?>
                 </td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->pengarang->nama), 20, $end='...') ?>
+                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->penerbit->nama), 20, $end='...') ?>
                 </td>
                 <td>
                     <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->penerbit->nama), 15, $end='...') ?>

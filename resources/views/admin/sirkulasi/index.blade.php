@@ -38,7 +38,6 @@
               <tr class="text-nowrap">
                 <th><strong>No.</strong></th>
                 <th><strong>Nama</strong></th>
-                <th><strong>Batas Peminjaman</strong></th>
                 <th><strong>Biaya Sewa</strong></th>
                 <th><strong>Denda Harian</strong></th>
                 <th></th>
@@ -50,9 +49,6 @@
                 <td><strong>{{ $loop->iteration }}</strong></td>
                 <td>
                     {{ $sirkulasi->nama }}
-                </td>
-                <td>
-                    {{ $sirkulasi->batas_booking }} Hari
                 </td>
                 <td>
                     Rp. {{ $sirkulasi->biaya_sewa }}

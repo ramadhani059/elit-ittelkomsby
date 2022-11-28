@@ -17,7 +17,7 @@ class IsAdmin
     public function handle(Request $request, Closure $next)
     {
         if($request->user()->level == 'anggota'){
-            return redirect('/home');
+            return redirect('/');
         } else {
             return $next($request);
         }

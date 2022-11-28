@@ -27,6 +27,12 @@
             <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('user-admin.create' )}}" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="tf-icons bx bx-plus"></span>&nbsp; Add
             </a>
+            <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="tf-icons bx bx-import"></span>&nbsp; Import
+            </a>
+            <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="tf-icons bx bx-export"></span>&nbsp; Export
+            </a>
         </div>
     </div>
 
@@ -40,7 +46,7 @@
                 <th><strong>Nama Lengkap </strong></th>
                 <th><strong>Jenis Anggota</strong></th>
                 <th><strong>Email</strong></th>
-                <th><strong>Status</strong></th>
+                <th><strong>Dokumen</strong></th>
                 <th></th>
               </tr>
             </thead>
@@ -55,7 +61,11 @@
                         </div>
                         <div class="media-body d-none d-lg-block f-grow-1">
                             <span class="fw-semibold d-block">
-                                <?php echo \Illuminate\Support\Str::limit(strip_tags($user->nama_lengkap), 20, $end='...') ?>
+                                @if ($user->level == 'anggota')
+                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($user->anggota->nama_lengkap), 20, $end='...') ?>
+                                @else
+                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($user->admin->nama_lengkap), 20, $end='...') ?>
+                                @endif
                             </span>
                         </div>
                     </div>
@@ -72,7 +82,7 @@
                 </td>
                 <td>
                     @if ($user->level == 'anggota')
-                        {{ $user->anggota->status }}
+                        {{ $user->anggota->verifikasi }}
                     @else
                         Terverifikasi
                     @endif
@@ -83,7 +93,7 @@
                             <span class="tf-icons bx bx-show"></span>
                         </a>
                         @if (($user->level == 'anggota'))
-                            @if ($user->anggota->status == 'Belum Terverifikasi')
+                            @if ($user->anggota->verifikasi == 'Belum Terverifikasi')
                                 <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('user-admin.edit', ['user_admin' => $user->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                     <span class="tf-icons bx bx-check"></span>
                                 </a>

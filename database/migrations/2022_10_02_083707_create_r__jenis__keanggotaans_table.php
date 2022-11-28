@@ -24,6 +24,9 @@ return new class extends Migration
             $table->boolean('role_booking');
             $table->boolean('role_institusi');
             $table->boolean('role_add_institusi');
+            $table->boolean('role_user');
+            $table->integer('batas_booking');
+            $table->integer('jumlah_pinjam');
             $table->timestamps();
         });
     }

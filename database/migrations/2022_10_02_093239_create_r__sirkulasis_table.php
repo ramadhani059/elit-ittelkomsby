@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('r__sirkulasis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->integer('batas_booking');
             $table->integer('biaya_sewa')->nullable();
             $table->integer('denda_harian')->nullable();
             $table->timestamps();

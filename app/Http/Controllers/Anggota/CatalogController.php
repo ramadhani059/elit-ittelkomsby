@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Anggota;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Buku;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -14,7 +15,12 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = 'Katalog | ELIT ITTelkom Surabaya';
+
+        // ELOQUENT
+        $buku = M_Buku::all();
+
+        return view('anggota.katalog', compact('pageTitle', 'buku'));
     }
 
     /**

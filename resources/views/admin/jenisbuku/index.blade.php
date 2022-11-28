@@ -38,6 +38,7 @@
               <tr class="text-nowrap">
                 <th><strong>No.</strong></th>
                 <th><strong>Nama</strong></th>
+                <th><strong>Jenis Koleksi</strong></th>
                 <th><strong>Jumlah Buku</strong></th>
                 <th><strong>Role File</strong></th>
                 <th></th>
@@ -49,6 +50,9 @@
                 <td><strong>{{ $loop->iteration }}</strong></td>
                 <td>
                     {{ $jenisbuku->nama }}
+                </td>
+                <td>
+                    {{ $jenisbuku->koleksi_buku->nama }}
                 </td>
                 <td>
                     {{ $jenisbuku->buku->count('pivot.id_jenis_buku') }} Buku

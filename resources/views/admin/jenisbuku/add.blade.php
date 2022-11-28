@@ -47,6 +47,25 @@
                 </div>
                 <div class="col-sm-6 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
+                        Koleksi Buku
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon11">
+                            <i class="bx bxs-book-bookmark"></i>
+                        </span>
+                        <select class="form-select koleksibuku @error('koleksibuku') is-invalid @enderror" id="koleksibuku" name="koleksibuku">
+                            <option value=""></option>
+                            @foreach ($koleksibuku as $koleksibuku)
+                                <option value="{{ $koleksibuku->id}}">{{ $koleksibuku->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div id="defaultFormControlHelp" class="form-text text-danger">
+                        <span class="errorTxt" id="koleksibuku-errorMsg"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label for="defaultFormControlInput" class="form-label">
                         Role File
                     </label>
                     <div class="input-group">
@@ -98,6 +117,10 @@
     <script>
         $(document).ready(function () {
             $("#role_file").select2({
+                theme: 'bootstrap4',
+                placeholder: "Please Select",
+            });
+            $("#koleksibuku").select2({
                 theme: 'bootstrap4',
                 placeholder: "Please Select",
             });

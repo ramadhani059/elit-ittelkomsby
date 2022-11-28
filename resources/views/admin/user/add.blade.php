@@ -239,6 +239,50 @@
                             <span class="errorTxt" id="email_register_{{ $jenisanggota->id }}-errorMsg"></span>
                         </div>
                     </div>
+                    @if ($jenisanggota->role_user == 1)
+                        <div class="col-sm-6 mb-3">
+                            <label for="defaultFormControlInput" class="form-label">
+                                Fakultas (Masukkan Secara Lengkap)
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon11">
+                                    <i class="bx bxs-graduation"></i>
+                                </span>
+                                <input
+                                    id="fakultas_{{ $jenisanggota->id }}"
+                                    type="text"
+                                    class="form-control @error('fakultas') is-invalid @enderror"
+                                    name="fakultas_{{ $jenisanggota->id }}"
+                                    placeholder="Fakultas Teknologi Informasi dan Bisnis"
+                                    aria-describedby="basic-addon13"
+                                />
+                            </div>
+                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                <span class="errorTxt" id="fakultas_{{ $jenisanggota->id }}-errorMsg"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label for="defaultFormControlInput" class="form-label">
+                                Jurusan (Masukkan Secara Lengkap)
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon11">
+                                    <i class="bx bxs-graduation"></i>
+                                </span>
+                                <input
+                                    id="jurusan_{{ $jenisanggota->id }}"
+                                    type="text"
+                                    class="form-control @error('jurusan') is-invalid @enderror"
+                                    name="jurusan_{{ $jenisanggota->id }}"
+                                    placeholder="S1 Sistem Informasi"
+                                    aria-describedby="basic-addon13"
+                                />
+                            </div>
+                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                <span class="errorTxt" id="jurusan_{{ $jenisanggota->id }}-errorMsg"></span>
+                            </div>
+                        </div>
+                    @endif
                 </div>
               @endforeach
               <div class="row dokumenleveladmin" id="dokumenleveladmin" style="display: none;">
@@ -258,7 +302,7 @@
                 </div>
                 <div class="col-sm-6 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
-                        Karpeg/KTM
+                        Kartu Pegawai/KTM
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">

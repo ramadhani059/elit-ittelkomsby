@@ -21,7 +21,7 @@
             <form action="{{ route('sirkulasi.store') }}" method="POST" enctype="multipart/form-data" id="katalogForm">
               @csrf
               <div class="row">
-                <div class="col-sm-6 mb-3">
+                <div class="col-sm-12 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
                         Nama Sirkulasi
                     </label>
@@ -47,35 +47,11 @@
                 </div>
                 <div class="col-sm-6 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
-                        Batas Peminjaman
-                    </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
-                        </span>
-                        <input
-                            id="bataspeminjaman"
-                            type="text"
-                            class="form-control @error('bataspeminjaman') is-invalid @enderror"
-                            name="bataspeminjaman"
-                            value="{{ old('bataspeminjaman') }}"
-                            placeholder="Enter The Loan Limit"
-                            aria-describedby="basic-addon13"
-                            required
-                            autofocus
-                        />
-                    </div>
-                    <div id="defaultFormControlHelp" class="form-text text-danger">
-                        <span class="errorTxt" id="bataspeminjaman-errorMsg"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label for="defaultFormControlInput" class="form-label">
                         Biaya Sewa
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
+                            <i class="bx bx-dollar"></i>
                         </span>
                         <input
                             id="biayasewa"
@@ -99,7 +75,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
+                            <i class="bx bx-dollar"></i>
                         </span>
                         <input
                             id="dendaharian"

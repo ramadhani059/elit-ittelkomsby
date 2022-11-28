@@ -9,9 +9,9 @@ class M_Pengarang extends Model
 {
     use HasFactory;
 
-    public function buku()
+    public function pengarang_place()
     {
-        return $this->hasMany(M_Buku::class);
+        return $this->hasMany('App\Models\R_Pengarang_Place', 'id_pengarang');
     }
 
     public function donasi_buku()

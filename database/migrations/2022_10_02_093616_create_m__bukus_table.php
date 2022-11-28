@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('m__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_penerbit');
-            $table->unsignedBigInteger('id_pengarang');
             $table->unsignedBigInteger('id_penyunting');
             $table->unsignedBigInteger('id_subjek');
             $table->unsignedBigInteger('id_jenis_buku');
@@ -25,8 +24,13 @@ return new class extends Migration
             $table->string('kode_buku')->unique();
             $table->string('lokasi_buku');
             $table->string('judul')->unique();
+            $table->string('anak_judul');
+            $table->string('edisi')->nullable();
             $table->string('kota_terbit');
             $table->integer('tahun_terbit');
+            $table->string('ilustrasi')->nullable();
+            $table->string('dimensi')->nullable();
+            $table->string('isbn')->nullable();
             $table->text('ringkasan');
             $table->integer('jumlah');
             $table->integer('dipinjam')->nullable();
@@ -35,7 +39,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('id_penerbit')->references('id')->on('r__penerbits');
-            $table->foreign('id_pengarang')->references('id')->on('m__pengarangs');
             $table->foreign('id_penyunting')->references('id')->on('m__penyuntings');
             $table->foreign('id_subjek')->references('id')->on('r__subjeks');
             $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus');

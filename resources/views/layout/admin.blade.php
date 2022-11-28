@@ -73,7 +73,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo" style="margin-top: 20px; margin-bottom: 15px;">
-            <a href="index.html" class="app-brand-link">
+            <a href="{{ route('dashboard-admin.index') }}" class="app-brand-link">
                 <img src="{{ asset('assets/img/icons/logo/logo-putih.png') }}" alt style="height: 55px;" />
             </a>
 
@@ -93,6 +93,13 @@
               </a>
             </li>
 
+            <li class="menu-item @if($route == 'akuisisi-buku.index') active @endif">
+                <a href="{{ route('akuisisi-buku.index') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-book-add"></i>
+                  <div data-i18n="Analytics">Akuisisi Buku</div>
+                </a>
+            </li>
+
             <li class="menu-item {{  (request()->is('buku*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book"></i>
@@ -108,6 +115,11 @@
                   <a href="{{ route('jenis-buku.index') }}" class="menu-link">
                     <div data-i18n="Notifications">Jenis Buku</div>
                   </a>
+                </li>
+                <li class="menu-item {{  (request()->is('buku/koleksi-buku*')) ? 'active' : '' }}">
+                    <a href="{{ route('koleksi-buku.index') }}" class="menu-link">
+                      <div data-i18n="Notifications">Koleksi Buku</div>
+                    </a>
                 </li>
                 <li class="menu-item {{  (request()->is('buku/sirkulasi*')) ? 'active' : '' }}">
                   <a href="{{ route('sirkulasi.index') }}" class="menu-link">
@@ -136,10 +148,10 @@
               </ul>
             </li>
 
-            <li class="menu-item">
-              <a href="#" class="menu-link">
+            <li class="menu-item {{  (request()->is('admin/booking-admin*')) ? 'active' : '' }}">
+              <a href="{{ route('booking-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bookmark"></i>
-                <div data-i18n="Analytics">Booking</div>
+                <div data-i18n="Analytics">Peminjaman Buku</div>
               </a>
             </li>
 
@@ -208,7 +220,7 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="media align-items-center d-flex ">
                             <div class="media-body d-none d-lg-block f-grow-1 me-4">
-                                <span class="fw-semibold d-block">{{ Auth::user() -> nama_lengkap }}</span>
+                                <span class="fw-semibold d-block">{{ Auth::user() -> admin -> nama_lengkap }}</span>
                             </div>
                             <div class="avatar avatar-online ">
                                 <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-auto rounded-circle" />

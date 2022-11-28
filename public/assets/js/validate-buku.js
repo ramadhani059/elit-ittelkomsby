@@ -18,10 +18,64 @@ $(document).ready(function () {
         required: true
     };
     messages['judul_buku']={ required: 'This field is required' };
+    rules['anak_judul']={
+        required: true
+    };
+    messages['anak_judul']={ required: 'This field is required' };
+    rules['jenis_identitas']={
+        required: true
+    };
+    messages['jenis_identitas']={ required: 'This field is required' };
+    rules['nomor_identitas']={
+        required: true
+    };
+    messages['nomor_identitas']={ required: 'This field is required' };
+    rules['nama_lengkap']={
+        required: true
+    };
+    messages['nama_lengkap']={ required: 'This field is required' };
+    rules['email']={
+        required: true,
+        email: true,
+    };
+    messages['email']={ required: 'This field is required' };
+    rules['address']={
+        required: true,
+    };
+    messages['address']={ required: 'This field is required' };
+    rules['tgl_pinjam']={
+        required: true,
+        date: true,
+    };
+    messages['tgl_pinjam']={ required: 'This field is required' };
+    rules['no_hp']={
+        required: true
+    };
+    messages['no_hp']={ required: 'This field is required' };
     rules['jenis_buku']={
         required: true
     };
     messages['jenis_buku']={ required: 'This field is required' };
+    rules['koleksibuku']={
+        required: true
+    };
+    messages['koleksibuku']={ required: 'This field is required' };
+    rules['no_inventaris']={
+        required: true
+    };
+    messages['no_inventaris']={ required: 'This field is required' };
+    rules['isbn']={
+        required: true
+    };
+    messages['isbn']={ required: 'This field is required' };
+    rules['ilustrasi']={
+        required: true
+    };
+    messages['ilustrasi']={ required: 'This field is required' };
+    rules['dimensi']={
+        required: true
+    };
+    messages['dimensi']={ required: 'This field is required' };
     rules['jumlah_eksemplar']={
         required: true,
         digits: true,
@@ -276,6 +330,10 @@ $(document).ready(function () {
         required: true
     };
     messages['role_file']={ required: 'This field is required' };
+    rules['statususer']={
+        required: true
+    };
+    messages['statususer']={ required: 'This field is required' };
     rules['namasirkulasi']={
         required: true
     };
@@ -285,6 +343,11 @@ $(document).ready(function () {
         digits: true,
     };
     messages['bataspeminjaman']={ required: 'This field is required' };
+    rules['jumlahpinjam']={
+        required: true,
+        digits: true,
+    };
+    messages['jumlahpinjam']={ required: 'This field is required' };
     rules['biayasewa']={
         required: true,
         digits: true,

@@ -31,6 +31,6 @@ class M_Anggota extends Model
 
     public function peminjaman()
     {
-        return $this->hasMany(T_Peminjaman::class);
+        return $this->hasMany('App\Models\T_Peminjaman', 'id_anggota');
     }
 }

@@ -17,27 +17,27 @@ class InstitusiSeeder extends Seeder
     {
         DB::table('r__institusis')->insert([
             [
-                'nama' => 'PT Telekomunikasi Indonesia',
-                'tipe_institusi' => 1,
-            ], [
                 'nama' => 'Institut Telknologi Sepuluh November',
-                'tipe_institusi' => 4,
+                'tipe_institusi' => 1,
             ], [
                 'nama' => 'Universitas Terbuka',
                 'tipe_institusi' => 1,
             ], [
                 'nama' => 'Institut Teknologi Bandung',
-                'tipe_institusi' => 4,
+                'tipe_institusi' => 1,
             ], [
                 'nama' => 'Telkom University',
-                'tipe_institusi' => 2,
+                'tipe_institusi' => 1,
             ], [
                 'nama' => 'ITTelkom Purwokerto',
-                'tipe_institusi' => 2,
+                'tipe_institusi' => 1,
             ], [
                 'nama' => 'ITTelkom Jakarta',
-                'tipe_institusi' => 2,
-            ],
+                'tipe_institusi' => 1,
+            ], [
+                'nama' => 'ITTelkom Surabaya',
+                'tipe_institusi' => 3,
+            ]
         ]);
     }
 }

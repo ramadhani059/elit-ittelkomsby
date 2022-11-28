@@ -23,12 +23,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_jenis_buku');
             $table->unsignedBigInteger('id_file');
             $table->string('judul');
+            $table->string('kota_terbit');
             $table->integer('tahun_terbit');
             $table->text('ringkasan');
             $table->integer('jumlah');
-            $table->string('file_pdf')->nullable();
-            $table->string('cover_original')->nullable();
-            $table->string('cover_encrypt')->nullable();
             $table->string('keterangan')->nullable();
             $table->string('status');
             $table->timestamps();

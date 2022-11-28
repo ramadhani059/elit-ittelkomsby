@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('m__admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user');
-            $table->bigInteger('no_hp');
+            $table->string('nama_lengkap');
+            $table->string('no_hp');
             $table->string('alamat');
+            $table->string('status');
             $table->string('ktp_original')->nullable();
             $table->string('ktp_encrypt')->nullable();
             $table->string('karpeg_ktm_original')->nullable();

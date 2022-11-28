@@ -48,7 +48,6 @@ class SirkulasiController extends Controller
         $sirkulasi = new R_Sirkulasi;
 
         $sirkulasi->nama = $request->namasirkulasi;
-        $sirkulasi->batas_booking = $request->bataspeminjaman;
         $sirkulasi->biaya_sewa = $request->biayasewa;
         $sirkulasi->denda_harian = $request->dendaharian;
 

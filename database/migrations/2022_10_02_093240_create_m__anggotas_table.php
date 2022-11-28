@@ -18,9 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_jenis_keanggotaan');
             $table->unsignedBigInteger('id_institusi');
-            $table->bigInteger('no_hp');
+            $table->string('nama_lengkap');
+            $table->string('no_hp');
             $table->string('alamat');
+            $table->string('prodi')->nullable();
+            $table->string('fakultas')->nullable();
             $table->string('status');
+            $table->string('verifikasi');
             $table->string('ktp_original')->nullable();
             $table->string('ktp_encrypt')->nullable();
             $table->string('karpeg_ktm_original')->nullable();

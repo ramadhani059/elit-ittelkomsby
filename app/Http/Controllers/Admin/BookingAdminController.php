@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Anggota;
+use App\Models\M_Buku;
+use App\Models\T_Peminjaman;
+use App\Models\T_Peminjaman_Buku;
 use Illuminate\Http\Request;
 
 class BookingAdminController extends Controller
@@ -14,7 +18,14 @@ class BookingAdminController extends Controller
      */
     public function index()
     {
-        //
+        $pageTitle = 'Peminjaman | ELIT ITTelkom Surabaya';
+
+        $booking = T_Peminjaman_Buku::all();
+
+        return view('admin/booking/index', [
+            'pageTitle' => $pageTitle,
+            'booking' => $booking
+        ]);
     }
 
     /**
@@ -24,7 +35,13 @@ class BookingAdminController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = 'Tambah Peminjam | Dashboard';
+
+        // ELOQUENT
+        $buku = M_Buku::all();
+        $anggota = M_Anggota::all();
+
+        return view('admin.booking.add', compact('pageTitle', 'buku', 'anggota'));
     }
 
     /**

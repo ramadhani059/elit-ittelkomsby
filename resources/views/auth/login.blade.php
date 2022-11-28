@@ -226,6 +226,28 @@
                             </div>
                             <div class="mb-3">
                                 <label for="defaultFormControlInput" class="form-label">
+                                    Email
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon11">
+                                        <i class="bx bx-at"></i>
+                                    </span>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        name="email"
+                                        placeholder="name@example.com"
+                                        aria-describedby="basic-addon13"
+                                        autocomplete="email"
+                                    />
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text text-danger">
+                                    <span class="errorTxt" id="email-errorMsg"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="defaultFormControlInput" class="form-label">
                                     Nomor Handphone
                                 </label>
                                 <div class="input-group">
@@ -333,28 +355,6 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <div class="mb-3">
-                                        <label for="defaultFormControlInput" class="form-label">
-                                            Email Institusi
-                                        </label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon11">
-                                                <i class="bx bx-at"></i>
-                                            </span>
-                                            <input
-                                                id="email_register_{{ $jenisanggota->id }}"
-                                                type="email"
-                                                class="form-control @error('email_register') is-invalid @enderror"
-                                                name="email_register_{{ $jenisanggota->id }}"
-                                                placeholder="name@example.com"
-                                                aria-describedby="basic-addon13"
-                                                autocomplete="email"
-                                            />
-                                        </div>
-                                        <div id="defaultFormControlHelp" class="form-text text-danger">
-                                            <span class="errorTxt" id="email_register_{{ $jenisanggota->id }}-errorMsg"></span>
-                                        </div>
-                                    </div>
                                     @if ($jenisanggota->role_ktp == 1)
                                         <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">
