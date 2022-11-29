@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Carousel 03</title>
+    <title>{{ $pageTitle }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -64,10 +64,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link @if($route == 'home') fw-semibold active @endif" aria-current="page" href="javascript:void(0)">Home</a>
+                        <a class="nav-link @if($route == 'home') fw-semibold active @endif" aria-current="page" href="{{ route('home') }}">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link {{  (request()->is('/catalog*')) ? 'fw-semibold active' : '' }}" href="javascript:void(0)">Katalog</a>
+                        <a class="nav-link {{  (request()->is('catalog*')) ? 'fw-semibold active' : '' }}" href="{{ route('catalog') }}">Katalog</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0)">About Us</a>

@@ -14,12 +14,21 @@
                 <div class="card">
                     <div class="card-body mt-3 mx-2">
                         <h4 class="card-title fw-bolder">
-                            Rancang Bangun E-Katalog Berbasis Progressive Web Apps Untuk Pengembangan Sistem Informasi Electronic Library ITTelkom Surabaya
+                            {{ $buku->judul }}
                         </h4>
                         <p class="card-text">
                             <div class="row media">
                                 <div class="col-12">
-                                    <span class="tf-icons bx bx-user"></span>&nbsp; Pratama Ramadhani Wijaya
+                                    <span class="tf-icons bx bx-user"></span>&nbsp;
+                                    @if ($buku->pengarang_place->count('pivot.id_pengarang') != 1)
+                                        @foreach ($buku->pengarang_place->take(1) as $pengarangbuku)
+                                            {{ $pengarangbuku->pengarang->nama }}, dkk
+                                        @endforeach
+                                    @else
+                                        @foreach ($buku->pengarang_place->take(1) as $pengarangbuku)
+                                            {{ $pengarangbuku->pengarang->nama }}
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </p>
@@ -33,7 +42,11 @@
                   <div class="card-body">
                     <img
                       class="img-fluid d-flex mx-auto"
-                      src="{{ asset('assets/img/home/2.jpg') }}"
+                      src="@if ($buku->file->cover_encrypt != null)
+                            {{ asset('storage/buku/cover/'.$buku->file->cover_encrypt) }}
+                        @else
+                            {{ asset('assets/img/home/1.png') }}
+                        @endif"
                       alt="Card image cap"
                     />
                   </div>
@@ -83,7 +96,7 @@
                                         </td>
                                         <td class="col-md-8 col-7">
                                             <div class="px-2 py-1">
-                                                Web Development
+                                                {{ $buku->subjek->nama }}
                                             </div>
                                         </td>
                                     </tr>
@@ -100,7 +113,7 @@
                                         </td>
                                         <td class="col-md-8 col-7">
                                             <div class="px-2 py-1">
-                                                Koleksi Referensi - Tugas Akhir (Skripsi)
+                                                {{ $buku->jenis_buku->koleksi_buku->nama }} - {{ $buku->jenis_buku->nama }}
                                             </div>
                                         </td>
                                     </tr>
@@ -123,7 +136,7 @@
                                         </td>
                                         <td class="col-md-7 col-7">
                                             <div class="px-2 py-1">
-                                                KTT 01.14
+                                                {{ $buku->lokasi_buku }}
                                             </div>
                                         </td>
                                     </tr>
@@ -140,7 +153,7 @@
                                         </td>
                                         <td class="col-md-7 col-7 align-top">
                                             <div class="px-2 py-1">
-                                                432
+                                                {{ $buku->ilustrasi }}
                                             </div>
                                         </td>
                                     </tr>
@@ -157,7 +170,7 @@
                                         </td>
                                         <td class="col-md-7 col-7">
                                             <div class="px-2 py-1">
-                                                2 Buku
+                                                {{ $buku->eksemplar->count('pivot.id_buku') }} Buku
                                             </div>
                                         </td>
                                     </tr>
@@ -176,11 +189,7 @@
                                         <td class="col-md-12 col-12">
                                             <div class="px-2 pt-1">
                                                 <div class="overflow-auto" style="height: 255px" id="vertical-example">
-                                                    <p>Indonesia dikenal sebagai negara agraris yang artinya sebagian besar penduduknya bekerja pada bidang pertanian. Indonesia memiliki lahan pertanian yang luas serta sumber daya alam yang melimpah dan beraneka ragam yang dapat dimanfaatkan oleh penduduk Indonesia salah satunya dengan bercocok tanam. Namun, lahan pertanian semakin berkurang akibat peningkatan penduduk sehingga lahan pertanian dialih fungsikan menjadi bangunan untuk tempat tinggal terutama daerah perkotaan. Selain itu, kebutuhan pangan juga meningkat seiring dengan peningkatan jumlah penduduk terutama untuk sayuran dan buah. Dengan adanya permasalahan tersebut dibutuhkan suatu sistem yang mampu membantu memenuhi kebutuhan pangan dengan lahan yang terbatas dan juga efisien waktu.</p>
-
-                                                    <p>Pada Proyek Akhir ini dilakukan perancangan sistem <em>smart indoor farming</em> yang berfokus pada aplikasi android dengan tujuan untuk <em>monitoring</em> dan <em>controlling</em> sistem <em>smart indoor farming</em>. Tujuan pembuatan aplikasi ini adalah untuk memudahkan pengguna melaksanakan <em>monitoring</em> dan <em>controlling</em> serta meningkatkan efisiensi waktu dalam kegiatan bercocok tanam. Aplikasi android smart indoor farming ini bernama HydraC.</p>
-
-                                                    <p>Hasil keluaran dari aplikasi HydraC ini adalah pengguna dapat melakukan <em>monitoring</em> secara <em>mobile</em>. Nilai parameter yang ditampilkan pada aplikasi diambil dari Firebase yang telah menyimpan data dari perangkat <em>smart indoor farming</em>. Selain itu, pengguna juga dapat mengontrol <em>water pump</em> pada aplikasi tersebut. Hasil pengujian fungsionalitas aplikasi menunjukkan bahwa seluruh fungsi aplikasi sudah berjalan dengan baik. Uji kompatibilitas aplikasi android berjalan dengan baik dari versi 5.1 s.d. 11. Hasil pengujian kualitatif menggunakan kuesioner dan Skala Likert dengan nilai kepuasan 95.22%. </p>
+                                                    {{$buku->ringkasan}}
                                                 </div>
                                             </div>
                                         </td>
@@ -217,9 +226,11 @@
                                                 </div>
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
-                                                <div class="px-2 py-1">
-                                                    Pratama Ramadhani Wijaya
-                                                </div>
+                                                @foreach ($buku->pengarang_place as $pengarangbuku)
+                                                    <div class="px-2 py-1">
+                                                        {{ $pengarangbuku->pengarang->nama }}
+                                                    </div>
+                                                @endforeach
                                             </td>
                                         </tr>
                                         <tr>
@@ -235,7 +246,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    Rokhmatul Insani S.T M.T
+                                                    {{ $buku->penyunting->nama }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -252,7 +263,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    Purnama Anaking S.Kom M.Kom
+                                                    -
                                                 </div>
                                             </td>
                                         </tr>
@@ -288,7 +299,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    ITTelkom Surabaya
+                                                    {{ $buku->penerbit->nama }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -305,7 +316,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    Surabaya
+                                                    {{ $buku->kota_terbit }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -322,7 +333,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    2022
+                                                    {{ $buku->tahun_terbit }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -358,7 +369,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    Non-Sirkulasi
+                                                    {{ $buku->sirkulasi->nama }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -375,7 +386,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    Rp. 0,00
+                                                    Rp. {{ $buku->sirkulasi->biaya_sewa }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -392,7 +403,7 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    Rp. 0,00
+                                                    Rp. {{ $buku->sirkulasi->denda_harian }}
                                                 </div>
                                             </td>
                                         </tr>

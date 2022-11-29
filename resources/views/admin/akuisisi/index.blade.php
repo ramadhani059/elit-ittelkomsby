@@ -8,10 +8,20 @@
 @section('content')
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row align-items-center d-flex media py-4">
-        <div class="col-lg-6 col-12 media-body d-none d-lg-block f-grow-1">
-            <h5 class="fw-bold"><span class="text-muted fw-light">Katalog Buku/ List Buku/</span> Tambah Buku</h5>
-        </div>
+
+    <div
+      class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      data-delay="2000"
+    >
+      <div class="toast-header">
+        <i class="bx bx-bell me-2"></i>
+        <div class="me-auto fw-semibold">Information</div>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">Maaf Kode Buku yang Anda Masukkan Belum Terdaftar</div>
     </div>
 
     <!-- Basic with Icons -->
@@ -34,12 +44,22 @@
                             type="text"
                             class="form-control @error('kode_buku') is-invalid @enderror"
                             name="kode_buku"
-                            value="{{ old('kode_buku') }}"
                             placeholder="01.04.2238"
                             aria-describedby="basic-addon13"
                             required
                             autofocus
                         />
+                        <button
+                            class="btn btn-outline-primary"
+                            id="checkkodebuku"
+                            data-bs-toggle="tooltip"
+                            data-bs-offset="0,4"
+                            data-bs-placement="bottom"
+                            data-bs-html="true"
+                            title="<span>Check Kode Buku</span>"
+                        >
+                            <i class="bx bx-search-alt-2"></i>
+                        </button>
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">
                         <span class="errorTxt" id="kode_buku-errorMsg"></span>
@@ -117,7 +137,7 @@
                         <span class="errorTxt" id="lokasi_buku-errorMsg"></span>
                     </div>
                 </div>
-                <div class="col-sm-6 mb-3">
+                <div class="col-sm-12 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
                         Judul Buku
                     </label>
@@ -185,6 +205,44 @@
                     </div>
                 </div>
                 <div class="col-sm-6 mb-3">
+                    <label for="defaultFormControlInput" class="form-label">
+                        Jenis Pengadaan
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon11">
+                            <i class="bx bxs-book-alt"></i>
+                        </span>
+                        <select class="form-select jenis_pengadaan @error('jenis_pengadaan') is-invalid @enderror" id="jenis_pengadaan" name="jenis_pengadaan">
+                            <option value=""></option>
+                            <option value="pembelian">Pembelian</option>
+                            <option value="hibah/donasi">Hibah/Donasi</option>
+                            <option value="repository">Repository</option>
+
+                        </select>
+                    </div>
+                    <div id="defaultFormControlHelp" class="form-text text-danger">
+                        <span class="errorTxt" id="jenis_pengadaan-errorMsg"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label for="defaultFormControlInput" class="form-label">
+                        Status Pengadaan
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon11">
+                            <i class="bx bxs-check-circle"></i>
+                        </span>
+                        <select class="form-select status_pengadaan @error('status_pengadaan') is-invalid @enderror" id="status_pengadaan" name="status_pengadaan">
+                            <option value=""></option>
+                            <option value="dapat dipinjam">Dapat Dipinjam</option>
+                            <option value="tidak dapat dipinjam">Tidak Dapat Dipinjam</option>
+                        </select>
+                    </div>
+                    <div id="defaultFormControlHelp" class="form-text text-danger">
+                        <span class="errorTxt" id="status_pengadaan-errorMsg"></span>
+                    </div>
+                </div>
+                <div class="col-sm-12 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
                         Jenis Buku
                     </label>
@@ -917,6 +975,16 @@
 
     <script>
         $(document).ready(function () {
+            $("#jenis_pengadaan").select2({
+                theme: 'bootstrap4',
+                placeholder: "Please Select",
+            });
+
+            $("#status_pengadaan").select2({
+                theme: 'bootstrap4',
+                placeholder: "Please Select",
+            });
+
             $("#jenis_buku").select2({
                 theme: 'bootstrap4',
                 placeholder: "Please Select",
@@ -955,6 +1023,26 @@
             $("#role_download").select2({
                 theme: 'bootstrap4',
                 placeholder: "Please Select",
+            });
+
+            $('#checkkodebuku').click(function(){
+                const kodebuku = $('#kode_buku').val();
+                // alert(kodebuku);
+
+                $.ajax({
+                    url: '/getKodeBuku/'+kodebuku,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(infobuku){
+                        $.each(infobuku, function(index, buku){
+                            if(infobuku != ''){
+                                alert(kodebuku);
+                            } else {
+
+                            }
+                        })
+                    }
+                });
             });
 
             $('#jenis_buku').on('change',function(){

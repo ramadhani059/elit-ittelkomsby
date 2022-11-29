@@ -26,6 +26,10 @@ $(document).ready(function () {
         required: true
     };
     messages['jenis_identitas']={ required: 'This field is required' };
+    rules['jenis_pengadaan']={
+        required: true
+    };
+    messages['jenis_pengadaan']={ required: 'This field is required' };
     rules['nomor_identitas']={
         required: true
     };
@@ -150,6 +154,10 @@ $(document).ready(function () {
         required: true
     };
     messages['status']={ required: 'This field is required' };
+    rules['status_pengadaan']={
+        required: true
+    };
+    messages['status_pengadaan']={ required: 'This field is required' };
     rules['abstrak']={
         required: true
     };

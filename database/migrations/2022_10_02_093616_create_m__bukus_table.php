@@ -32,7 +32,6 @@ return new class extends Migration
             $table->string('dimensi')->nullable();
             $table->string('isbn')->nullable();
             $table->text('ringkasan');
-            $table->integer('jumlah');
             $table->integer('dipinjam')->nullable();
             $table->boolean('status_active');
             $table->boolean('role_download');

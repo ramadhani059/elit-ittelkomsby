@@ -18,6 +18,7 @@ use App\Http\Controllers\Anggota\CatalogController;
 use App\Http\Controllers\Anggota\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Component\DropDownController;
+use App\Http\Controllers\Component\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,16 +34,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('anggota/home');
+    return redirect()->route('home');
 });
 
-Route::get('/catalog', function () {
-    return view('anggota/katalog');
-});
+Route::get('/home', [App\Http\Controllers\AnggotaController::class, 'index'])->name('home');
 
-Route::get('/detail-buku', function () {
-    return view('anggota/detailbuku');
-});
+Route::get('/catalog', [App\Http\Controllers\AnggotaController::class, 'catalog'])->name('catalog');
+
+Route::get('/catalog/{kodebuku}', [App\Http\Controllers\AnggotaController::class, 'detail_buku'])->name('catalog.detail');
 
 Auth::routes([
     'register' => false
@@ -76,12 +75,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getUser/{id}', [DropDownController::class, 'getUser']);
         Route::get('getAnggota/{id}', [DropDownController::class, 'getAnggota']);
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
+        Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
     });
 
     // For Consumen
     Route::middleware(['is_anggota'])->group(function () {
 
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
         // Route::resource('/catalog', CatalogController::class);
     });
 });
