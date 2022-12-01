@@ -51,7 +51,7 @@
                     />
                   </div>
                   <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3">
-                    <button type="button" class="btn btn-primary">Booking</button>
+                    <button type="button" class="btn btn-primary" >Booking</button>
                   </div>
                 </div>
             </div>

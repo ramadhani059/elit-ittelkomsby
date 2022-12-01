@@ -150,5 +150,6 @@
     <script src="{{ asset('assets/anggota/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/main.js') }}"></script>
+    @yield('script')
   </body>
 </html>

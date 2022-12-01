@@ -60,13 +60,19 @@ class AkuisisiBukuController extends Controller
 
         if (M_Buku::where('kode_buku', $check)->exists()){
             $eksemplar = new M_Eksemplar;
-            $eksemplar->id_buku = 1;
-            $eksemplar->barcode = 1;
-            $eksemplar->kode_inventaris = 1;
-            $eksemplar->tanggal_pengadaan = Carbon::now();
-            $eksemplar->jenis_sumber = $request->jenis_pengadaan;
-            $eksemplar->status = $request->status_pengadaan;
-            $eksemplar->save();
+
+            $target = $request->jumlah_eksemplar;
+
+            while($target == 0){
+                $eksemplar->id_buku = 1;
+                $eksemplar->barcode = 1;
+                $eksemplar->kode_inventaris = 1;
+                $eksemplar->tanggal_pengadaan = Carbon::now();
+                $eksemplar->jenis_sumber = $request->jenis_pengadaan;
+                $eksemplar->status = $request->status_pengadaan;
+                $eksemplar->save();
+                $target--;
+            }
         } else {
             $subjek = new R_Subjek;
             $pengarang = new M_Pengarang;
@@ -74,6 +80,7 @@ class AkuisisiBukuController extends Controller
             $penerbit = new R_Penerbit;
             $file = new R_File;
             $buku = new M_Buku;
+            $eksemplar = new M_Eksemplar;
 
             $tambahpenerbit = $request->penerbit;
             if($tambahpenerbit == 'add'){
@@ -276,6 +283,19 @@ class AkuisisiBukuController extends Controller
 
             $pengarangplace->id_buku = $buku->id;
             $pengarangplace->save();
+
+            $target = $request->jumlah_eksemplar;
+
+            while($target > 0){
+                $eksemplar->id_buku = $buku->id;
+                $eksemplar->barcode = 1;
+                $eksemplar->kode_inventaris = 1;
+                $eksemplar->tanggal_pengadaan = Carbon::now();
+                $eksemplar->jenis_sumber = $request->jenis_pengadaan;
+                $eksemplar->status = $request->status_pengadaan;
+                $eksemplar->save();
+                $target--;
+            }
         }
 
         return redirect()->route('catalog-admin.index');

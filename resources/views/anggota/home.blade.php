@@ -23,107 +23,26 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+    <div class="modal fade " id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="dialog">
+          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="modalCenterTitle">Pencarian Detail Katalog</h5>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-            ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
             </div>
             <div class="modal-body">
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Jenis Buku</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter Book Type"
+              <a href="#">
+                <img
+                  class="img-fluid d-flex mx-auto"
+                  src="{{ asset('assets/img/home/poster.jpg') }}"
                 />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Judul Buku</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter The Book Title"
-                />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Kode Buku</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter The Book Code"
-                />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Nama Pengarang</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter The Author's Name"
-                />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Nama Penyunting</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter An Editor Name"
-                />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Nama Penerbit</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter The Publisher Name"
-                />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-3">
-                <label for="nameWithTitle" class="form-label">Subjek</label>
-                <input
-                    type="text"
-                    id="nameWithTitle"
-                    class="form-control"
-                    placeholder="Enter Subject"
-                />
-                </div>
-            </div>
+              </a>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                Close
-            </button>
-            <button type="button" class="btn btn-primary">Search</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+          </div>
         </div>
-        </div>
-    </div>
     </div>
     <hr/>
     <section class="pb-5 pt-3">
@@ -150,7 +69,7 @@
                                             <div class="text w-100" style="background-color: rgba(0,0,0, 0.5); padding-top: 10px; height: 100px;">
                                                 <span class="cat">{{ $buku->subjek->nama }}</span>
                                                 <h3>
-                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 70, $end='...') ?>
+                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 55, $end='...') ?>
                                                 </a></h3>
                                             </div>
                                         </div>
@@ -205,5 +124,12 @@
         </div>
     </div>
 
+@endsection
 
+@section('script')
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#exampleModal').modal('show');
+        });
+    </script>
 @endsection
