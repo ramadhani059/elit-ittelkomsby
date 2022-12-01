@@ -95,7 +95,7 @@
                         <select class="form-select nama_lengkap @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name="nama_lengkap">
                             <option value=""></option>
                             @foreach ($anggota as $anggota)
-                                <option value="{{ $anggota->id}}">{{ $anggota->user->nama_lengkap }}</option>
+                                <option value="{{ $anggota->id}}">{{ $anggota->nama_lengkap }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -202,11 +202,10 @@
                         </span>
                         <input
                           class="form-control"
-                          type="text"
+                          type="date"
                           id="batas_pinjam"
                           name="batas_pinjam"
                           placeholder="Deadline"
-                          readonly
                         />
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">

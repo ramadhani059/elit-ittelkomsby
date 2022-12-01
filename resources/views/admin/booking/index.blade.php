@@ -87,11 +87,9 @@
                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('booking-admin.edit', ['booking_admin' => $booking->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-edit"></span>
                         </a>
-                        <form action="{{ route('booking-admin.destroy', ['booking_admin' => $booking->id]) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" data-name="{{ $booking->kode_booking }}" ><span class="tf-icons bx bx-trash"></span></button>
-                        </form>
+                        <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="{{ route('booking-admin.selesai', ['booking_admin' => $booking->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="tf-icons bx bx-check"></span>
+                        </a>
                     </div>
                 </td>
               </tr>

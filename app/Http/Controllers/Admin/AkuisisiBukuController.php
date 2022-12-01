@@ -288,7 +288,7 @@ class AkuisisiBukuController extends Controller
 
             while($target > 0){
                 $eksemplar->id_buku = $buku->id;
-                $eksemplar->barcode = 1;
+                $eksemplar->barcode = $request->isbn.+$target;
                 $eksemplar->kode_inventaris = 1;
                 $eksemplar->tanggal_pengadaan = Carbon::now();
                 $eksemplar->jenis_sumber = $request->jenis_pengadaan;

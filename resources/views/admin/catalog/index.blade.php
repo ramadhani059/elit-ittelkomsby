@@ -24,9 +24,6 @@
             <h5 class="fw-bold"><span class="text-muted fw-light">Katalog Buku/</span> List Buku</h5>
         </div>
         <div class="col-lg-6 col-12 text-end">
-            <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('catalog-admin.create' )}}" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-plus"></span>&nbsp; Add
-            </a>
             <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="tf-icons bx bx-import"></span>&nbsp; Import
             </a>

@@ -52,7 +52,29 @@ class BookingAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $peminjaman = new T_Peminjaman_Buku;
+
+        $huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        $kodeBooking = strtoupper(substr(str_shuffle($huruf), 0, 7));
+
+        $data = $request->nama_lengkap;
+
+        $peminjaman->id_buku = $request->judul_buku;
+        $peminjaman->id_anggota = $data;
+        $dataPeminjam = M_Anggota::find($data);
+        $peminjaman->kode_booking = $kodeBooking;
+        $peminjaman->jenis_identitas = $request->jenis_identitas;
+        $peminjaman->nomor_identitas = $request->nomor_identitas;
+        $peminjaman->nama_peminjam = $dataPeminjam->nama_lengkap;
+        $peminjaman->email_peminjam = $request->email;
+        $peminjaman->no_hp = $request->no_hp;
+        $peminjaman->alamat_peminjam = $request->address;
+        $peminjaman->tgl_pinjam = $request->tgl_pinjam;
+        $peminjaman->batas_pinjam = $request->batas_pinjam;
+        $peminjaman->total_denda = 0;
+        $peminjaman->status = 'dipinjam';
+        $peminjaman->save();
+
     }
 
     /**
