@@ -51,12 +51,11 @@
                     />
                   </div>
                   <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                    >
-                        Booking
-                    </button>
+                    <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" data-toggle="tooltip" class="btn btn-primary" style="width: 100%" >Booking</button>
+                    </form>
                   </div>
                 </div>
             </div>

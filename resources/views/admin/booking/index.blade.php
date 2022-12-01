@@ -87,9 +87,21 @@
                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('booking-admin.edit', ['booking_admin' => $booking->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-edit"></span>
                         </a>
-                        <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="{{ route('booking-admin.selesai', ['booking_admin' => $booking->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-check"></span>
-                        </a>
+                        @if ($booking->status == 'proses')
+                            <a class="btn btn-icon btn-sm btn-danger disabled" data-toggle="tooltip" href="{{ route('booking-admin.index') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="tf-icons bx bx-check"></span>
+                            </a>
+                        @elseif ($booking->status == 'dipinjam')
+                            <form action="{{ route('booking-admin.selesai', ['booking_admin' => $booking->id]) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span class="tf-icons bx bx-check"></span></button>
+                            </form>
+                        @else
+                            <a class="btn btn-icon btn-sm btn-danger disabled" data-toggle="tooltip" href="{{ route('booking-admin.index') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="tf-icons bx bx-check"></span>
+                            </a>
+                        @endif
                     </div>
                 </td>
               </tr>

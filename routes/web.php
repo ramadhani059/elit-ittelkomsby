@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\NewsAdminController;
 use App\Http\Controllers\Admin\SirkulasiController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Anggota\CatalogController;
+use App\Http\Controllers\Anggota\HistoryController;
 use App\Http\Controllers\Anggota\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Component\DropDownController;
@@ -72,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('buku/jenis-buku', JenisBukuController::class);
         Route::resource('buku/sirkulasi', SirkulasiController::class);
         Route::resource('admin/akses-jurnal', AksesJurnalController::class);
-        Route::put('admin/booking-admin/{booking_admin}', [App\Http\Controllers\Component\CheckController::class, 'selesai'])->name('booking-admin.selesai');
+        Route::match(['put', 'patch'],'admin/booking-admin/{booking_admin}', [App\Http\Controllers\Component\CheckController::class, 'selesai'])->name('booking-admin.selesai');
         Route::get('getUser/{id}', [DropDownController::class, 'getUser']);
         Route::get('getAnggota/{id}', [DropDownController::class, 'getAnggota']);
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
@@ -81,7 +82,8 @@ Route::middleware(['auth'])->group(function () {
 
     // For Consumen
     Route::middleware(['is_anggota'])->group(function () {
-
+        Route::match(['put', 'patch'],'catalog/{booking_anggota}', [App\Http\Controllers\Component\CheckController::class, 'pinjam'])->name('booking-anggota.pinjam');
+        Route::resource('history', HistoryController::class);
 
         // Route::resource('/catalog', CatalogController::class);
     });

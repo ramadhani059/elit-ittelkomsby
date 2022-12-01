@@ -75,6 +75,7 @@ class BookingAdminController extends Controller
         $peminjaman->status = 'dipinjam';
         $peminjaman->save();
 
+        return redirect()->route('booking-admin.index');
     }
 
     /**

@@ -111,7 +111,7 @@
                                       </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('history.index') }}">
                                           <i class="bx bx-history me-2"></i>
                                           <span class="align-middle">History</span>
                                         </a>
