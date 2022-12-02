@@ -35,6 +35,17 @@ class CheckController extends Controller
         return redirect()->route('history.index');
     }
 
+    public function disetujui($id){
+        $peminjaman = T_Peminjaman_Buku::find($id);
+
+        $peminjaman->batas_pinjam = Carbon::now()->addDay(7);
+        $peminjaman->total_denda = 0;
+        $peminjaman->status = 'dipinjam';
+        $peminjaman->save();
+
+        return back();
+    }
+
     public function selesai($id){
         $peminjaman = T_Peminjaman_Buku::find($id);
 

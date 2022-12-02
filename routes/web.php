@@ -73,7 +73,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('buku/jenis-buku', JenisBukuController::class);
         Route::resource('buku/sirkulasi', SirkulasiController::class);
         Route::resource('admin/akses-jurnal', AksesJurnalController::class);
-        Route::match(['put', 'patch'],'admin/booking-admin/{booking_admin}', [App\Http\Controllers\Component\CheckController::class, 'selesai'])->name('booking-admin.selesai');
+        Route::match(['put', 'patch'],'admin/booking-admin/selesai/{booking_admin}', [App\Http\Controllers\Component\CheckController::class, 'selesai'])->name('booking-admin.selesai');
+        Route::match(['put', 'patch'],'admin/booking-admin/{booking_admin}', [App\Http\Controllers\Component\CheckController::class, 'disetujui'])->name('booking-admin.disetujui');
         Route::get('getUser/{id}', [DropDownController::class, 'getUser']);
         Route::get('getAnggota/{id}', [DropDownController::class, 'getAnggota']);
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
