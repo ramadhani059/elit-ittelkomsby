@@ -65,7 +65,7 @@
                     <?php echo \Illuminate\Support\Str::limit(strip_tags($booking->email_peminjam), 15, $end='...') ?>
                 </td>
                     @if ($booking->status == 'proses')
-                        <td><span class="badge bg-label-warning me-1">Booked</span></td>
+                        <td><span class="badge bg-label-dark me-1">Booked</span></td>
                     @elseif ($booking->status == 'dipinjam')
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                     @elseif ($booking->status == 'selesai')

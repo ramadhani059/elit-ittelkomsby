@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('alamat_peminjam');
             $table->date('tgl_pinjam');
-            $table->date('batas_pinjam');
+            $table->date('batas_pinjam')->nullable();
             $table->date('tgl_kembali')->nullable();
             $table->integer('total_denda');
             $table->string('status');
