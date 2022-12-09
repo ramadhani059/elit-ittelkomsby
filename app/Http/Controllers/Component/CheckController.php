@@ -8,6 +8,7 @@ use App\Models\T_Peminjaman_Buku;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckController extends Controller
 {
@@ -32,6 +33,8 @@ class CheckController extends Controller
         $peminjaman->status = 'proses';
         $peminjaman->save();
 
+        Alert::success('Booking Successfully', 'Book Booked Successfully');
+
         return redirect()->route('history.index');
     }
 
@@ -55,5 +58,17 @@ class CheckController extends Controller
         $peminjaman->save();
 
         return redirect()->route('booking-admin.index');
+    }
+
+    public function cancel($id){
+        $peminjaman = T_Peminjaman_Buku::find($id);
+
+        $peminjaman->tgl_kembali = Carbon::now();
+        $peminjaman->status = 'dibatalkan';
+        $peminjaman->save();
+
+        Alert::success('Booking Cancelled', 'The Book Has Been Cancelled');
+
+        return redirect()->route('history.index');
     }
 }

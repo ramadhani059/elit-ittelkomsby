@@ -50,11 +50,11 @@
                       alt="Card image cap"
                     />
                   </div>
-                  <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3">
+                  <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
                     <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" data-toggle="tooltip" class="btn btn-primary" style="width: 100%" >Booking</button>
+                        <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" >Booking</button>
                     </form>
                   </div>
                 </div>
@@ -433,4 +433,30 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            // Sweet alert booking
+            $(".booking").on("click", ".btn-booking", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Apakah Anda Yakin Ingin Memesan Buku Ini ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Yes, I'am Sure !",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

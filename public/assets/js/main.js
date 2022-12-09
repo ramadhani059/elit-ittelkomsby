@@ -116,3 +116,24 @@ let menu, animate;
   // Auto update menu collapsed/expanded based on the themeConfig
   window.Helpers.setCollapsed(true, false);
 })();
+
+// Sweet alert delete data
+$(".datatable").on("click", ".btn-delete", function (e) {
+    e.preventDefault();
+
+    var form = $(this).closest("form");
+    var name = $(this).data("name");
+
+    Swal.fire({
+        title: "Are you sure want to delete it ?",
+        text: "You wan't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "bg-danger",
+        confirmButtonText: "Yes, Delete it !",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});

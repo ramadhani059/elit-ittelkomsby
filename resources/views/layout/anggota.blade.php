@@ -186,6 +186,7 @@
     <script src="{{ asset('assets/anggota/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/main.js') }}"></script>
+    @include('sweetalert::alert')
     @yield('script')
   </body>
 </html>

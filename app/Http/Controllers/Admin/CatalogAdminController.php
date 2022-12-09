@@ -16,6 +16,7 @@ use App\Models\M_Eksemplar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CatalogAdminController extends Controller
 {
@@ -156,6 +157,8 @@ class CatalogAdminController extends Controller
         Storage::disk('public')->delete('buku/lampiran/'.$ImgLampiranEncrypted);
         Storage::disk('public')->delete('buku/materipresentasi/'.$ImgMateriEncrypted);
         Storage::disk('public')->delete('buku/proposal/'.$ImgProposalEncrypted);
+
+        Alert::success('Deleted Successfully', 'Book Data Deleted Successfully');
 
         return redirect()->route('catalog-admin.index');
     }

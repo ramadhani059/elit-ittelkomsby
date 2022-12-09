@@ -84,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
     // For Consumen
     Route::middleware(['is_anggota'])->group(function () {
         Route::match(['put', 'patch'],'catalog/{booking_anggota}', [App\Http\Controllers\Component\CheckController::class, 'pinjam'])->name('booking-anggota.pinjam');
+        Route::match(['put', 'patch'],'history/{history_cancel}', [App\Http\Controllers\Component\CheckController::class, 'cancel'])->name('history.cancel');
         Route::resource('history', HistoryController::class);
 
         // Route::resource('/catalog', CatalogController::class);

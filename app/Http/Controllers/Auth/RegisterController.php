@@ -72,6 +72,17 @@ class RegisterController extends Controller
             $anggota->status = 'Aktif';
             $anggota->verifikasi = 'Belum Terverifikasi';
 
+            $fakultas = $request->{'fakultas_'.$jenisanggota};
+            $jurusan = $request->{'jurusan_'.$jenisanggota};
+
+            if ($fakultas != null){
+                $anggota->fakultas = $fakultas;
+            }
+
+            if ($jurusan != null){
+                $anggota->prodi = $jurusan;
+            }
+
             // Get File Image
             $ktp = $request->file('filektp_'.$jenisanggota);
             $karpegktm = $request->file('filekarpegktm_'.$jenisanggota);

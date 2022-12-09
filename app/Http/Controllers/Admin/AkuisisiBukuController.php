@@ -15,6 +15,8 @@ use App\Models\R_File;
 use App\Models\R_Pengarang_Place;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AkuisisiBukuController extends Controller
 {
@@ -56,23 +58,14 @@ class AkuisisiBukuController extends Controller
      */
     public function store(Request $request)
     {
-        $check = $request->kode_buku;
+        $check = M_Buku::where('kode_buku', $request->kode_buku)->exists();
 
-        if (M_Buku::where('kode_buku', $check)->exists()){
-            $eksemplar = new M_Eksemplar;
+        if ($check){
+            $checkbuku = M_Buku::where('kode_buku', $request->kode_buku)->get()->first();
 
-            $target = $request->jumlah_eksemplar;
+            Alert::error('Buku Anda Tidak Tersimpan!', 'Buku Anda Sudah Terdaftar !!');
 
-            while($target == 0){
-                $eksemplar->id_buku = 1;
-                $eksemplar->barcode = 1;
-                $eksemplar->kode_inventaris = 1;
-                $eksemplar->tanggal_pengadaan = Carbon::now();
-                $eksemplar->jenis_sumber = $request->jenis_pengadaan;
-                $eksemplar->status = $request->status_pengadaan;
-                $eksemplar->save();
-                $target--;
-            }
+            return redirect()->route('akuisisi-buku.index');
         } else {
             $subjek = new R_Subjek;
             $pengarang = new M_Pengarang;
@@ -80,7 +73,6 @@ class AkuisisiBukuController extends Controller
             $penerbit = new R_Penerbit;
             $file = new R_File;
             $buku = new M_Buku;
-            $eksemplar = new M_Eksemplar;
 
             $tambahpenerbit = $request->penerbit;
             if($tambahpenerbit == 'add'){
@@ -286,16 +278,26 @@ class AkuisisiBukuController extends Controller
 
             $target = $request->jumlah_eksemplar;
 
-            while($target > 0){
-                $eksemplar->id_buku = $buku->id;
-                $eksemplar->barcode = $request->isbn.+$target;
-                $eksemplar->kode_inventaris = 1;
-                $eksemplar->tanggal_pengadaan = Carbon::now();
-                $eksemplar->jenis_sumber = $request->jenis_pengadaan;
-                $eksemplar->status = $request->status_pengadaan;
-                $eksemplar->save();
-                $target--;
+            for ($i=0; $i<$target; $i++){
+                $count = $i+1;
+
+                $og_lenght = 4 - strlen($count);
+
+                $zeros = "";
+                for ($x=0;$x<$og_lenght;$x++){
+                    $zeros.="0";
+                }
+
+                $data[] = array(
+                    'id_buku' => $buku->id,
+                    'barcode' => $request->isbn.$zeros.$count,
+                    'kode_inventaris' => 1,
+                    'tanggal_pengadaan' => Carbon::now(),
+                    'jenis_sumber' => $request->jenis_pengadaan,
+                    'status' => $request->status_pengadaan,
+                );
             }
+            DB::table('m__eksemplars')->insert($data);
         }
 
         return redirect()->route('catalog-admin.index');

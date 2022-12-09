@@ -15,13 +15,14 @@
       aria-live="assertive"
       aria-atomic="true"
       data-delay="2000"
+      id="custom-target"
     >
       <div class="toast-header">
         <i class="bx bx-bell me-2"></i>
         <div class="me-auto fw-semibold">Information</div>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-      <div class="toast-body">Maaf Kode Buku yang Anda Masukkan Belum Terdaftar</div>
+      <div class="toast-body">Kode Buku yang Anda Masukkan Belum Terdaftar</div>
     </div>
 
     <!-- Basic with Icons -->
@@ -31,7 +32,7 @@
             <form action="{{ route('akuisisi-buku.store') }}" method="POST" enctype="multipart/form-data" id="katalogForm">
               @csrf
               <div class="row">
-                <div class="col-sm-6 mb-3">
+                <div class="col-sm-12 mb-3">
                     <label for="defaultFormControlInput" class="form-label">
                         Kode Buku
                     </label>
@@ -54,7 +55,7 @@
                             id="checkkodebuku"
                             data-bs-toggle="tooltip"
                             data-bs-offset="0,4"
-                            data-bs-placement="bottom"
+                            data-bs-placement="left"
                             data-bs-html="true"
                             title="<span>Check Kode Buku</span>"
                         >
@@ -63,30 +64,6 @@
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">
                         <span class="errorTxt" id="kode_buku-errorMsg"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label for="defaultFormControlInput" class="form-label">
-                        No Inventaris
-                    </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
-                        </span>
-                        <input
-                            id="no_inventaris"
-                            type="text"
-                            class="form-control @error('no_inventaris') is-invalid @enderror"
-                            name="no_inventaris"
-                            value="{{ old('no_inventaris') }}"
-                            placeholder="TA000001"
-                            aria-describedby="basic-addon13"
-                            required
-                            autofocus
-                        />
-                    </div>
-                    <div id="defaultFormControlHelp" class="form-text text-danger">
-                        <span class="errorTxt" id="no_inventaris-errorMsg"></span>
                     </div>
                 </div>
                 <div class="col-sm-6 mb-3">
@@ -1025,7 +1002,7 @@
                 placeholder: "Please Select",
             });
 
-            $('#checkkodebuku').click(function(){
+            $('#checkkodebuku').click(function(e){
                 const kodebuku = $('#kode_buku').val();
                 // alert(kodebuku);
 
@@ -1034,13 +1011,27 @@
                     type: "GET",
                     dataType: "json",
                     success: function(infobuku){
-                        $.each(infobuku, function(index, buku){
-                            if(infobuku != ''){
-                                alert(kodebuku);
-                            } else {
+                        if(infobuku.length === 1){
+                            e.preventDefault();
 
-                            }
-                        })
+                            var form = $(this).closest("form");
+                            var name = $(this).data("name");
+
+                            Swal.fire({
+                                title: "Buku Sudah Terdaftar !!",
+                                text: "Apakah Kamu Ingin Menambah Eksemplar ??",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "bg-danger",
+                                confirmButtonText: "Yes, I'am Sure !",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "{{URL::to('/home')}}"
+                                }
+                            });
+                        } else {
+                            $('.toast').addClass("show");
+                        }
                     }
                 });
             });

@@ -36,7 +36,7 @@
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="table-responsive text-nowrap">
-          <table class="table table-hover mt-3 mb-3">
+          <table class="table table-hover mt-3 mb-3 datatable">
             <thead>
               <tr class="text-nowrap">
                 <th><strong>Cover</strong></th>
@@ -74,7 +74,7 @@
                         <form action="{{ route('catalog-admin.destroy', ['catalog_admin' => $catalog->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" data-name="{{ $catalog->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalog->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
                         </form>
                     </div>
                 </td>

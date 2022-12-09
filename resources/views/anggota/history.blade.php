@@ -15,7 +15,7 @@
                     <!-- Hoverable Table rows -->
                     <div class="card">
                         <div class="table-responsive text-nowrap">
-                            <table class="table table-hover mt-3 mb-3">
+                            <table class="table table-hover mt-3 mb-3 datahistory">
                                 <thead>
                                     <tr class="text-nowrap">
                                         <th><strong>Kode</strong></th>
@@ -63,6 +63,24 @@
                                         <td>
                                             {{ $booking->total_denda }}
                                         </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="tf-icons bx bx-show"></span>
+                                                </a>
+                                                @if ($booking->status == 'proses')
+                                                    <form action="{{ route('history.cancel', ['history_cancel' => $booking->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span class="tf-icons bx bx-x"></span></button>
+                                                    </form>
+                                                @else
+                                                    <a class="btn btn-icon btn-sm btn-danger disabled" data-toggle="tooltip" href="{{ route('history.index') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="tf-icons bx bx-x"></span>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -74,4 +92,30 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            // Sweet alert booking
+            $(".datahistory").on("click", ".btn-cancel", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Apakah Anda Yakin Ingin Membatalkan Pemesanan Ini ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Yes, I'am Sure !",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

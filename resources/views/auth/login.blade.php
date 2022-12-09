@@ -355,6 +355,49 @@
                                             </div>
                                         </div>
                                     @endif
+                                    @if ($jenisanggota->role_user == 1)
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                Fakultas
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-graduation"></i>
+                                                </span>
+                                                <select class="form-select fakultas @error('jenisanggota') is-invalid @enderror" id="fakultas_{{ $jenisanggota->id }}" name="fakultas_{{ $jenisanggota->id }}">
+                                                    <option value=""></option>
+                                                        <option value="Fakultas Teknologi Informasi dan Bisnis">Fakultas Teknologi Informasi dan Bisnis</option>
+                                                        <option value="Fakultas Teknologi Elektro dan Industri Cerdas">Fakultas Teknologi Elektro dan Industri Cerdas</option>
+                                                </select>
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="fakultas_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                Program Studi
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-graduation"></i>
+                                                </span>
+                                                <input
+                                                    id="jurusan_{{ $jenisanggota->id }}"
+                                                    type="text"
+                                                    class="form-control @error('prodi') is-invalid @enderror"
+                                                    name="jurusan_{{ $jenisanggota->id }}"
+                                                    placeholder="S1 Sistem Informasi"
+                                                    aria-describedby="basic-addon13"
+                                                    value="{{ old('jurusan_{ $jenisanggota->id }')}}"
+                                                    autocomplete="address-line1"
+                                                />
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="jurusan_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
+                                    @endif
                                     @if ($jenisanggota->role_ktp == 1)
                                         <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">
@@ -468,6 +511,11 @@
                 $("#some_" + some).show();
 
                 $("#namainstitusi_" + some).show().select2({
+                    theme: 'bootstrap4',
+                    placeholder: "Please Select",
+                });
+
+                $("#fakultas_" + some).select2({
                     theme: 'bootstrap4',
                     placeholder: "Please Select",
                 });
