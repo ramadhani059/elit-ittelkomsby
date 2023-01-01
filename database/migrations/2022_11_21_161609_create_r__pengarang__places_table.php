@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('r__pengarang__places', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_buku');
-            $table->unsignedBigInteger('id_pengarang');
+            $table->string('no_identitas')->nullable();
+            $table->string('nama');
             $table->timestamps();
 
             $table->foreign('id_buku')->references('id')->on('m__bukus');
-            $table->foreign('id_pengarang')->references('id')->on('m__pengarangs');
         });
     }
 

@@ -19,6 +19,11 @@ class R_Jenis_Buku extends Model
         return $this->hasMany('App\Models\M_Buku', 'id_jenis_buku');
     }
 
+    public function file_place()
+    {
+        return $this->hasMany('App\Models\R_File_Place', 'id_jenisbuku');
+    }
+
     public function donasi_buku()
     {
         return $this->hasMany(T_Donasi_Buku::class);

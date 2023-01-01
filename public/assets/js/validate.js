@@ -170,8 +170,6 @@ $(document).ready(function () {
             rules: rules,
             messages: messages,
             errorPlacement: function(error, element) {
-                console.log('element', element);
-                console.log('element', error);
                 Object.keys(rules).forEach((value) => {
                     console.log(value);
                     console.log(element.attr("name"));

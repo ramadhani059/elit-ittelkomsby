@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('r__opnames', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_buku');
+            $table->string('barcode');
+            $table->string('kode_inventaris');
+            $table->date('tanggal_pengadaan');
+            $table->string('jenis_sumber');
             $table->timestamps();
+
+            $table->foreign('id_buku')->references('id')->on('m__bukus');
         });
     }
 

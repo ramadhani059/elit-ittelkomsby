@@ -15,29 +15,26 @@ return new class extends Migration
     {
         Schema::create('t__donasi__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_anggota');
-            $table->unsignedBigInteger('id_penerbit');
-            $table->unsignedBigInteger('id_pengarang');
-            $table->unsignedBigInteger('id_penyunting');
-            $table->unsignedBigInteger('id_subjek');
+            $table->unsignedBigInteger('id_prodi')->nullable();
             $table->unsignedBigInteger('id_jenis_buku');
-            $table->unsignedBigInteger('id_file');
+            $table->string('cover')->nullable();
             $table->string('judul');
+            $table->string('anak_judul')->nullable();
+            $table->string('judul_inggris')->nullable();
+            $table->string('edisi')->nullable();
+            $table->string('penyunting')->nullable();
+            $table->string('penerjemah')->nullable();
+            $table->string('penerbit')->nullable();
             $table->string('kota_terbit');
             $table->integer('tahun_terbit');
-            $table->text('ringkasan');
-            $table->integer('jumlah');
-            $table->string('keterangan')->nullable();
-            $table->string('status');
+            $table->string('ilustrasi')->nullable();
+            $table->string('dimensi')->nullable();
+            $table->string('isbn')->nullable();
+            $table->text('ringkasan')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_anggota')->references('id')->on('m__anggotas');
-            $table->foreign('id_penerbit')->references('id')->on('r__penerbits');
-            $table->foreign('id_pengarang')->references('id')->on('m__pengarangs');
-            $table->foreign('id_penyunting')->references('id')->on('m__penyuntings');
-            $table->foreign('id_subjek')->references('id')->on('r__subjeks');
+            $table->foreign('id_prodi')->references('id')->on('m__prodis');
             $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus');
-            $table->foreign('id_file')->references('id')->on('r__files');
         });
     }
 

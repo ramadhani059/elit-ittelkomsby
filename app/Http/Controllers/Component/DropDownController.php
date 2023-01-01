@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Component;
 use App\Http\Controllers\Controller;
 use App\Models\M_Anggota;
 use App\Models\M_Buku;
+use App\Models\M_Fakultas;
+use App\Models\M_Pengarang;
+use App\Models\M_Prodi;
 use App\Models\R_Institusi;
 use App\Models\R_Jenis_Buku;
 use App\Models\R_Jenis_Keanggotaan;
@@ -24,8 +27,8 @@ class DropDownController extends Controller
         return response()->json($institusi);
     }
 
-    public function getJenisBuku($id){
-        $jenisbuku = R_Jenis_Buku::where('id',$id)->get();
+    public function getJenisBuku(){
+        $jenisbuku = R_Jenis_Buku::all();
         return response()->json($jenisbuku);
     }
 
@@ -43,5 +46,15 @@ class DropDownController extends Controller
         $buku = M_Buku::with('sirkulasi')->find($id);
         // $buku = M_Buku::where('id',$id)->get();
         return response()->json([$buku]);
+    }
+
+    public function getFakultas(){
+        $fakultas = M_Fakultas::all();
+        return response()->json($fakultas);
+    }
+
+    public function getProdi(){
+        $prodi = M_Prodi::all();
+        return response()->json($prodi);
     }
 }

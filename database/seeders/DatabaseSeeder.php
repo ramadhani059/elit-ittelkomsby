@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             JenisKeanggotaanSeeder::class,
             InstitusiSeeder::class,
+            AdminSeeder::class,
+            AnggotaSeeder::class,
+            FakultasSeeder::class,
+            JurusanSeeder::class,
         ]);
     }
 }

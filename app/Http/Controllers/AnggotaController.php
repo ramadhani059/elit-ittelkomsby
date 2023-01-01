@@ -37,7 +37,7 @@ class AnggotaController extends Controller
         $pageTitle = 'Katalog | ELIT ITTelkom Surabaya';
 
         // ELOQUENT
-        $buku = M_Buku::all();
+        $buku = M_Buku::paginate(20);
 
         return view('anggota.katalog', compact('pageTitle', 'buku'));
     }

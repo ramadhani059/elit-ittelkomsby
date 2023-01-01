@@ -40,7 +40,6 @@
                 <th><strong>Nama</strong></th>
                 <th><strong>Jenis Koleksi</strong></th>
                 <th><strong>Jumlah Buku</strong></th>
-                <th><strong>Role File</strong></th>
                 <th></th>
               </tr>
             </thead>
@@ -58,14 +57,10 @@
                     {{ $jenisbuku->buku->count('pivot.id_jenis_buku') }} Buku
                 </td>
                 <td>
-                    @if ($jenisbuku->role_file == 1)
-                        Yes
-                    @else
-                        No
-                    @endif
-                </td>
-                <td>
                     <div class="d-flex">
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="tf-icons bx bx-show"></span>
+                        </a>
                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('jenis-buku.edit', ['jenis_buku' => $jenisbuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-edit"></span>
                         </a>

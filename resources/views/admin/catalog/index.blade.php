@@ -44,37 +44,57 @@
                 <th><strong>Pengarang</strong></th>
                 <th><strong>Penerbit</strong></th>
                 <th><strong>Jenis Buku</strong></th>
+                <th><strong>Jumlah Eksemplar</strong></th>
                 <th></th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              @foreach ($catalog as $catalog)
+              @foreach ($catalog as $catalogs)
               <tr class="text-nowrap">
-                <td>Image</td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->judul), 15, $end='...') ?>
+                    <img
+                      class="img-fluid d-flex mx-auto"
+                      src="@if ($catalogs->cover != null)
+                            {{ asset('storage/buku/cover/'.$catalogs->cover) }}
+                        @else
+                            {{ asset('assets/img/home/1.png') }}
+                        @endif"
+                      alt="Card image cap"
+                    />
                 </td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->penerbit->nama), 20, $end='...') ?>
+                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalogs->judul), 37, $end='...') ?>
                 </td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->penerbit->nama), 15, $end='...') ?>
+                    @if ($catalogs->pengarang_place->count('pivot.id_pengarang') != 1)
+                        @foreach ($catalogs->pengarang_place->take(1) as $pengarangbuku)
+                            {{ $pengarangbuku->nama }}, dkk
+                        @endforeach
+                    @else
+                        @foreach ($catalogs->pengarang_place->take(1) as $pengarangbuku)
+                            {{ $pengarangbuku->nama }}
+                        @endforeach
+                    @endif
                 </td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($catalog->jenis_buku->nama), 12, $end='...') ?>
+                    {{ $catalogs->penerbit }}
                 </td>
+                <td>
+                    {{ $catalogs->jenis_buku->nama }}
+                </td>
+                <td>{{ $catalogs->eksemplar->count('pivot.id_buku') }} Buku</td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('catalog-admin.show', ['catalog_admin' => $catalog->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('catalog-admin.show', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-show"></span>
                         </a>
-                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('catalog-admin.edit', ['catalog_admin' => $catalog->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('catalog-admin.edit', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-edit"></span>
                         </a>
-                        <form action="{{ route('catalog-admin.destroy', ['catalog_admin' => $catalog->id]) }}" method="POST">
+                        <form action="{{ route('catalog-admin.destroy', ['catalog_admin' => $catalogs->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalog->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalogs->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
                         </form>
                     </div>
                 </td>
@@ -82,10 +102,11 @@
               @endforeach
             </tbody>
           </table>
-
         </div>
     </div>
     <!--/ Hoverable Table rows -->
+
+    {{ $catalog->links('layout.pagination') }}
 </div>
 
 @endsection

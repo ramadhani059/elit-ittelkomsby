@@ -14,8 +14,8 @@ class T_Peminjaman_Buku extends Model
         return $this->belongsTo('App\Models\M_Anggota', 'id_anggota');
     }
 
-    public function buku()
+    public function eksemplar()
     {
-        return $this->belongsTo('App\Models\M_Buku', 'id_buku');
+        return $this->belongsTo('App\Models\M_Eksemplar', 'id_eksemplar');
     }
 }

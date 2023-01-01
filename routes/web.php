@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Admin\AksesJurnalController;
 use App\Http\Controllers\Admin\AkuisisiBukuController;
 use App\Http\Controllers\Admin\BookingAdminController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Anggota\HistoryController;
 use App\Http\Controllers\Anggota\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Component\DropDownController;
+use App\Http\Controllers\Component\FilePdfController;
 use App\Http\Controllers\Component\SearchController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -51,11 +53,16 @@ Auth::routes([
 Route::resource('register', RegisterController::class );
 
 Route::get('getInstitusi/{id}', [DropDownController::class, 'getInstitusi']);
-
 Route::get('getJenisAnggota/{id}', [DropDownController::class, 'getJenisAnggota']);
+Route::get('getFakultas/', [DropDownController::class, 'getFakultas']);
+Route::get('getProdi/', [DropDownController::class, 'getProdi']);
+
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('getJenisBuku/{id}', [DropDownController::class, 'getJenisBuku']);
+    Route::get('getJenisBuku/', [DropDownController::class, 'getJenisBuku']);
+    Route::get('getPengarang/', [DropDownController::class, 'getPengarang']);
+    Route::get('pdf/{id}', [FilePdfController::class, 'getPdfViews'])->name('pdf');
 
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
@@ -79,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getAnggota/{id}', [DropDownController::class, 'getAnggota']);
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
         Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
+        Route::get('getFilePlace/{id}', [SearchController::class, 'getFilePlace']);
     });
 
     // For Consumen

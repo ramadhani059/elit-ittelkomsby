@@ -57,8 +57,8 @@
                                         <div
                                             class="img d-flex align-items-end justify-content-center"
                                             style="background-image: url(
-                                                @if ($buku->file->cover_encrypt != null)
-                                                    {{ asset('storage/buku/cover/'.$buku->file->cover_encrypt) }}
+                                                @if ($buku->cover != null)
+                                                    {{ asset('storage/buku/cover/'.$buku->cover) }}
                                                 @else
                                                     {{ asset('assets/img/home/1.png') }}
                                                 @endif
@@ -67,9 +67,19 @@
                                                     backround-size: cover; "
                                         >
                                             <div class="text w-100" style="background-color: rgba(0,0,0, 0.5); padding-top: 10px; height: 100px;">
-                                                <span class="cat">{{ $buku->subjek->nama }}</span>
+                                                <span class="cat">
+                                                    @if ($buku->subjek_place->count('pivot.id_subjek') != 1)
+                                                        @foreach ($buku->subjek_place->take(1) as $subjekbuku)
+                                                            {{ $subjekbuku->nama }}
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($buku->subjek_place->take(1) as $subjekbuku)
+                                                            {{ $subjekbuku->nama }}
+                                                        @endforeach
+                                                    @endif
+                                                </span>
                                                 <h3>
-                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 55, $end='...') ?>
+                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 50, $end='...') ?>
                                                 </a></h3>
                                             </div>
                                         </div>

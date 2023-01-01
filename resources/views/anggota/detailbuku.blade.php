@@ -22,11 +22,11 @@
                                     <span class="tf-icons bx bx-user"></span>&nbsp;
                                     @if ($buku->pengarang_place->count('pivot.id_pengarang') != 1)
                                         @foreach ($buku->pengarang_place->take(1) as $pengarangbuku)
-                                            {{ $pengarangbuku->pengarang->nama }}, dkk
+                                            {{ $pengarangbuku->nama }}, dkk
                                         @endforeach
                                     @else
                                         @foreach ($buku->pengarang_place->take(1) as $pengarangbuku)
-                                            {{ $pengarangbuku->pengarang->nama }}
+                                            {{ $pengarangbuku->nama }}
                                         @endforeach
                                     @endif
                                 </div>
@@ -42,8 +42,8 @@
                   <div class="card-body">
                     <img
                       class="img-fluid d-flex mx-auto"
-                      src="@if ($buku->file->cover_encrypt != null)
-                            {{ asset('storage/buku/cover/'.$buku->file->cover_encrypt) }}
+                      src="@if ($buku->cover != null)
+                            {{ asset('storage/buku/cover/'.$buku->cover) }}
                         @else
                             {{ asset('assets/img/home/1.png') }}
                         @endif"
@@ -81,9 +81,9 @@
                                                 <strong>:</strong>
                                             </div>
                                         </td>
-                                        <td class="col-md-8 col-7">
+                                        <td class="col-md-8 col-7 align_top">
                                             <div class="px-2 py-1">
-                                                10.02.2538
+                                                {{ $buku->kode_buku }}
                                             </div>
                                         </td>
                                     </tr>
@@ -98,9 +98,17 @@
                                                 <strong>:</strong>
                                             </div>
                                         </td>
-                                        <td class="col-md-8 col-7">
+                                        <td class="col-md-8 col-7 align-top">
                                             <div class="px-2 py-1">
-                                                {{ $buku->subjek->nama }}
+                                                @if ($buku->subjek_place->count('pivot.id_subjek') != 1)
+                                                    @foreach ($buku->subjek_place as $subjekbuku)
+                                                        {{ $subjekbuku->nama }},
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($buku->subjek_place as $subjekbuku)
+                                                        {{ $subjekbuku->nama }}
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -157,7 +165,17 @@
                                         </td>
                                         <td class="col-md-7 col-7 align-top">
                                             <div class="px-2 py-1">
-                                                {{ $buku->ilustrasi }}
+                                                @if($buku->ilustrasi == null)
+                                                    -
+                                                @else
+                                                    {{ $buku->ilustrasi }}
+                                                @endif
+                                                |
+                                                @if($buku->dimensi == null)
+                                                    -
+                                                @else
+                                                    {{ $buku->dimensi }}
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -232,45 +250,84 @@
                                             <td class="col-md-7 col-7 align-top">
                                                 @foreach ($buku->pengarang_place as $pengarangbuku)
                                                     <div class="px-2 py-1">
-                                                        {{ $pengarangbuku->pengarang->nama }}
+                                                        {{ucfirst(trans($pengarangbuku->nama))}}
                                                     </div>
                                                 @endforeach
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="col-md-4 col-4 align-top">
-                                                <div class="px-2 py-1">
-                                                    <strong>Penyunting</strong>
-                                                </div>
-                                            </td>
-                                            <td class="col-md-1 col-1 align-top">
-                                                <div class="px-2 py-1">
-                                                    <strong>:</strong>
-                                                </div>
-                                            </td>
-                                            <td class="col-md-7 col-7 align-top">
-                                                <div class="px-2 py-1">
-                                                    {{ $buku->penyunting->nama }}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-md-4 col-4 align-top">
-                                                <div class="px-2 py-1">
-                                                    <strong>Penerjemah</strong>
-                                                </div>
-                                            </td>
-                                            <td class="col-md-1 col-1 align-top">
-                                                <div class="px-2 py-1">
-                                                    <strong>:</strong>
-                                                </div>
-                                            </td>
-                                            <td class="col-md-7 col-7 align-top">
-                                                <div class="px-2 py-1">
-                                                    -
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($buku->jenis_buku->file_place as $field)
+                                        @if($field->name == 'Pembimbing')
+                                            <tr>
+                                                <td class="col-md-4 col-4 align-top">
+                                                    <div class="px-2 py-1">
+                                                        <strong>Penyunting</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-1 col-1 align-top">
+                                                    <div class="px-2 py-1">
+                                                        <strong>:</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-7 col-7 align-top">
+                                                    @foreach ($buku->pembimbing_place as $pembimbingbuku)
+                                                        <div class="px-2 py-1">
+                                                            {{ $pembimbingbuku->nama }}
+                                                        </div>
+                                                    @endforeach
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if($field->name == 'Penyunting')
+                                            <tr>
+                                                <td class="col-md-4 col-4 align-top">
+                                                    <div class="px-2 py-1">
+                                                        <strong>Penyunting</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-1 col-1 align-top">
+                                                    <div class="px-2 py-1">
+                                                        <strong>:</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-7 col-7 align-top">
+                                                    @if($buku->penyunting == null)
+                                                        <div class="px-2 py-1">
+                                                            -
+                                                        </div>
+                                                    @else
+                                                        <div class="px-2 py-1">
+                                                            {{ $buku->penyunting }}
+                                                        </div>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        @if($field->name == 'Penerjemah')
+                                            <tr>
+                                                <td class="col-md-4 col-4 align-top">
+                                                    <div class="px-2 py-1">
+                                                        <strong>Penerjemah</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-1 col-1 align-top">
+                                                    <div class="px-2 py-1">
+                                                        <strong>:</strong>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-7 col-7 align-top">
+                                                    @if($buku->penerjemah == null)
+                                                        <div class="px-2 py-1">
+                                                            -
+                                                        </div>
+                                                    @else
+                                                        <div class="px-2 py-1">
+                                                            {{ $buku->penerjemah }}
+                                                        </div>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -303,7 +360,11 @@
                                             </td>
                                             <td class="col-md-7 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    {{ $buku->penerbit->nama }}
+                                                    @if($buku->penerbit != null)
+                                                        {{ $buku->penerbit }}
+                                                    @else
+                                                        -
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
@@ -420,6 +481,47 @@
             </div>
         </div>
         <div class="row">
+        <div class="col-md-12 col-lg-12 mb-2">
+            <div class="card p-2">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="row align-items-center p-2">
+                            <div class="col-lg-6 col-6">
+                                <span class="badge bg-primary"><span class="tf-icons bx bxs-book"></span>&nbsp; &nbsp; Detail Eksemplar</span>
+                            </div>
+                        </div>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table">
+                              <thead>
+                                <tr class="text-nowrap">
+                                  <th>#</th>
+                                  <th>Barcode</th>
+                                  <th>Kode Investasi</th>
+                                  <th>Tanggal Pengadaan</th>
+                                  <th>Sumber Pengadaan</th>
+                                  <th>Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($buku->eksemplar as $eksemplar => $value)
+                                    <tr>
+                                        <th scope="row">{{ $eksemplar + 1 }}</th>
+                                        <td>{{ $value->barcode }}</td>
+                                        <td>{{ $value->kode_inventaris }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($value->tanggal_pengadaan)->format('d/m/Y')}}</td>
+                                        <td>{{ucfirst(trans($value->jenis_sumber))}}</td>
+                                        <td>{{ Str::ucfirst(Str::limit($value->status)) }}</td>
+                                    </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
             <div class="col-md-12 col-lg-12 mb-2">
                 <div class="card p-2">
                     <div class="row">
@@ -427,6 +529,13 @@
                             <div class="p-2">
                                 <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; Flipbook</span>
                             </div>
+                            @foreach ($buku->file as $filebuku)
+                                @if($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile')
+                                    <div class="px-2 py-1">
+                                        <iframe src="{{ route('pdf', ['id' => $buku->id]) }}" frameborder="0" width="100%" height="550"></iframe>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

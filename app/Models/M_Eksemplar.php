@@ -13,4 +13,9 @@ class M_Eksemplar extends Model
     {
         return $this->belongsTo('App\Models\M_Buku', 'id_buku');
     }
+
+    public function peminjaman_buku()
+    {
+        return $this->hasMany('App\Models\T_Peminjaman_Buku', 'id_eksemplar');
+    }
 }

@@ -8,6 +8,22 @@
 @endsection
 
 @section('content')
+    <div class="container-fluid">
+        <div class="row my-4">
+            <div class="col-md-8 col-4">
+                <h4 class="fw-bolder my-2">History Peminjaman Buku</h4>
+            </div>
+            <div class="col-md-4 col-8">
+                <form class="d-flex">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search..." />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid my-4">
         <div class="row">
             <div class="col-md-12 col-lg-12 mb-2">
@@ -32,21 +48,21 @@
                                     <tr class="text-nowrap">
                                         <td>{{ $booking->kode_booking }}</td>
                                         <td>
-                                            <?php echo \Illuminate\Support\Str::limit(strip_tags($booking->buku->judul), 35, $end='...') ?>
+                                            <?php echo \Illuminate\Support\Str::limit(strip_tags($booking->eksemplar->buku->judul), 35, $end='...') ?>
                                         </td>
                                         <td>
-                                            @if ($booking->buku->pengarang_place->count('pivot.id_pengarang') != 1)
-                                                @foreach ($booking->buku->pengarang_place->take(1) as $pengarangbuku)
-                                                    {{ $pengarangbuku->pengarang->nama }}, dkk
+                                            @if ($booking->eksemplar->buku->pengarang_place->count('pivot.id_pengarang') != 1)
+                                                @foreach ($booking->eksemplar->buku->pengarang_place->take(1) as $pengarangbuku)
+                                                    {{ $pengarangbuku->nama }}, dkk
                                                 @endforeach
                                             @else
-                                                @foreach ($booking->buku->pengarang_place->take(1) as $pengarangbuku)
-                                                    {{ $pengarangbuku->pengarang->nama }}
+                                                @foreach ($booking->eksemplar->buku->pengarang_place->take(1) as $pengarangbuku)
+                                                    {{ $pengarangbuku->nama }}
                                                 @endforeach
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $booking->buku->penerbit->nama }}
+                                            {{ $booking->eksemplar->buku->penerbit }}
                                         </td>
                                             @if ($booking->status == 'proses')
                                                 <td><span class="badge bg-label-dark me-1">Booked</span></td>

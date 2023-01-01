@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Component;
 
 use App\Http\Controllers\Controller;
 use App\Models\M_Anggota;
+use App\Models\M_Buku;
+use App\Models\M_Eksemplar;
 use App\Models\T_Peminjaman_Buku;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,12 +17,29 @@ class CheckController extends Controller
     public function pinjam($id){
         $peminjaman = new T_Peminjaman_Buku;
 
+        $dataeksemplar = [
+            'id_buku' => $id,
+            'status' => 'dapat dipinjam',
+        ];
+
+        $checkeksemplar = M_Eksemplar::where($dataeksemplar)->take(1)->get();
+
         $huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         $kodeBooking = strtoupper(substr(str_shuffle($huruf), 0, 7));
 
         $data = Auth::user() -> anggota ->id;
 
-        $peminjaman->id_buku = $id;
+        $ideksemplar = 0;
+
+        foreach ($checkeksemplar as $eksemplar ) {
+            $ideksemplar = $eksemplar->id;
+        }
+
+        $updatestatus = M_Eksemplar::find($ideksemplar);
+        $updatestatus->status = 'dipesan';
+        $updatestatus->save();
+
+        $peminjaman->id_eksemplar = $ideksemplar;
         $peminjaman->id_anggota = $data;
         $dataPeminjam = M_Anggota::find($data);
         $peminjaman->kode_booking = $kodeBooking;

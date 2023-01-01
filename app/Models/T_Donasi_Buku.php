@@ -14,9 +14,9 @@ class T_Donasi_Buku extends Model
         return $this->belongsTo(M_Anggota::class);
     }
 
-    public function penyunting()
+    public function prodi()
     {
-        return $this->belongsTo(M_Penyunting::class);
+        return $this->belongsTo('App\Models\M_Prodi', 'id_prodi');
     }
 
     public function jenis_buku()
@@ -24,23 +24,23 @@ class T_Donasi_Buku extends Model
         return $this->belongsTo(R_Jenis_Buku::class);
     }
 
-    public function subjek()
-    {
-        return $this->belongsTo(R_Subjek::class);
-    }
-
-    public function pengarang()
-    {
-        return $this->belongsTo(M_Pengarang::class);
-    }
-
-    public function penerbit()
-    {
-        return $this->belongsTo(R_Penerbit::class);
-    }
-
     public function file()
     {
-        return $this->belongsTo(R_File::class);
+        return $this->hasMany('App\Models\R_File', 'id_buku');
+    }
+
+    public function pengarang_place()
+    {
+        return $this->hasMany('App\Models\R_Pengarang_Place', 'id_buku');
+    }
+
+    public function pembimbing_place()
+    {
+        return $this->hasMany('App\Models\R_Pembimbing_Place', 'id_buku');
+    }
+
+    public function subjek_place()
+    {
+        return $this->hasMany('App\Models\R_Subjek_Place', 'id_buku');
     }
 }

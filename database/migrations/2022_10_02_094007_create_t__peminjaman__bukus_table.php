@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('t__peminjaman__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_buku');
+            $table->unsignedBigInteger('id_eksemplar');
             $table->unsignedBigInteger('id_anggota');
             $table->string('kode_booking')->unique();
             $table->string('jenis_identitas')->nullable();
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('id_buku')->references('id')->on('m__bukus');
+            $table->foreign('id_eksemplar')->references('id')->on('m__eksemplars');
             $table->foreign('id_anggota')->references('id')->on('m__anggotas');
         });
     }

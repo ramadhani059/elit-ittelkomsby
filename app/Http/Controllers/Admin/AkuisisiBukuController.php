@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\M_Buku;
 use App\Models\M_Eksemplar;
-use App\Models\M_Pengarang;
-use App\Models\M_Penyunting;
 use App\Models\R_Jenis_Buku;
-use App\Models\R_Penerbit;
 use App\Models\R_Sirkulasi;
-use App\Models\R_Subjek;
 use App\Models\R_File;
 use App\Models\R_Pengarang_Place;
+use App\Models\M_Fakultas;
+use App\Models\M_Prodi;
+use App\Models\R_File_Place;
+use App\Models\R_Subjek_Place;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,13 +31,12 @@ class AkuisisiBukuController extends Controller
 
         // ELOQUENT
         $jenisbuku = R_Jenis_Buku::all();
-        $subjek = R_Subjek::all();
-        $pengarang = M_Pengarang::all();
-        $penyunting = M_Penyunting::all();
-        $penerbit = R_Penerbit::all();
         $sirkulasi = R_Sirkulasi::all();
+        $fakultas = M_Fakultas::all();
+        $prodi = M_Prodi::all();
+        $fileplace = R_File_Place::all();
 
-        return view('admin.akuisisi.index', compact('pageTitle', 'jenisbuku', 'subjek', 'pengarang', 'penyunting', 'penerbit', 'sirkulasi'));
+        return view('admin.akuisisi.index', compact('pageTitle', 'jenisbuku', 'sirkulasi', 'fakultas', 'prodi', 'fileplace'));
     }
 
     /**
@@ -58,6 +57,24 @@ class AkuisisiBukuController extends Controller
      */
     public function store(Request $request)
     {
+        $jenisbuku = $request->jenis_buku;
+
+        $messages = [
+            'required' => ':Attribute is require',
+            'numeric' => 'Fill :Attribute with number',
+        ];
+
+        $request->validate([
+            'jenis_buku' => 'required',
+            'kode_buku_'.$jenisbuku => 'required',
+            'judul_buku_'.$jenisbuku => 'required',
+            'kota_terbit_'.$jenisbuku => 'required',
+            'tahun_terbit_'.$jenisbuku => 'required|numeric',
+            'sirkulasi_'.$jenisbuku => 'required',
+            'status_'.$jenisbuku => 'required',
+            'role_download_'.$jenisbuku => 'required',
+        ], $messages);
+
         $check = M_Buku::where('kode_buku', $request->kode_buku)->exists();
 
         if ($check){
@@ -67,216 +84,76 @@ class AkuisisiBukuController extends Controller
 
             return redirect()->route('akuisisi-buku.index');
         } else {
-            $subjek = new R_Subjek;
-            $pengarang = new M_Pengarang;
-            $penyunting = new M_Penyunting;
-            $penerbit = new R_Penerbit;
-            $file = new R_File;
             $buku = new M_Buku;
 
-            $tambahpenerbit = $request->penerbit;
-            if($tambahpenerbit == 'add'){
-                $penerbit->nama = $request->tambah_penerbit;
-                $penerbit->save();
-                $buku->id_penerbit = $penerbit->id;
+            $buku->id_jenis_buku = $jenisbuku;
+
+            $cover = $request->file('filecover_'.$jenisbuku);
+            if($cover == null){
+                $buku->cover= null;
             } else {
-                $buku->id_penerbit = $tambahpenerbit;
+                $cover->store('public/buku/cover');
+                $buku->cover= $cover->hashName();
             }
 
-            $tambahpengarang = $request->pengarang;
-            if($tambahpengarang == 'add'){
-                $pengarang->nama = $request->tambah_pengarang;
-                $pengarang->save();
-            }
-
-            $tambahpenyunting = $request->penyunting;
-            if($tambahpenyunting == 'add'){
-                $penyunting->nama = $request->tambah_penyunting;
-                $penyunting->save();
-                $buku->id_penyunting = $penyunting->id;
-            } else {
-                $buku->id_penyunting = $tambahpenyunting;
-            }
-
-            $tambahsubjek = $request->subjek;
-            if($tambahsubjek == 'add'){
-                $subjek->nama = $request->tambah_subjek;
-                $subjek->save();
-                $buku->id_subjek = $subjek->id;
-            } else {
-                $buku->id_subjek = $tambahsubjek;
-            }
-
-            $buku->id_jenis_buku = $request->jenis_buku;
-            $buku->id_sirkulasi = $request->sirkulasi;
-
-            $tambahfile = $request->file('filecover');
-            if($tambahfile == null){
-                $file->cover_original = null;
-                $file->cover_encrypt = null;
-            } else {
-                $tambahfile->store('public/buku/cover');
-                $file->cover_original = $tambahfile->getClientOriginalName();
-                $file->cover_encrypt = $tambahfile->hashName();
-            }
-
-            $buku->kode_buku = $request->kode_buku;
-            $buku->lokasi_buku = $request->lokasi_buku;
-            $buku->judul = $request->judul_buku;
-            $buku->anak_judul = $request->anak_judul;
-            $buku->edisi = $request->edisi_buku;
-            $buku->kota_terbit = $request->kota_terbit;
-            $buku->tahun_terbit = $request->tahun_terbit;
-            $buku->ilustrasi = $request->ilustrasi;
-            $buku->dimensi = $request->dimensi;
-            $buku->isbn = $request->isbn;
-            $buku->ringkasan = $request->abstrak;
-            $buku->dipinjam = 0;
-            $buku->status_active = $request->status;
-            $buku->role_download = $request->role_download;
-
-            $filepdf = $request->file('filepdf');
-            $coverlaporan = $request->file('filecoverpdf');
-            $disclimer = $request->file('filedisclimerpdf');
-            $lembarpengesahan = $request->file('filepengesahanpdf');
-            $fileabstrak = $request->file('fileabstrakpdf');
-            $lembarpersembahan = $request->file('filepersembahanpdf');
-            $katapengantar = $request->file('filepengantarpdf');
-            $daftarisi = $request->file('filedaftarisipdf');
-            $daftargambar = $request->file('filedaftargambarpdf');
-            $daftartabel = $request->file('filedaftartabelpdf');
-            $bab1 = $request->file('filebab1pdf');
-            $bab2 = $request->file('filebab2pdf');
-            $bab3 = $request->file('filebab3pdf');
-            $bab4 = $request->file('filebab4pdf');
-            $bab5 = $request->file('filebab5pdf');
-            $bab6 = $request->file('filebab6pdf');
-            $bab7 = $request->file('filebab7pdf');
-            $daftarpustaka = $request->file('filedaftarpustakapdf');
-            $lampiran = $request->file('filelampiranpdf');
-            $materipresentasi = $request->file('filemateripresenstasipdf');
-            $proposal = $request->file('fileproposalpdf');
-
-            if ($filepdf != null){
-                $filepdf->store('public/buku/filepdf');
-                $file->file_pdf = $filepdf->hashName();
-            }
-
-            if ($coverlaporan != null){
-                $coverlaporan->store('public/buku/coverpdf');
-                $file->cover_laporan = $coverlaporan->hashName();
-            }
-
-            if ($disclimer != null){
-                $disclimer->store('public/buku/disclimer');
-                $file->disclimer = $disclimer->hashName();
-            }
-
-            if ($lembarpengesahan != null){
-                $lembarpengesahan->store('public/buku/lembarpengesahan');
-                $file->lembar_pengesahan = $lembarpengesahan->hashName();
-            }
-
-            if ($fileabstrak != null){
-                $fileabstrak->store('public/buku/fileabstrak');
-                $file->file_abstrak = $fileabstrak->hashName();
-            }
-
-            if ($lembarpersembahan != null){
-                $lembarpersembahan->store('public/buku/lembarpersembahan');
-                $file->lembar_persembahan = $lembarpersembahan->hashName();
-            }
-
-            if ($katapengantar != null){
-                $katapengantar->store('public/buku/katapengantar');
-                $file->kata_pengantar = $katapengantar->hashName();
-            }
-
-            if ($daftarisi != null){
-                $daftarisi->store('public/buku/daftarisi');
-                $file->daftar_isi = $daftarisi->hashName();
-            }
-
-            if ($daftargambar != null){
-                $daftargambar->store('public/buku/daftargambar');
-                $file->daftar_gambar = $daftargambar->hashName();
-            }
-
-            if ($daftartabel != null){
-                $daftartabel->store('public/buku/daftartabel');
-                $file->daftar_tabel = $daftartabel->hashName();
-            }
-
-            if ($bab1 != null){
-                $bab1->store('public/buku/bab1');
-                $file->bab_1 = $bab1->hashName();
-            }
-
-            if ($bab2 != null){
-                $bab2->store('public/buku/bab2');
-                $file->bab_2 = $bab2->hashName();
-            }
-
-            if ($bab3 != null){
-                $bab3->store('public/buku/bab3');
-                $file->bab_3 = $bab3->hashName();
-            }
-
-            if ($bab4 != null){
-                $bab4->store('public/buku/bab4');
-                $file->bab_4 = $bab4->hashName();
-            }
-
-            if ($bab5 != null){
-                $bab5->store('public/buku/bab5');
-                $file->bab_5 = $bab5->hashName();
-            }
-
-            if ($bab6 != null){
-                $bab6->store('public/buku/bab6');
-                $file->bab_6 = $bab6->hashName();
-            }
-
-            if ($bab7 != null){
-                $bab7->store('public/buku/bab7');
-                $file->bab_7 = $bab7->hashName();
-            }
-
-            if ($daftarpustaka != null){
-                $daftarpustaka->store('public/buku/daftarpustaka');
-                $file->daftar_pustaka = $daftarpustaka->hashName();
-            }
-
-            if ($lampiran != null){
-                $lampiran->store('public/buku/lampiran');
-                $file->lampiran = $lampiran->hashName();
-            }
-
-            if ($materipresentasi != null){
-                $materipresentasi->store('public/buku/materipresentasi');
-                $file->materi_presentasi = $materipresentasi->hashName();
-            }
-
-            if ($proposal != null){
-                $proposal->store('public/buku/proposal');
-                $file->proposal = $proposal->hashName();
-            }
-
-            $file->save();
-            $buku->id_file = $file->id;
+            $buku->kode_buku = $request->{'kode_buku_'.$jenisbuku};
+            $buku->isbn = $request->{'isbn_'.$jenisbuku};
+            $buku->lokasi_buku = $request->{'lokasi_buku_'.$jenisbuku};
+            $buku->judul = $request->{'judul_buku_'.$jenisbuku};
+            $buku->judul_inggris = $request->{'judul_buku_inggris_'.$jenisbuku};
+            $buku->anak_judul = $request->{'anak_judul_'.$jenisbuku};
+            $buku->edisi = $request->{'edisi_buku_'.$jenisbuku};
+            $buku->ilustrasi = $request->{'ilustrasi_'.$jenisbuku};
+            $buku->dimensi = $request->{'dimensi_'.$jenisbuku};
+            $buku->id_prodi = $request->{'prodi_'.$jenisbuku};
+            $buku->kota_terbit = $request->{'kota_terbit_'.$jenisbuku};
+            $buku->tahun_terbit = $request->{'tahun_terbit_'.$jenisbuku};
+            $buku->id_sirkulasi = $request->{'sirkulasi_'.$jenisbuku};
+            $buku->penyunting = $request->{'penyunting_'.$jenisbuku};
+            $buku->penerjemah = $request->{'penerjemah_'.$jenisbuku};
+            $buku->penerbit = $request->{'penerbit_'.$jenisbuku};
+            $buku->status_active = $request->{'status_'.$jenisbuku};
+            $buku->role_download = $request->{'role_download_'.$jenisbuku};
+            $buku->ringkasan = $request->{'abstrak_'.$jenisbuku};
             $buku->save();
 
-            $pengarangplace = new R_Pengarang_Place;
-            if($tambahpengarang == 'add'){
-                $pengarangplace->id_pengarang = $pengarang->id;
-            } else {
-                $pengarangplace->id_pengarang = $tambahpengarang;
+            $targetsubjek = count(collect($request->{'subjek_'.$jenisbuku}));
+            $targetpengarang = count(collect($request->{'pengarang_'.$jenisbuku}));
+            $targetpembimbing = count(collect($request->{'pembimbing_'.$jenisbuku}));
+
+            if ($request->{'subjek_'.$jenisbuku} != null){
+                for ($x=0; $x<$targetsubjek; $x++){
+                    $listsubjek[] = array(
+                        'id_buku' => $buku->id,
+                        'nama' => $request->{'subjek_'.$jenisbuku}[$x],
+                    );
+                }
+                DB::table('r__subjek__places')->insert($listsubjek);
             }
 
-            $pengarangplace->id_buku = $buku->id;
-            $pengarangplace->save();
+            if ($request->{'pengarang_'.$jenisbuku} != null){
+                for ($x=0; $x<$targetpengarang; $x++){
+                    $listpengarang[] = array(
+                        'id_buku' => $buku->id,
+                        'no_identitas' => $request->{'no_pengarang_'.$jenisbuku}[$x],
+                        'nama' => $request->{'pengarang_'.$jenisbuku}[$x],
+                    );
+                }
+                DB::table('r__pengarang__places')->insert($listpengarang);
+            }
 
-            $target = $request->jumlah_eksemplar;
+            if ($request->{'pembimbing_'.$jenisbuku} != null){
+                for ($x=0; $x<$targetpembimbing; $x++){
+                    $listpembimbing[] = array(
+                        'id_buku' => $buku->id,
+                        'no_identitas' => $request->{'no_pembimbing_'.$jenisbuku}[$x],
+                        'nama' => $request->{'pembimbing_'.$jenisbuku}[$x],
+                    );
+                }
+                DB::table('r__pembimbing__places')->insert($listpembimbing);
+            }
+
+            $target = $request->{'jumlah_eksemplar_'.$jenisbuku};
 
             for ($i=0; $i<$target; $i++){
                 $count = $i+1;
@@ -288,19 +165,73 @@ class AkuisisiBukuController extends Controller
                     $zeros.="0";
                 }
 
-                $data[] = array(
+                $dataeksemplar[] = array(
                     'id_buku' => $buku->id,
-                    'barcode' => $request->isbn.$zeros.$count,
+                    'barcode' => $request->{'isbn_'.$jenisbuku}.$zeros.$count,
                     'kode_inventaris' => 1,
                     'tanggal_pengadaan' => Carbon::now(),
-                    'jenis_sumber' => $request->jenis_pengadaan,
-                    'status' => $request->status_pengadaan,
+                    'jenis_sumber' => $request->{'jenis_pengadaan_'.$jenisbuku},
+                    'status' => $request->{'status_pengadaan_'.$jenisbuku},
                 );
             }
-            DB::table('m__eksemplars')->insert($data);
+            DB::table('m__eksemplars')->insert($dataeksemplar);
+
+            $idfile = [
+                'id_jenisbuku' => $jenisbuku,
+                'type' => 'pdf',
+            ];
+
+            $fullfile = [
+                'id_jenisbuku' => $jenisbuku,
+                'name' => 'File',
+                'type' => 'fullfile',
+            ];
+
+            $results = R_File_Place::where($idfile)->get();
+            $file = R_File_Place::where($fullfile)->get();
+
+            $listfile = [];
+
+            foreach ($file as $filebook) {
+                $filestore = $request->file('fullfile_'.$filebook->id.'_'.$jenisbuku);
+
+                $judul = $request->{'judul_buku_'.$jenisbuku};
+
+                $filestore->store('public/buku/'.$judul);
+
+                $listfile[] = array(
+                    'id_buku' => $buku->id,
+                    'id_file_place' => $filebook->id,
+                    'original_name' => $filestore->getClientOriginalName(),
+                    'encrypt_name' => $filestore->hashName(),
+                    'status' => 1,
+                );
+            }
+
+            foreach ($results as $files) {
+                $filestore = $request->file('filepdf_'.$files->id.'_'.$jenisbuku);
+
+                $judul = $request->{'judul_buku_'.$jenisbuku};
+
+                $filestore->store('public/buku/'.$judul);
+
+                $listfile[] = array(
+                    'id_buku' => $buku->id,
+                    'id_file_place' => $files->id,
+                    'original_name' => $filestore->getClientOriginalName(),
+                    'encrypt_name' => $filestore->hashName(),
+                    'status' => 1,
+                );
+            }
+
+            if($listfile != null){
+                DB::table('r__files')->insert($listfile);
+            }
         }
 
-        return redirect()->route('catalog-admin.index');
+        Alert::success('You are Successfully Add Book');
+
+        return redirect()->route('akuisisi-buku.index');
     }
 
     /**

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('r__jenis__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_koleksi');
+            $table->string('kode_jenis_buku')->unique();
             $table->string('nama');
-            $table->boolean('role_file');
             $table->timestamps();
 
             $table->foreign('id_koleksi')->references('id')->on('r__koleksi__bukus');

@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -110,6 +111,8 @@ class RegisterController extends Controller
             $anggota->save();
 
         endif;
+
+        Alert::success('You are Successfully Registered', 'Please Login With the Registered Account');
 
         return redirect()->route('login');
 

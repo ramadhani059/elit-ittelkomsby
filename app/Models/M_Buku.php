@@ -9,24 +9,14 @@ class M_Buku extends Model
 {
     use HasFactory;
 
-    public function penyunting()
+    public function prodi()
     {
-        return $this->belongsTo('App\Models\M_Penyunting', 'id_penyunting');
+        return $this->belongsTo('App\Models\M_Prodi', 'id_prodi');
     }
 
     public function jenis_buku()
     {
         return $this->belongsTo('App\Models\R_Jenis_Buku', 'id_jenis_buku');
-    }
-
-    public function subjek()
-    {
-        return $this->belongsTo('App\Models\R_Subjek', 'id_subjek');
-    }
-
-    public function penerbit()
-    {
-        return $this->belongsTo('App\Models\R_Penerbit', 'id_penerbit');
     }
 
     public function sirkulasi()
@@ -36,12 +26,12 @@ class M_Buku extends Model
 
     public function file()
     {
-        return $this->belongsTo('App\Models\R_File', 'id_file');
+        return $this->hasMany('App\Models\R_File', 'id_buku');
     }
 
-    public function peminjaman_buku()
+    public function opname()
     {
-        return $this->hasMany('App\Models\T_Peminjaman_Buku', 'id_buku');
+        return $this->hasMany('App\Models\R_Opname', 'id_buku');
     }
 
     public function pengarang_place()
@@ -49,13 +39,18 @@ class M_Buku extends Model
         return $this->hasMany('App\Models\R_Pengarang_Place', 'id_buku');
     }
 
+    public function pembimbing_place()
+    {
+        return $this->hasMany('App\Models\R_Pembimbing_Place', 'id_buku');
+    }
+
+    public function subjek_place()
+    {
+        return $this->hasMany('App\Models\R_Subjek_Place', 'id_buku');
+    }
+
     public function eksemplar()
     {
         return $this->hasMany('App\Models\M_Eksemplar', 'id_buku');
-    }
-
-    public function akuisisi()
-    {
-        return $this->hasMany('App\Models\R_Akuisisi_Buku', 'id_buku');
     }
 }

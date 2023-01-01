@@ -125,40 +125,54 @@
     <hr/>
     <div class="container-fluid">
         <div class="row">
-            @foreach ($buku as $buku)
+            @foreach ($buku as $databuku)
             <div class="col-md-6 col-sm-6">
                 <div class="card mb-3 p-2">
                     <div class="row g-0">
                         <div class="col-md-3 col-4">
-                            @if ($buku->file->cover_encrypt != null)
-                                <img class="card-img card-img-left" src="{{ asset('storage/buku/cover/'.$buku->file->cover_encrypt) }}" alt="Card image" />
+                            @if ($databuku->cover != null)
+                                <img class="card-img card-img-left" src="{{ asset('storage/buku/cover/'.$databuku->cover) }}" alt="Card image" />
                             @else
                                 <img class="card-img card-img-left" src="{{ asset('assets/img/home/1.png') }}" alt="Card image" />
                             @endif
                         </div>
                         <div class="col-md-9 col-8">
                             <div class="card-body mt-1">
-                                <a href="{{ route('catalog.detail', ['kodebuku' => $buku->kode_buku]) }}" role="button">
+                                <a href="{{ route('catalog.detail', ['kodebuku' => $databuku->kode_buku]) }}" role="button">
                                     <h5 class="card-title fw-bolder">
-                                        <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 35, $end='...') ?>
+                                        <?php echo \Illuminate\Support\Str::limit(strip_tags($databuku->judul), 35, $end='...') ?>
                                     </h5>
                                 </a>
                                 <p class="card-text">
                                     <div class="row media">
                                         <div class="col-12 mb-2">
-                                            <span class="tf-icons bx bx-hash"></span>&nbsp; {{ $buku->kode_buku }}
+                                            <span class="tf-icons bx bx-hash"></span>&nbsp; {{ $databuku->kode_buku }}
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <span class="tf-icons bx bxs-user"></span>&nbsp; <?php echo \Illuminate\Support\Str::limit(strip_tags('Pratama Ramadhani Wijaya'), 18, $end='...') ?>
+                                            <span class="tf-icons bx bxs-user"></span>&nbsp;
+                                            @if ($databuku->pengarang_place->count('pivot.id_buku') != 1)
+                                                @foreach ($databuku->pengarang_place->take(1) as $pengarangbuku)
+                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags( $pengarangbuku->nama), 18, $end='...') ?>
+                                                @endforeach
+                                            @else
+                                                @foreach ($databuku->pengarang_place->take(1) as $pengarangbuku)
+                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags( $pengarangbuku->nama ), 18, $end='...') ?>
+                                                @endforeach
+                                            @endif
                                         </div>
                                         <div class="col-12 mb-2 media-body d-none d-lg-block ">
-                                            <span class="tf-icons bx bxs-buildings"></span>&nbsp; <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->penerbit->nama), 50, $end='...') ?>
+                                            <span class="tf-icons bx bxs-buildings"></span>&nbsp;
+                                            @if($databuku->penerbit == null)
+                                                -
+                                            @else
+                                                <?php echo \Illuminate\Support\Str::limit(strip_tags($databuku->penerbit), 50, $end='...') ?>
+                                            @endif
                                         </div>
                                         <div class="col-12 mb-2 media-body d-none d-lg-block ">
-                                            <span class="tf-icons bx bxs-bookmark"></span>&nbsp; {{ $buku->sirkulasi->nama }}
+                                            <span class="tf-icons bx bxs-bookmark"></span>&nbsp; {{ $databuku->sirkulasi->nama }}
                                         </div>
                                         <div class="col-12 media-body d-none d-lg-block ">
-                                            <span class="tf-icons bx bxs-book"></span>&nbsp; Tersedia {{ $buku->eksemplar->count('pivot.id_buku') }} Eksemplar
+                                            <span class="tf-icons bx bxs-book"></span>&nbsp; Tersedia {{ $databuku->eksemplar }} dari {{ $databuku->eksemplar->count('pivot.id_buku') }} Eksemplar
                                         </div>
                                     </div>
                                 </p>
@@ -168,35 +182,9 @@
                 </div>
             </div>
             @endforeach
-            <nav aria-label="Page navigation" class="mt-3 mb-1">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item prev">
-                    <a class="page-link" href="javascript:void(0);"
-                      ><i class="tf-icon bx bx-chevrons-left"></i
-                    ></a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">2</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="javascript:void(0);">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">5</a>
-                  </li>
-                  <li class="page-item next">
-                    <a class="page-link" href="javascript:void(0);"
-                      ><i class="tf-icon bx bx-chevrons-right"></i
-                    ></a>
-                  </li>
-                </ul>
-            </nav>
         </div>
+        {{ $buku->links('layout.pagination') }}
     </div>
+
+
 @endsection

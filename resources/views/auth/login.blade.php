@@ -366,8 +366,6 @@
                                                 </span>
                                                 <select class="form-select fakultas @error('jenisanggota') is-invalid @enderror" id="fakultas_{{ $jenisanggota->id }}" name="fakultas_{{ $jenisanggota->id }}">
                                                     <option value=""></option>
-                                                        <option value="Fakultas Teknologi Informasi dan Bisnis">Fakultas Teknologi Informasi dan Bisnis</option>
-                                                        <option value="Fakultas Teknologi Elektro dan Industri Cerdas">Fakultas Teknologi Elektro dan Industri Cerdas</option>
                                                 </select>
                                             </div>
                                             <div id="defaultFormControlHelp" class="form-text text-danger">
@@ -382,16 +380,9 @@
                                                 <span class="input-group-text" id="basic-addon11">
                                                     <i class="bx bxs-graduation"></i>
                                                 </span>
-                                                <input
-                                                    id="jurusan_{{ $jenisanggota->id }}"
-                                                    type="text"
-                                                    class="form-control @error('prodi') is-invalid @enderror"
-                                                    name="jurusan_{{ $jenisanggota->id }}"
-                                                    placeholder="S1 Sistem Informasi"
-                                                    aria-describedby="basic-addon13"
-                                                    value="{{ old('jurusan_{ $jenisanggota->id }')}}"
-                                                    autocomplete="address-line1"
-                                                />
+                                                <select class="form-select jurusan @error('jenisanggota') is-invalid @enderror" id="jurusan_{{ $jenisanggota->id }}" name="jurusan_{{ $jenisanggota->id }}">
+                                                    <option value=""></option>
+                                                </select>
                                             </div>
                                             <div id="defaultFormControlHelp" class="form-text text-danger">
                                                 <span class="errorTxt" id="jurusan_{{ $jenisanggota->id }}-errorMsg"></span>
@@ -474,6 +465,7 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+    @include('sweetalert::alert')
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -520,6 +512,11 @@
                     placeholder: "Please Select",
                 });
 
+                $("#jurusan_" + some).select2({
+                    theme: 'bootstrap4',
+                    placeholder: "Please Select",
+                });
+
                 $.ajax({
                     url: '/getJenisAnggota/'+some,
                     type: "GET",
@@ -541,6 +538,32 @@
                                     $('select[name="namainstitusi_'+ some +'"]').append('<option value="'+ value.id +'">'+ value.nama +'</option>');
                                 });
                             }
+                        });
+                    }
+                });
+
+                $.ajax({
+                    url: '/getFakultas/',
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data){
+                        $('select[name="fakultas_'+ some +'"]').empty();
+                        $('select[name="fakultas_'+ some +'"]').append('<option value="">Please Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="fakultas_'+ some +'"]').append('<option value="'+ value.kode_fakultas +'">'+ value.nama +'</option>');
+                        });
+                    }
+                });
+
+                $.ajax({
+                    url: '/getProdi/',
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data){
+                        $('select[name="jurusan_'+ some +'"]').empty();
+                        $('select[name="jurusan_'+ some +'"]').append('<option value="">Please Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="jurusan_'+ some +'"]').append('<option value="'+ value.nama +'">'+ value.nama +'</option>');
                         });
                     }
                 });
