@@ -172,7 +172,7 @@
                                             <span class="tf-icons bx bxs-bookmark"></span>&nbsp; {{ $databuku->sirkulasi->nama }}
                                         </div>
                                         <div class="col-12 media-body d-none d-lg-block ">
-                                            <span class="tf-icons bx bxs-book"></span>&nbsp; Tersedia {{ $databuku->eksemplar }} dari {{ $databuku->eksemplar->count('pivot.id_buku') }} Eksemplar
+                                            <span class="tf-icons bx bxs-book"></span>&nbsp; Tersedia {{ $databuku->eksemplar->count('pivot.id_buku') }} dari {{ $databuku->eksemplar->count('pivot.id_buku') }} Eksemplar
                                         </div>
                                     </div>
                                 </p>
