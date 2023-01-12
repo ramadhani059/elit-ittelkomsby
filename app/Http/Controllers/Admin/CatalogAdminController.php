@@ -70,10 +70,13 @@ class CatalogAdminController extends Controller
 
         $jenisbuku = R_Jenis_Buku::where('id',$catalog->id_jenis_buku);
 
+        $file = R_File::where('id_buku', $catalog->id)->get();
+
         return view('admin/catalog/view', [
             'pageTitle' => $pageTitle,
             'catalog' => $catalog,
             'jenisbuku' => $jenisbuku,
+            'file' => $file,
         ]);
     }
 

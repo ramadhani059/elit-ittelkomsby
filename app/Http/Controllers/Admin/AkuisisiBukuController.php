@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\M_Buku;
 use App\Models\M_Eksemplar;
@@ -99,9 +100,16 @@ class AkuisisiBukuController extends Controller
             $buku->kode_buku = $request->{'kode_buku_'.$jenisbuku};
             $buku->isbn = $request->{'isbn_'.$jenisbuku};
             $buku->lokasi_buku = $request->{'lokasi_buku_'.$jenisbuku};
-            $buku->judul = $request->{'judul_buku_'.$jenisbuku};
-            $buku->judul_inggris = $request->{'judul_buku_inggris_'.$jenisbuku};
-            $buku->anak_judul = $request->{'anak_judul_'.$jenisbuku};
+            if ($request->{'edisi_buku_'.$jenisbuku} != null) {
+                $judul = Str::of($request->{'judul_buku_'.$jenisbuku})->lower()->append(' '.$request->{'edisi_buku_'.$jenisbuku});
+            } else {
+                $judul = Str::of($request->{'judul_buku_'.$jenisbuku})->lower();
+            }
+            $buku->judul = $judul;
+            $slug = Str::of($judul)->slug('-');
+            $buku->slug = Str::of($request->{'kode_buku_'.$jenisbuku})->slug('-')->append('-'.$slug);
+            $buku->judul_inggris = Str::lower($request->{'judul_buku_inggris_'.$jenisbuku});
+            $buku->anak_judul = Str::lower($request->{'anak_judul_'.$jenisbuku});
             $buku->edisi = $request->{'edisi_buku_'.$jenisbuku};
             $buku->ilustrasi = $request->{'ilustrasi_'.$jenisbuku};
             $buku->dimensi = $request->{'dimensi_'.$jenisbuku};
@@ -118,7 +126,7 @@ class AkuisisiBukuController extends Controller
             $buku->save();
 
             $targetsubjek = count(collect($request->{'subjek_'.$jenisbuku}));
-            $targetpengarang = count(collect($request->{'pengarang_'.$jenisbuku}));
+            $targetpengarang = count(collect($request->{'nama_pengarang_depan_'.$jenisbuku}));
             $targetpembimbing = count(collect($request->{'pembimbing_'.$jenisbuku}));
 
             if ($request->{'subjek_'.$jenisbuku} != null){
@@ -131,12 +139,14 @@ class AkuisisiBukuController extends Controller
                 DB::table('r__subjek__places')->insert($listsubjek);
             }
 
-            if ($request->{'pengarang_'.$jenisbuku} != null){
+            if ($request->{'nama_pengarang_depan_'.$jenisbuku} != null){
                 for ($x=0; $x<$targetpengarang; $x++){
                     $listpengarang[] = array(
                         'id_buku' => $buku->id,
                         'no_identitas' => $request->{'no_pengarang_'.$jenisbuku}[$x],
-                        'nama' => $request->{'pengarang_'.$jenisbuku}[$x],
+                        'nama' => Str::of($request->{'nama_pengarang_depan_'.$jenisbuku}[$x])->append(' '.$request->{'nama_pengarang_belakang_'.$jenisbuku}[$x]),
+                        'nama_depan' => $request->{'nama_pengarang_depan_'.$jenisbuku}[$x],
+                        'nama_belakang' => $request->{'nama_pengarang_belakang_'.$jenisbuku}[$x],
                     );
                 }
                 DB::table('r__pengarang__places')->insert($listpengarang);
@@ -195,32 +205,30 @@ class AkuisisiBukuController extends Controller
             foreach ($file as $filebook) {
                 $filestore = $request->file('fullfile_'.$filebook->id.'_'.$jenisbuku);
 
-                $judul = $request->{'judul_buku_'.$jenisbuku};
+                $filejudul = Str::of($request->{'judul_buku_'.$jenisbuku})->slug();
 
-                $filestore->store('public/buku/'.$judul);
+                $filestore->store('public/buku/'.$filejudul);
 
                 $listfile[] = array(
                     'id_buku' => $buku->id,
                     'id_file_place' => $filebook->id,
                     'original_name' => $filestore->getClientOriginalName(),
                     'encrypt_name' => $filestore->hashName(),
-                    'status' => 1,
                 );
             }
 
             foreach ($results as $files) {
                 $filestore = $request->file('filepdf_'.$files->id.'_'.$jenisbuku);
 
-                $judul = $request->{'judul_buku_'.$jenisbuku};
+                $filejudul = Str::of($request->{'judul_buku_'.$jenisbuku})->slug();
 
-                $filestore->store('public/buku/'.$judul);
+                $filestore->store('public/buku/'.$filejudul);
 
                 $listfile[] = array(
                     'id_buku' => $buku->id,
                     'id_file_place' => $files->id,
                     'original_name' => $filestore->getClientOriginalName(),
                     'encrypt_name' => $filestore->hashName(),
-                    'status' => 1,
                 );
             }
 

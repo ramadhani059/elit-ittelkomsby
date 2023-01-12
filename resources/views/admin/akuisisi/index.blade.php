@@ -612,7 +612,7 @@
                             </label>
                             <div class="input-group input-group-merge">
                                 <textarea
-                                    id="abstrak_{{ $jenis_buku->id}}"
+                                    id="abstrak"
                                     type="text"
                                     class="form-control @error('abstrak_{{ $jenis_buku->id}}') is-invalid @enderror"
                                     name="abstrak_{{ $jenis_buku->id}}"
@@ -683,6 +683,22 @@
     <script src="{{ asset('assets/js/validate-buku.js') }}"></script>
 
     <script>
+        tinymce.init({
+            selector: "#abstrak",
+            height: 500,
+            menubar: false,
+            width: "100%",
+            plugins: "link lists searchreplace fullscreen hr print preview " +
+                "anchor code save emoticons directionality spellchecker",
+            toolbar: "cut copy | undo redo | styleselect searchplace formatselect " +
+                "fullscreen | bold italic underline strikethrough " +
+                "| removeformat | alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent " +
+                "| preview code cancel"
+        });
+    </script>
+
+    <script>
         var x = 0;
 
         $(document).ready(function () {
@@ -732,15 +748,10 @@
                 $('.pengarang_wrapper_'+some).append(`
                 <div class="field_pengarang_${some}">\
                     <div class="row">\
-                        <div class="col-12 col-lg-6">\
-                            <label for="defaultFormControlInput" class="form-label"> No Identitas / NIM </label>\
-                        </div>\
-                        <div class="col-10 col-lg-5">\
-                            <label for="defaultFormControlInput" class="form-label"> Nama Pengarang </label>\
-                        </div>\
-                    </div>\
-                    <div class="row">\
-                        <div class="col-12 col-lg-6 mb-3">\
+                        <div class="col-12 col-lg-5 mb-3">\
+                            <div>\
+                                <label for="defaultFormControlInput" class="form-label"> No Identitas / NIM </label>\
+                            </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
                                     <i class="bx bx-hash"></i>\
@@ -751,18 +762,35 @@
                                 <span class="errorTxt" id="no_pengarang_${some}[]-errorMsg"></span>\
                             </div>\
                         </div>\
-                        <div class="col-10 col-lg-5 mb-3">\
+                        <div class="col-12 col-lg-3 mb-3">\
+                            <div>\
+                                <label for="defaultFormControlInput" class="form-label"> Nama Depan Pengarang </label>\
+                            </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
                                     <i class="bx bxs-user"></i>\
                                 </span>\
-                                <input id="pengarang_${some}" type="text" class="form-control @error('pengarang_${some}') is-invalid @enderror" name="pengarang_${some}[]" placeholder="Enter A Author " aria-describedby="basic-addon13" required autofocus />\
+                                <input id="nama_pengarang_depan_${some}" type="text" class="form-control @error('nama_pengarang_depan_${some}') is-invalid @enderror" name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" required autofocus />\
                             </div>\
                             <div id="defaultFormControlHelp" class="form-text text-danger">\
-                                <span class="errorTxt" id="pengarang_${some}-errorMsg"></span>\
+                                <span class="errorTxt" id="nama_pengarang_depan_${some}-errorMsg"></span>\
                             </div>\
                         </div>\
-                        <div class="col-2 col-lg-1 mb-3 text-end" id="btn_plus">\
+                        <div class="col-10 col-lg-3 mb-3">\
+                            <div>\
+                                <label for="defaultFormControlInput" class="form-label"> Nama Belakang Pengarang </label>\
+                            </div>\
+                            <div class="input-group">\
+                                <span class="input-group-text" id="basic-addon11">\
+                                    <i class="bx bxs-user"></i>\
+                                </span>\
+                                <input id="nama_pengarang_belakang_${some}" type="text" class="form-control @error('nama_pengarang_belakang_${some}') is-invalid @enderror" name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's Last Name " aria-describedby="basic-addon13" required autofocus />\
+                            </div>\
+                            <div id="defaultFormControlHelp" class="form-text text-danger">\
+                                <span class="errorTxt" id="nama_pengarang_belakang_${some}-errorMsg"></span>\
+                            </div>\
+                        </div>\
+                        <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pengarang_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
                                 <span class="tf-icons bx bx-plus"></span>\
                             </a>\
@@ -773,15 +801,10 @@
                 $('.pembimbing_wrapper_'+some).append(`
                 <div class="field_pembimbing_${some}">\
                     <div class="row">\
-                        <div class="col-12 col-lg-6">\
-                            <label for="defaultFormControlInput" class="form-label"> No Identitas / NIP </label>\
-                        </div>\
-                        <div class="col-10 col-lg-5">\
-                            <label for="defaultFormControlInput" class="form-label"> Nama Pembimbing </label>\
-                        </div>\
-                    </div>\
-                    <div class="row">\
                         <div class="col-12 col-lg-6 mb-3">\
+                            <div class="col-12 col-lg-6">\
+                                <label for="defaultFormControlInput" class="form-label"> No Identitas / NIP </label>\
+                            </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
                                     <i class="bx bx-hash"></i>\
@@ -793,6 +816,9 @@
                             </div>\
                         </div>\
                         <div class="col-10 col-lg-5 mb-3">\
+                            <div class="col-10 col-lg-5">\
+                                <label for="defaultFormControlInput" class="form-label"> Nama Pembimbing </label>\
+                            </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
                                     <i class="bx bxs-user"></i>\
@@ -803,7 +829,7 @@
                                 <span class="errorTxt" id="pembimbing_${some}-errorMsg"></span>\
                             </div>\
                         </div>\
-                        <div class="col-2 col-lg-1 mb-3 text-end" id="btn_plus">\
+                        <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pembimbing_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
                                 <span class="tf-icons bx bx-plus"></span>\
                             </a>\
@@ -924,7 +950,7 @@
                         $('.pengarang_wrapper_'+some).append(`
                         <div class="wrapper_pengarang_${some}" id="wrapper_pengarang_${some}">\
                             <div class="row">\
-                                <div class="col-12 col-lg-6 mb-3">\
+                                <div class="col-12 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
                                             <i class="bx bx-hash"></i>\
@@ -935,18 +961,29 @@
                                         <span class="errorTxt" id="no_pengarang_${some}-errorMsg"></span>\
                                     </div>\
                                 </div>\
-                                <div class="col-10 col-lg-5 mb-3">\
+                                <div class="col-12 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
                                             <i class="bx bxs-user"></i>\
                                         </span>\
-                                        <input id="pengarang_${some}" type="text" class="form-control @error('pengarang_${some}') is-invalid @enderror" name="pengarang_${some}[]" placeholder="Enter A Author " aria-describedby="basic-addon13" required autofocus />\
+                                        <input id="nama_pengarang_depan_${some}" type="text" class="form-control @error('nama_pengarang_depan_${some}') is-invalid @enderror" name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" required autofocus />\
                                     </div>\
                                     <div id="defaultFormControlHelp" class="form-text text-danger">\
-                                        <span class="errorTxt" id="pengarang_${some}-errorMsg"></span>\
+                                        <span class="errorTxt" id="nama_pengarang_depan_${some}-errorMsg"></span>\
                                     </div>\
                                 </div>\
-                                <div class="col-2 col-lg-1 mb-3 text-end" id="btn_remove_${x}">\
+                                <div class="col-10 col-lg-3 mb-3">\
+                                    <div class="input-group">\
+                                        <span class="input-group-text" id="basic-addon11">\
+                                            <i class="bx bxs-user"></i>\
+                                        </span>\
+                                        <input id="nama_pengarang_belakang_${some}" type="text" class="form-control @error('nama_pengarang_belakang_${some}') is-invalid @enderror" name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" required autofocus />\
+                                    </div>\
+                                    <div id="defaultFormControlHelp" class="form-text text-danger">\
+                                        <span class="errorTxt" id="nama_pengarang_belakang_${some}-errorMsg"></span>\
+                                    </div>\
+                                </div>\
+                                <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pengarang_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
                                         <span class="tf-icons bx bxs-trash"></span>\
                                     </a>\
@@ -989,7 +1026,7 @@
                                         <span class="errorTxt" id="pembimbing_${some}-errorMsg"></span>\
                                     </div>\
                                 </div>\
-                                <div class="col-2 col-lg-1 mb-3 text-end" id="btn_remove_${x}">\
+                                <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pembimbing_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
                                         <span class="tf-icons bx bxs-trash"></span>\
                                     </a>\

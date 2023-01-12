@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
                 'nama_lengkap' => 'Admin Utama',
                 'no_hp' => '085815554360',
                 'alamat' => 'Jl Wagir Baru II no F4',
-                'status' => 'Aktif',
+                'status' => 'Active',
             ],
         ]);
     }

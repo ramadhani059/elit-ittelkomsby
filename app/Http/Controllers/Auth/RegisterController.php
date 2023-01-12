@@ -52,6 +52,14 @@ class RegisterController extends Controller
             $user->password = Hash::make($request->password_register);
             $user->email = $request->email;
             $user->level = 'anggota';
+
+            $photo = $request->file('photo_'.$jenisanggota);
+
+            // Store File Image
+            if ($photo != null){
+                $photo->store('public/user/photo');
+                $user->profile_photo_path = $photo->hashName();
+            }
             $user->save();
 
             if ($tambahinstitusi == 'add'){
@@ -70,7 +78,7 @@ class RegisterController extends Controller
             $anggota->nama_lengkap = $request->fullname;
             $anggota->no_hp = $request->telp;
             $anggota->alamat = $request->address;
-            $anggota->status = 'Aktif';
+            $anggota->status = 'Active';
             $anggota->verifikasi = 'Belum Terverifikasi';
 
             $fakultas = $request->{'fakultas_'.$jenisanggota};

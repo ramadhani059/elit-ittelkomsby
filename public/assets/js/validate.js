@@ -90,6 +90,20 @@ $(document).ready(function () {
             messages[this.name] = { required: 'This field is required' };
         });
 
+        $('input[name="photo_'+ contoh +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+                extension: "png|jpe?g|gif",
+                filesize: 3145728,
+            };
+            console.log(contoh);
+            messages[this.name] = {
+                required: 'This field is required',
+                extension: 'Format yang diterima : png, jpg, jpeg, gif ',
+                filesize: 'File size must be less than 3 MB',
+            };
+        });
+
         $('input[name="filektp_'+ contoh +'"]').each(function() {
             rules[this.name] = {
                 required: true,

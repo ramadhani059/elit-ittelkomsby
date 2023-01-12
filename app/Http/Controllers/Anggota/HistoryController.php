@@ -19,7 +19,7 @@ class HistoryController extends Controller
         $pageTitle = 'History Peminjaman | ELIT ITTelkom Surabaya';
 
         // ELOQUENT
-        $booking = T_Peminjaman_Buku::where('id_anggota', Auth::user() -> anggota ->id)->get();
+        $booking = T_Peminjaman_Buku::where('id_anggota', Auth::user() -> anggota ->id)->latest()->paginate(15);
 
         return view('anggota.history', compact('pageTitle', 'booking'));
     }

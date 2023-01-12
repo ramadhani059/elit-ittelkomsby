@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->string('kode_buku')->unique();
             $table->string('lokasi_buku')->nullable();
+            $table->string('slug')->unique();
             $table->string('judul');
             $table->string('anak_judul')->nullable();
             $table->string('judul_inggris')->nullable();

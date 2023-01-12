@@ -39,7 +39,7 @@
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="table-responsive text-nowrap">
-          <table class="table table-hover mt-3 mb-3">
+          <table class="table table-hover mt-3 mb-3 datatable">
             <thead>
               <tr class="text-nowrap">
                 <th><strong>Kode</strong></th>
@@ -52,49 +52,49 @@
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              @foreach ($booking as $booking)
+              @foreach ($booking as $bookings)
               <tr class="text-nowrap">
-                <td>{{ $booking->kode_booking }}</td>
-                <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($booking->buku->judul), 20, $end='...') ?>
+                <td>{{ $bookings->kode_booking }}</td>
+                <td class="text-capitalize">
+                    <?php echo \Illuminate\Support\Str::limit(strip_tags($bookings->eksemplar->buku->judul), 37, $end='...') ?>
                 </td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($booking->nama_peminjam), 15, $end='...') ?>
+                    <?php echo \Illuminate\Support\Str::limit(strip_tags($bookings->nama_peminjam), 25, $end='...') ?>
                 </td>
                 <td>
-                    <?php echo \Illuminate\Support\Str::limit(strip_tags($booking->email_peminjam), 15, $end='...') ?>
+                    <?php echo \Illuminate\Support\Str::limit(strip_tags($bookings->email_peminjam), 25, $end='...') ?>
                 </td>
-                    @if ($booking->status == 'proses')
+                    @if ($bookings->status == 'proses')
                         <td><span class="badge bg-label-dark me-1">Booked</span></td>
-                    @elseif ($booking->status == 'dipinjam')
+                    @elseif ($bookings->status == 'dipinjam')
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
-                    @elseif ($booking->status == 'selesai')
+                    @elseif ($bookings->status == 'selesai')
                         <td><span class="badge bg-label-success me-1">Completed</span></td>
-                    @elseif ($booking->status == 'dibatalkan')
+                    @elseif ($bookings->status == 'dibatalkan')
                         <td><span class="badge bg-label-danger me-1">Canceled</span></td>
                     @else
                         <td><span class="badge bg-label-danger me-1">Gagal</span></td>
                     @endif
                 </td>
                 <td>
-                    {{ $booking->total_denda }}
+                    {{ $bookings->total_denda }}
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('booking-admin.show', ['booking_admin' => $booking->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('booking-admin.show', ['booking_admin' => $bookings->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-show"></span>
                         </a>
-                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('booking-admin.edit', ['booking_admin' => $booking->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('booking-admin.edit', ['booking_admin' => $bookings->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-edit"></span>
                         </a>
-                        @if ($booking->status == 'proses')
-                            <form action="{{ route('booking-admin.disetujui', ['booking_admin' => $booking->id]) }}" method="POST">
+                        @if ($bookings->status == 'proses')
+                            <form action="{{ route('booking-admin.disetujui', ['booking_admin' => $bookings->id]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span class="tf-icons bx bx-check"></span></button>
                             </form>
-                        @elseif ($booking->status == 'dipinjam')
-                            <form action="{{ route('booking-admin.selesai', ['booking_admin' => $booking->id]) }}" method="POST">
+                        @elseif ($bookings->status == 'dipinjam')
+                            <form action="{{ route('booking-admin.selesai', ['booking_admin' => $bookings->id]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span class="tf-icons bx bx-check"></span></button>

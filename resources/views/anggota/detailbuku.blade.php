@@ -13,12 +13,12 @@
             <div class="col-md-12 col-lg-12 mb-2">
                 <div class="card">
                     <div class="card-body mt-3 mx-2">
-                        <h4 class="card-title fw-bolder">
+                        <h4 class="card-title fw-bolder text-capitalize">
                             {{ $buku->judul }}
                         </h4>
                         <p class="card-text">
                             <div class="row media">
-                                <div class="col-12">
+                                <div class="col-12 text-capitalize">
                                     <span class="tf-icons bx bx-user"></span>&nbsp;
                                     @if ($buku->pengarang_place->count('pivot.id_pengarang') != 1)
                                         @foreach ($buku->pengarang_place->take(1) as $pengarangbuku)
@@ -50,13 +50,61 @@
                       alt="Card image cap"
                     />
                   </div>
-                  <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
-                    <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" >Booking</button>
-                    </form>
-                  </div>
+                  @guest
+                    @if (Route::has('login'))
+                        <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
+                            <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
+                            </form>
+                        </div>
+                    @endif
+                  @else
+                    @if ($bookable == 0)
+                        <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
+                            <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
+                            </form>
+                        </div>
+                    @else
+                        @if  ( Auth::user() -> level == 'admin' )
+                            <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
+                                <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
+                                </form>
+                            </div>
+                        @else
+                            @if ( Auth::user() -> anggota -> verifikasi == 'Belum Terverifikasi' )
+                                <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
+                                    <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
+                                    </form>
+                                </div>
+                            @else
+                                @if( $bataspinjam >= Auth::user() -> anggota -> jenis_keanggotaan -> jumlah_pinjam)
+                                    <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
+                                        <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-batas-booking" style="width: 100%" >Booking</button>
+                                    </div>
+                                @else
+                                    <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
+                                        <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" >Booking</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            @endif
+                        @endif
+                    @endif
+                  @endguest
                 </div>
             </div>
             <div class="col-md-12 col-lg-9 mb-2">
@@ -99,13 +147,13 @@
                                             </div>
                                         </td>
                                         <td class="col-md-8 col-7 align-top">
-                                            <div class="px-2 py-1">
+                                            <div class="px-2 py-1 text-capitalize">
                                                 @if ($buku->subjek_place->count('pivot.id_subjek') != 1)
                                                     @foreach ($buku->subjek_place as $subjekbuku)
                                                         {{ $subjekbuku->nama }},
                                                     @endforeach
                                                 @else
-                                                    @foreach ($buku->subjek_place as $subjekbuku)
+                                                    @foreach ($buku->subjek_place->take(1) as $subjekbuku)
                                                         {{ $subjekbuku->nama }}
                                                     @endforeach
                                                 @endif
@@ -211,7 +259,7 @@
                                         <td class="col-md-12 col-12">
                                             <div class="px-2 pt-1">
                                                 <div class="overflow-auto" style="height: 255px" id="vertical-example">
-                                                    {{$buku->ringkasan}}
+                                                    {!! $buku->ringkasan !!}
                                                 </div>
                                             </div>
                                         </td>
@@ -509,8 +557,16 @@
                                         <td>{{ $value->barcode }}</td>
                                         <td>{{ $value->kode_inventaris }}</td>
                                         <td>{{ \Carbon\Carbon::parse($value->tanggal_pengadaan)->format('d/m/Y')}}</td>
-                                        <td>{{ucfirst(trans($value->jenis_sumber))}}</td>
-                                        <td>{{ Str::ucfirst(Str::limit($value->status)) }}</td>
+                                        <td>
+                                            <p class="text-capitalize">
+                                                {{$value->jenis_sumber}}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p class="text-capitalize">
+                                                {{ $value->status }}
+                                            </p>
+                                        </td>
                                     </tr>
                                 @endforeach
                               </tbody>
@@ -529,13 +585,91 @@
                             <div class="p-2">
                                 <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; Flipbook</span>
                             </div>
-                            @foreach ($buku->file as $filebuku)
-                                @if($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile')
-                                    <div class="px-2 py-1">
-                                        <iframe src="{{ route('pdf', ['id' => $buku->id]) }}" frameborder="0" width="100%" height="550"></iframe>
-                                    </div>
+                            @guest
+                                @if (Route::has('login'))
+                                    <p class="text-capitalize p-2">
+                                        Maaf anda tidak memiliki akses untuk membaca dokumen ini !!
+                                    </p>
                                 @endif
-                            @endforeach
+                            @else
+                                @foreach ($buku->file as $filebuku)
+                                    @if($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile')
+                                        @if (Auth::user() -> level == 'admin')
+                                            <div class="px-2 py-1" oncontextmenu="return false;">
+                                                <iframe src="{{ route('pdf', ['id' => $buku->id]) }}#toolbar=0" frameborder="0" width="100%" height="550"></iframe>
+                                            </div>
+                                        @else
+                                            @if (Auth::user() -> anggota -> jenis_keanggotaan -> role_baca == 1 && Auth::user() -> anggota -> verifikasi == 'Terverifikasi')
+                                                <div class="px-2 py-1" oncontextmenu="return false;">
+                                                    <iframe src="{{ route('pdf', ['id' => $buku->id]) }}#toolbar=0" frameborder="0" width="100%" height="550"></iframe>
+                                                </div>
+                                            @else
+                                                <p class="text-capitalize p-2">
+                                                    Maaf anda tidak memiliki akses untuk membaca dokumen ini !!
+                                                </p>
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endguest
+                            <div class="p-2">
+                                <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; File</span>
+                            </div>
+                            @guest
+                                @if (Route::has('login'))
+                                    <p class="text-capitalize p-2">
+                                        Maaf anda tidak memiliki akses untuk mengunduh dokumen ini !!
+                                    </p>
+                                @endif
+                            @else
+                                @foreach($file as $filebuku)
+                                    @if($filebuku->buku->role_download == 0)
+                                        @if($filebuku->file_place->name == 'File')
+                                            <div class="row p-2 text-capitalize">
+                                                <a href="#">{{ $filebuku->buku->judul }}</a>
+                                            </div>
+                                        @else
+                                            <div class="row p-2">
+                                                <a href="#">{{ $filebuku->file_place->name }}</a>
+                                            </div>
+                                        @endif
+                                    @else
+                                        @if (Auth::user() -> level == 'admin')
+                                            @if($filebuku->file_place->name == 'File')
+                                                <div class="row p-2 text-capitalize">
+                                                    <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->buku->judul }}</a>
+                                                </div>
+                                            @else
+                                                <div class="row p-2">
+                                                    <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->file_place->name }}</a>
+                                                </div>
+                                            @endif
+                                        @else
+                                            @if (Auth::user() -> anggota -> jenis_keanggotaan -> role_download == 1 && Auth::user() -> anggota -> verifikasi == 'Terverifikasi')
+                                                @if($filebuku->file_place->name == 'File')
+                                                    <div class="row p-2 text-capitalize">
+                                                        <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->buku->judul }}</a>
+                                                    </div>
+                                                @else
+                                                    <div class="row p-2">
+                                                        <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->file_place->name }}</a>
+                                                    </div>
+                                                @endif
+                                            @else
+                                                @if($filebuku->file_place->name == 'File')
+                                                    <div class="row p-2 text-capitalize">
+                                                        <a href="#">{{ $filebuku->buku->judul }}</a>
+                                                    </div>
+                                                @else
+                                                    <div class="row p-2">
+                                                        <a href="#">{{ $filebuku->file_place->name }}</a>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -560,6 +694,25 @@
                     showCancelButton: true,
                     confirmButtonClass: "bg-danger",
                     confirmButtonText: "Yes, I'am Sure !",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Warning Melampaui Batas Pinjam
+            $(".booking").on("click", ".btn-batas-booking", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Maaf Anda Telah Melampaui Batas Pinjam/Pesan Buku",
+                    icon: "error",
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Oke",
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

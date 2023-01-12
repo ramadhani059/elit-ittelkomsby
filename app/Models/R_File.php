@@ -19,8 +19,8 @@ class R_File extends Model
         return $this->belongsTo('App\Models\R_File_Place', 'id_file_place');
     }
 
-    public function donasi_buku()
+    public function donasi()
     {
-        return $this->hasOne(T_Donasi_Buku::class);
+        return $this->belongsTo('App\Models\T_Donasi_Buku', 'id_donasi');
     }
 }

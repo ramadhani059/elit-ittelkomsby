@@ -198,7 +198,7 @@
                                     <td class="col-md-12 col-12">
                                         <div class="px-2 pt-1">
                                             <div class="overflow-auto" style="height: 255px" id="vertical-example">
-                                                {{$catalog->ringkasan}}
+                                                {!! $catalog->ringkasan !!}
                                             </div>
                                         </div>
                                     </td>
@@ -544,6 +544,25 @@
                                 </div>
                             @endif
                         @endforeach
+                        <div class="p-2">
+                            <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; File</span>
+                        </div>
+                        @guest
+                            @if (Route::has('login'))
+                            @endif
+                        @else
+                            @foreach($file as $filebuku)
+                                @if($filebuku->file_place->name == 'File')
+                                    <div class="row p-2 text-capitalize">
+                                        <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->buku->judul }}</a>
+                                    </div>
+                                @else
+                                    <div class="row p-2">
+                                        <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->file_place->name }}</a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endguest
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ class T_Donasi_Buku extends Model
 
     public function anggota()
     {
-        return $this->belongsTo(M_Anggota::class);
+        return $this->belongsTo('App\Models\M_Anggota', 'id_anggota');
     }
 
     public function prodi()
@@ -21,26 +21,26 @@ class T_Donasi_Buku extends Model
 
     public function jenis_buku()
     {
-        return $this->belongsTo(R_Jenis_Buku::class);
+        return $this->belongsTo('App\Models\R_Jenis_Buku', 'id_jenis_buku');
     }
 
     public function file()
     {
-        return $this->hasMany('App\Models\R_File', 'id_buku');
+        return $this->hasMany('App\Models\R_File', 'id_donasi');
     }
 
     public function pengarang_place()
     {
-        return $this->hasMany('App\Models\R_Pengarang_Place', 'id_buku');
+        return $this->hasMany('App\Models\R_Pengarang_Place', 'id_donasi');
     }
 
     public function pembimbing_place()
     {
-        return $this->hasMany('App\Models\R_Pembimbing_Place', 'id_buku');
+        return $this->hasMany('App\Models\R_Pembimbing_Place', 'id_donasi');
     }
 
     public function subjek_place()
     {
-        return $this->hasMany('App\Models\R_Subjek_Place', 'id_buku');
+        return $this->hasMany('App\Models\R_Subjek_Place', 'id_donasi');
     }
 }

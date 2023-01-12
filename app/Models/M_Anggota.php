@@ -26,7 +26,7 @@ class M_Anggota extends Model
 
     public function donasi_buku()
     {
-        return $this->hasMany(T_Donasi_Buku::class);
+        return $this->hasMany('App\Models\T_Peminjaman', 'id_anggota');
     }
 
     public function peminjaman()

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\NewsAdminController;
 use App\Http\Controllers\Admin\SirkulasiController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Anggota\CatalogController;
+use App\Http\Controllers\Anggota\DonasiController;
 use App\Http\Controllers\Anggota\HistoryController;
 use App\Http\Controllers\Anggota\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -44,7 +45,7 @@ Route::get('/home', [App\Http\Controllers\AnggotaController::class, 'index'])->n
 
 Route::get('/catalog', [App\Http\Controllers\AnggotaController::class, 'catalog'])->name('catalog');
 
-Route::get('/catalog/{kodebuku}', [App\Http\Controllers\AnggotaController::class, 'detail_buku'])->name('catalog.detail');
+Route::get('/catalog/{slug}', [App\Http\Controllers\AnggotaController::class, 'detail_buku'])->name('catalog.detail');
 
 Auth::routes([
     'register' => false
@@ -63,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('getJenisBuku/', [DropDownController::class, 'getJenisBuku']);
     Route::get('getPengarang/', [DropDownController::class, 'getPengarang']);
     Route::get('pdf/{id}', [FilePdfController::class, 'getPdfViews'])->name('pdf');
+    Route::get('download/{filename}', [FilePdfController::class, 'downloadFile'])->name('download');
 
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
@@ -73,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('user/user-admin', UserController::class);
         Route::resource('admin/booking-admin', BookingAdminController::class);
         Route::resource('admin/donasi-admin', DonasiAdminController::class);
+        Route::get('admin/donasi-admin/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'check'])->name('donasi-admin.check');
+        Route::match(['put', 'patch'],'admin/donasi-admin/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'disetujui'])->name('donasi-admin.updatecheck');
         Route::resource('admin/news-admin', NewsAdminController::class);
         Route::resource('admin/information-admin', InformationAdminController::class);
         Route::resource('admin/gallery-admin', GalleryAdminController::class);
@@ -87,13 +91,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
         Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
         Route::get('getFilePlace/{id}', [SearchController::class, 'getFilePlace']);
+        Route::get('pdfDonasi/{id}', [FilePdfController::class, 'getPdfViewsDonasi'])->name('pdfDonasi');
     });
 
     // For Consumen
     Route::middleware(['is_anggota'])->group(function () {
         Route::match(['put', 'patch'],'catalog/{booking_anggota}', [App\Http\Controllers\Component\CheckController::class, 'pinjam'])->name('booking-anggota.pinjam');
         Route::match(['put', 'patch'],'history/{history_cancel}', [App\Http\Controllers\Component\CheckController::class, 'cancel'])->name('history.cancel');
+        Route::match(['put', 'patch'],'donasibuku/{donasi_cancel}', [App\Http\Controllers\Anggota\DonasiController::class, 'cancel'])->name('donasibuku.cancel');
         Route::resource('history', HistoryController::class);
+        Route::resource('donasibuku', DonasiController::class);
 
         // Route::resource('/catalog', CatalogController::class);
     });

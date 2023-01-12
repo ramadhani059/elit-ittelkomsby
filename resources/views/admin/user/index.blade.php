@@ -57,7 +57,7 @@
                 <td>
                     <div class="media align-items-center d-flex ">
                         <div class="avatar me-4">
-                            <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-auto rounded-circle" />
+                            <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
                         </div>
                         <div class="media-body d-none d-lg-block f-grow-1">
                             <span class="fw-semibold d-block">

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Console;
-
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Auto Cancel Booking
+        $schedule->command('cancel:booking')->dailyAt('16:30')->weekdays()->runInBackground();
     }
 
     /**

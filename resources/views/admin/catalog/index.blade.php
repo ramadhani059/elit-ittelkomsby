@@ -62,7 +62,7 @@
                       alt="Card image cap"
                     />
                 </td>
-                <td>
+                <td class="text-capitalize">
                     <?php echo \Illuminate\Support\Str::limit(strip_tags($catalogs->judul), 37, $end='...') ?>
                 </td>
                 <td>

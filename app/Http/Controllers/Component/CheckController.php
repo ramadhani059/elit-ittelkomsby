@@ -82,9 +82,15 @@ class CheckController extends Controller
     public function cancel($id){
         $peminjaman = T_Peminjaman_Buku::find($id);
 
+        $checkeksemplar = M_Eksemplar::find($peminjaman->id_eksemplar);
+
+        $checkeksemplar->status = 'dapat dipinjam';
+
         $peminjaman->tgl_kembali = Carbon::now();
         $peminjaman->status = 'dibatalkan';
         $peminjaman->save();
+        $checkeksemplar->save();
+
 
         Alert::success('Booking Cancelled', 'The Book Has Been Cancelled');
 

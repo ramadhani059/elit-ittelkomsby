@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('t__donasi__bukus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_prodi')->nullable();
+            $table->unsignedBigInteger('id_anggota');
             $table->unsignedBigInteger('id_jenis_buku');
             $table->string('cover')->nullable();
             $table->string('judul');
             $table->string('anak_judul')->nullable();
             $table->string('judul_inggris')->nullable();
             $table->string('edisi')->nullable();
+            $table->integer('jml_eksemplar');
             $table->string('penyunting')->nullable();
             $table->string('penerjemah')->nullable();
             $table->string('penerbit')->nullable();
@@ -31,9 +33,12 @@ return new class extends Migration
             $table->string('dimensi')->nullable();
             $table->string('isbn')->nullable();
             $table->text('ringkasan')->nullable();
+            $table->string('status_donasi');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_prodi')->references('id')->on('m__prodis');
+            $table->foreign('id_anggota')->references('id')->on('m__anggotas');
             $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus');
         });
     }

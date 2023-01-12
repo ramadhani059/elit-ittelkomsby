@@ -37,6 +37,7 @@
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('assets/js/tinymce/tinymce.min.js') }}"></script>
 
     <!-- Page CSS -->
     @yield('css')
@@ -74,10 +75,10 @@
                         <a class="nav-link {{  (request()->is('catalog*')) ? 'fw-semibold active' : '' }}" href="{{ route('catalog') }}">Katalog</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">About Us</a>
+                        <a class="nav-link" href="javascript:void(0)">Tentang Kami</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">Gallery</a>
+                        <a class="nav-link" href="javascript:void(0)">Galeri</a>
                       </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -86,7 +87,7 @@
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <div class="media-body d-lg-block f-grow-1">
-                                        <a class="btn btn-danger" href="{{ route('login') }}">Login / Register</a>
+                                        <a class="btn btn-danger" href="{{ route('login') }}">Masuk / Daftar</a>
                                     </div>
                                 </li>
                             @endif
@@ -102,51 +103,76 @@
                                             @endif
                                         </div>
                                         <div class="avatar avatar-online ">
-                                            <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                            @if (Auth::user()->profile_photo_path != null)
+                                                <img src="{{ asset('storage/user/photo/'.Auth::user()->profile_photo_path) }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                                            @else
+                                                <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                                            @endif
                                         </div>
                                     </div>
                                 </a>
 
-                                <ul class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu dropdown-menu-end toast-verifikasi">
                                     @if (Auth::user() -> level == 'admin')
                                         <li>
                                             <a class="dropdown-item" href="{{ route('dashboard-admin.index') }}">
                                             <i class="bx bx-home-circle me-2"></i>
-                                            <span class="align-middle">Dashboard</span>
+                                            <span class="align-middle">Beranda Admin</span>
                                             </a>
                                         </li>
                                     @endif
                                     <li>
                                       <a class="dropdown-item" href="#">
                                         <i class="bx bx-user me-2"></i>
-                                        <span class="align-middle">My Profile</span>
+                                        <span class="align-middle">Profil Saya</span>
                                       </a>
                                     </li>
                                     @if (Auth::user() -> level == 'anggota')
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('history.index') }}">
-                                            <i class="bx bx-history me-2"></i>
-                                            <span class="align-middle">History</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                            <i class="bx bxs-data me-2"></i>
-                                            <span class="align-middle">Donate/Repository</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                            <i class="bx bxs-key me-2"></i>
-                                            <span class="align-middle">Pinjam Loker</span>
-                                            </a>
-                                        </li>
+                                        @if (Auth::user() -> anggota -> verifikasi == 'Belum Terverifikasi')
+                                            <li>
+                                                <a class="dropdown-item btn-checkverif" href="#">
+                                                    <i class="bx bx-history me-2"></i>
+                                                    <span class="align-middle">Riwayat Peminjaman</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item btn-checkverif" href="#">
+                                                    <i class="bx bxs-data me-2"></i>
+                                                    <span class="align-middle">Donasi/Repository</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item btn-checkverif" href="#">
+                                                    <i class="bx bxs-key me-2"></i>
+                                                    <span class="align-middle">Pinjam Loker</span>
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('history.index') }}">
+                                                <i class="bx bx-history me-2"></i>
+                                                <span class="align-middle">Riwayat Peminjaman</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('donasibuku.index') }}">
+                                                <i class="bx bxs-data me-2"></i>
+                                                <span class="align-middle">Donasi/Repository</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">
+                                                <i class="bx bxs-key me-2"></i>
+                                                <span class="align-middle">Pinjam Loker</span>
+                                                </a>
+                                            </li>
+                                        @endif
                                     @endif
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <span class="d-flex align-items-center align-middle">
                                             <i class="flex-shrink-0 bx bx-bell me-2"></i>
-                                            <span class="flex-grow-1 align-middle">Notification</span>
+                                            <span class="flex-grow-1 align-middle">Notifikasi</span>
                                             <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                                             </span>
                                         </a>
@@ -157,7 +183,7 @@
                                     <li>
                                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="bx bx-power-off me-2"></i>
-                                        <span class="align-middle">Log Out</span>
+                                        <span class="align-middle">Keluar</span>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
@@ -187,10 +213,6 @@
               ©
             </div>
             <div>
-              <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-              <a href="javascript:void(0)" class="footer-link me-4">Help</a>
-              <a href="javascript:void(0)" class="footer-link me-4">Contact</a>
-              <a href="javascript:void(0)" class="footer-link">Terms &amp; Conditions</a>
             </div>
           </div>
         </footer>
@@ -208,6 +230,34 @@
     <script src="{{ asset('assets/anggota/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            // Sweet alert verifikasi
+            $(".toast-verifikasi").on("click", ".btn-checkverif", function (e) {
+                e.preventDefault();
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    width: '400px',
+                    background: '#ff3e1d',
+                    color: '#ededed',
+                    timer: 8000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    title: "Maaf Anda Belum Terverifikasi",
+                    icon: "warning",
+                });
+            });
+        });
+    </script>
     @include('sweetalert::alert')
     @yield('script')
   </body>

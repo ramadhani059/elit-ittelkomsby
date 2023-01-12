@@ -48,6 +48,7 @@
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('assets/js/tinymce/tinymce.min.js') }}"></script>
 
     <!-- Page CSS -->
     @yield('css')
@@ -108,7 +109,7 @@
               <ul class="menu-sub">
                 <li class="menu-item {{  (request()->is('buku/catalog-admin*')) ? 'active' : '' }}">
                   <a href="{{ route('catalog-admin.index') }}" class="menu-link">
-                    <div data-i18n="Account">List Buku</div>
+                    <div data-i18n="Account">Daftar Buku</div>
                   </a>
                 </li>
                 <li class="menu-item {{  (request()->is('buku/jenis-buku*')) ? 'active' : '' }}">
@@ -132,12 +133,12 @@
             <li class="menu-item {{  (request()->is('user*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Account Settings">User</div>
+                <div data-i18n="Account Settings">Pengguna</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item {{  (request()->is('user/user-admin*')) ? 'active' : '' }}">
                   <a href="{{ route('user-admin.index') }}" class="menu-link">
-                    <div data-i18n="Account">List User</div>
+                    <div data-i18n="Account">Daftar Pengguna</div>
                   </a>
                 </li>
                 <li class="menu-item {{  (request()->is('user/jenis-keanggotaan*')) ? 'active' : '' }}">
@@ -155,8 +156,8 @@
               </a>
             </li>
 
-            <li class="menu-item">
-              <a href="#" class="menu-link">
+            <li class="menu-item {{  (request()->is('admin/donasi-admin*')) ? 'active' : '' }}">
+              <a href="{{ route('donasi-admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-donate-heart"></i>
                 <div data-i18n="Analytics">Donasi Buku</div>
               </a>
@@ -165,7 +166,7 @@
             <li class="menu-item">
               <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-news"></i>
-                <div data-i18n="Analytics">News</div>
+                <div data-i18n="Analytics">Berita</div>
               </a>
             </li>
 
@@ -179,7 +180,7 @@
             <li class="menu-item">
               <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-image"></i>
-                <div data-i18n="Analytics">Gallery</div>
+                <div data-i18n="Analytics">Galeri</div>
               </a>
             </li>
 
@@ -223,7 +224,7 @@
                                 <span class="fw-semibold d-block">{{ Auth::user() -> admin -> nama_lengkap }}</span>
                             </div>
                             <div class="avatar avatar-online ">
-                                <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
                             </div>
                         </div>
                     </a>
@@ -231,20 +232,14 @@
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
+                        <span class="align-middle">Profil Saya</span>
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="#">
                         <span class="d-flex align-items-center align-middle">
                           <i class="flex-shrink-0 bx bx-bell me-2"></i>
-                          <span class="flex-grow-1 align-middle">Notification</span>
+                          <span class="flex-grow-1 align-middle">Notifikasi</span>
                           <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
                       </a>
@@ -255,7 +250,7 @@
                     <li>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Keluar</span>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>

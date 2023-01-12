@@ -51,41 +51,43 @@
                 <div class="col-xl-12">
                     <div class="featured-carousel owl-carousel">
                         @foreach ($buku as $buku)
-                            <div class="item">
-                                <div class="work">
-                                    <a href="{{ route('catalog.detail', ['kodebuku' => $buku->kode_buku]) }}" role="button">
-                                        <div
-                                            class="img d-flex align-items-end justify-content-center"
-                                            style="background-image: url(
-                                                @if ($buku->cover != null)
-                                                    {{ asset('storage/buku/cover/'.$buku->cover) }}
-                                                @else
-                                                    {{ asset('assets/img/home/1.png') }}
-                                                @endif
-                                            );
-                                                background-repeat: no-repeat;
-                                                    backround-size: cover; "
-                                        >
-                                            <div class="text w-100" style="background-color: rgba(0,0,0, 0.5); padding-top: 10px; height: 100px;">
-                                                <span class="cat">
-                                                    @if ($buku->subjek_place->count('pivot.id_subjek') != 1)
-                                                        @foreach ($buku->subjek_place->take(1) as $subjekbuku)
-                                                            {{ $subjekbuku->nama }}
-                                                        @endforeach
+                            @if($buku->status_active == 1)
+                                <div class="item">
+                                    <div class="work">
+                                        <a href="{{ route('catalog.detail', ['slug' => $buku->slug]) }}" role="button">
+                                            <div
+                                                class="img d-flex align-items-end justify-content-center"
+                                                style="background-image: url(
+                                                    @if ($buku->cover != null)
+                                                        {{ asset('storage/buku/cover/'.$buku->cover) }}
                                                     @else
-                                                        @foreach ($buku->subjek_place->take(1) as $subjekbuku)
-                                                            {{ $subjekbuku->nama }}
-                                                        @endforeach
+                                                        {{ asset('assets/img/home/1.png') }}
                                                     @endif
-                                                </span>
-                                                <h3>
-                                                    <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 50, $end='...') ?>
-                                                </a></h3>
+                                                );
+                                                    background-repeat: no-repeat;
+                                                        backround-size: cover; "
+                                            >
+                                                <div class="text w-100" style="background-color: rgba(0,0,0, 0.5); padding-top: 10px; height: 100px;">
+                                                    <span class="cat">
+                                                        @if ($buku->subjek_place->count('pivot.id_subjek') != 1)
+                                                            @foreach ($buku->subjek_place->take(1) as $subjekbuku)
+                                                                {{ $subjekbuku->nama }}
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($buku->subjek_place->take(1) as $subjekbuku)
+                                                                {{ $subjekbuku->nama }}
+                                                            @endforeach
+                                                        @endif
+                                                    </span>
+                                                    <h3 class="text-capitalize">
+                                                        <?php echo \Illuminate\Support\Str::limit(strip_tags($buku->judul), 50, $end='...') ?>
+                                                    </a></h3>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

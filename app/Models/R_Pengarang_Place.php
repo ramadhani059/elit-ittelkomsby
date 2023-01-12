@@ -13,4 +13,9 @@ class R_Pengarang_Place extends Model
     {
         return $this->belongsTo('App\Models\M_Buku', 'id_buku');
     }
+
+    public function donasi()
+    {
+        return $this->belongsTo('App\Models\M_Buku', 'id_donasi');
+    }
 }

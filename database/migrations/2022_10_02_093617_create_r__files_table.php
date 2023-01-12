@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('r__files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_buku');
+            $table->unsignedBigInteger('id_buku')->nullable();
+            $table->unsignedBigInteger('id_donasi')->nullable();
             $table->unsignedBigInteger('id_file_place');
             $table->string('original_name');
             $table->string('encrypt_name');
-            $table->boolean('status');
             $table->timestamps();
 
             $table->foreign('id_buku')->references('id')->on('m__bukus');
+            $table->foreign('id_donasi')->references('id')->on('t__donasi__bukus');
             $table->foreign('id_file_place')->references('id')->on('r__file__places');
         });
     }

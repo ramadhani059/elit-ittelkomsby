@@ -16,9 +16,13 @@ class IsAnggota
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->level == 'admin'){
+        $user = $request->user();
+
+        if($user->level == 'admin'){
             return redirect('/admin/dashboard-admin');
-        } else {
+        } elseif ($user->anggota->verifikasi != 'Terverifikasi') {
+            return redirect('/');
+        }else {
             return $next($request);
         }
     }

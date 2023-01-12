@@ -389,6 +389,23 @@
                                             </div>
                                         </div>
                                     @endif
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">
+                                                Photo Profile
+                                            </label>
+                                            <div id="defaultFormControlHelp" class="form-text mb-2" style="margin-top:  -3px;">
+                                                <span>Masukkan Foto yang Jelas Tanpa Ada yang Menutupi Muka</span>
+                                            </div>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">
+                                                    <i class="bx bxs-id-card"></i>
+                                                </span>
+                                                <input class="form-control" type="file" id="photo_{{ $jenisanggota->id }}" name="photo_{{ $jenisanggota->id }}" />
+                                            </div>
+                                            <div id="defaultFormControlHelp" class="form-text text-danger">
+                                                <span class="errorTxt" id="photo_{{ $jenisanggota->id }}-errorMsg"></span>
+                                            </div>
+                                        </div>
                                     @if ($jenisanggota->role_ktp == 1)
                                         <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">
@@ -408,7 +425,7 @@
                                     @if ($jenisanggota->role_karpeg_ktm == 1)
                                         <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">
-                                                Karpeg/KTM
+                                                Kartu Pegawai/KTM
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
