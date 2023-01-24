@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nama');
             $table->timestamps();
 
-            $table->foreign('id_fakultas')->references('id')->on('m__fakultas');
+            $table->foreign('id_fakultas')->references('id')->on('m__fakultas')->onDelete('cascade');
         });
     }
 

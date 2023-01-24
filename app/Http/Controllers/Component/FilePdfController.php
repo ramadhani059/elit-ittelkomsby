@@ -6,21 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Models\M_Buku;
 use App\Models\R_File;
 use App\Models\T_Donasi_Buku;
+use App\Models\T_Peminjaman_Buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class FilePdfController extends Controller
 {
-    public function getPdfViews($id){
-        $catalog = M_Buku::find($id);
+    public function getPdfViews($id, $originalname){
+        $encrypt = R_File::where([
+            'id_buku' => $id,
+            'original_name' => $originalname,
+        ])->first();
+        $buku = M_Buku::where('id', $encrypt->id_buku)->first();
 
-        foreach ($catalog->file as $filebuku) {
-            if ($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile') {
-                $folder = Str::of($catalog->judul)->slug();
-                $file = public_path('storage/buku/'.$folder.'/'.$filebuku->encrypt_name);
-                $filename = $catalog->judul;
+        foreach ($buku->file as $filebuku) {
+            if ($filebuku->file_place->type == 'fullfile') {
+                $file = public_path('storage/'.$encrypt->location_path.$encrypt->encrypt_name);
+                $filename = $encrypt->file_place->name;
             }
         }
 
@@ -32,13 +38,15 @@ class FilePdfController extends Controller
         ]);
     }
 
-    public function getPdfViewsDonasi($id){
-        $encrypt = R_File::where('original_name', $id)->first();
+    public function getPdfViewsDonasi($id, $originalname){
+        $encrypt = R_File::where([
+            'id_donasi' => $id,
+            'original_name' => $originalname,
+        ])->first();
         $donasi = T_Donasi_Buku::where('id', $encrypt->id_donasi)->first();
 
         $filename = $encrypt->file_place->name;
-        $folder = Str::of($donasi->judul)->slug();
-        $file = public_path('storage/buku/'.$folder.'/'.$encrypt->encrypt_name);
+        $file = public_path('storage/'.$encrypt->location_path.$encrypt->encrypt_name);
 
         return Response::stream(function () use ($file){
             readfile($file);
@@ -53,8 +61,7 @@ class FilePdfController extends Controller
 
         foreach($file as $data){
             // Check if file exists in app/storage/file folder
-            $folder = Str::of($data->buku->judul)->slug();
-            $file_path = public_path('storage/buku/'.$folder.'/'.$data->encrypt_name);
+            $file_path = public_path('storage/'.$data->location_path.$data->encrypt_name);
             if (file_exists($file_path))
             {
                 // Send Download
@@ -69,5 +76,22 @@ class FilePdfController extends Controller
                 Alert::error('Requested File Does Not Exist On Our Server!');
             }
         }
+    }
+
+    public function fileSerahTerima($id){
+        $donasi = T_Donasi_Buku::find($id);
+        $statuspeminjaman = T_Peminjaman_Buku::where([
+            'id_anggota' => $donasi->id_anggota,
+            'status' => 'dipinjam',
+        ])->get();
+        $hari = Carbon::today()->format('l');
+        $tanggal = Carbon::now()->format('d F');
+        $tahun = Carbon::now()->format('Y');
+        $tanggallengkap = Carbon::now()->format('d F Y');
+        $logo = public_path('assets/img/icons/logo/logo-ITTS.png');
+        $footer = public_path('assets/img/icons/logo/footer-pdf.png');
+        $pdf = PDF::loadView('file.filepdf.serahterima', compact('donasi', 'hari', 'tanggal', 'tahun', 'tanggallengkap', 'logo', 'footer', 'statuspeminjaman'));
+
+        return $pdf->stream();
     }
 }

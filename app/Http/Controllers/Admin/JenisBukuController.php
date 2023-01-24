@@ -74,16 +74,6 @@ class JenisBukuController extends Controller
             DB::table('r__file__places')->insert($checkbox);
         }
 
-        if ($request->fullfile != null){
-            $fullfile[] = array(
-                'id_jenisbuku' => $jenisbuku->id,
-                'name' => $request->fullfile,
-                'note' => null,
-                'type' => 'fullfile',
-            );
-            DB::table('r__file__places')->insert($fullfile);
-        }
-
         if ($request->nama_file[0] != null){
             for ($i=0; $i<$target2; $i++){
                 $data[] = array(
@@ -94,6 +84,16 @@ class JenisBukuController extends Controller
                 );
             }
             DB::table('r__file__places')->insert($data);
+        }
+
+        if ($request->fullfile != null){
+            $fullfile[] = array(
+                'id_jenisbuku' => $jenisbuku->id,
+                'name' => $request->fullfile,
+                'note' => null,
+                'type' => 'fullfile',
+            );
+            DB::table('r__file__places')->insert($fullfile);
         }
 
         return redirect()->route('jenis-buku.index');

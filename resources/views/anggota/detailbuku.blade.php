@@ -53,44 +53,32 @@
                   @guest
                     @if (Route::has('login'))
                         <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
-                            <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
-                            </form>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-secondary btn-belum-login" style="width: 100%" >Booking</button>
                         </div>
                     @endif
                   @else
                     @if ($bookable == 0)
                         <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
-                            <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
-                            </form>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-secondary btn-role-booking" style="width: 100%" >Booking</button>
                         </div>
                     @else
                         @if  ( Auth::user() -> level == 'admin' )
                             <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
-                                <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
+                                <form action="#" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
+                                    <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-role-booking" style="width: 100%" disabled >Booking</button>
                                 </form>
                             </div>
                         @else
                             @if ( Auth::user() -> anggota -> verifikasi == 'Belum Terverifikasi' )
                                 <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
-                                    <form action="{{ route('booking-anggota.pinjam', ['booking_anggota' => $buku->id]) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-booking" style="width: 100%" disabled >Booking</button>
-                                    </form>
+                                    <button type="submit" data-toggle="tooltip" class="btn btn-secondary btn-belum-verifikasi" style="width: 100%" >Booking</button>
                                 </div>
                             @else
                                 @if( $bataspinjam >= Auth::user() -> anggota -> jenis_keanggotaan -> jumlah_pinjam)
                                     <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
-                                        <button type="submit" data-toggle="tooltip" class="btn btn-primary btn-batas-booking" style="width: 100%" >Booking</button>
+                                        <button type="submit" data-toggle="tooltip" class="btn btn-secondary btn-batas-booking" style="width: 100%" >Booking</button>
                                     </div>
                                 @else
                                     <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
@@ -177,6 +165,42 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @if ($buku->id_prodi != null)
+                                        <tr>
+                                            <td class="col-md-3 col-4 align-top">
+                                                <div class="px-2 py-1">
+                                                    <strong>Program Studi</strong>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1 col-1 align-top">
+                                                <div class="px-2 py-1">
+                                                    <strong>:</strong>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-8 col-7 align-top">
+                                                <div class="px-2 py-1">
+                                                    {{ $buku->prodi->nama }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3 col-4 align-top">
+                                                <div class="px-2 py-1">
+                                                    <strong>Fakultas</strong>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-1 col-1 align-top">
+                                                <div class="px-2 py-1">
+                                                    <strong>:</strong>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-8 col-7 align-top">
+                                                <div class="px-2 py-1">
+                                                    {{ $buku->prodi->fakultas->nama }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -308,7 +332,7 @@
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
-                                                        <strong>Penyunting</strong>
+                                                        <strong>Pembimbing</strong>
                                                     </div>
                                                 </td>
                                                 <td class="col-md-1 col-1 align-top">
@@ -596,12 +620,12 @@
                                     @if($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile')
                                         @if (Auth::user() -> level == 'admin')
                                             <div class="px-2 py-1" oncontextmenu="return false;">
-                                                <iframe src="{{ route('pdf', ['id' => $buku->id]) }}#toolbar=0" frameborder="0" width="100%" height="550"></iframe>
+                                                <iframe src="{{ route('pdf', ['id' => $buku->id,'originalname' => $filebuku->original_name]) }}#toolbar=0" frameborder="0" width="100%" height="550"></iframe>
                                             </div>
                                         @else
                                             @if (Auth::user() -> anggota -> jenis_keanggotaan -> role_baca == 1 && Auth::user() -> anggota -> verifikasi == 'Terverifikasi')
                                                 <div class="px-2 py-1" oncontextmenu="return false;">
-                                                    <iframe src="{{ route('pdf', ['id' => $buku->id]) }}#toolbar=0" frameborder="0" width="100%" height="550"></iframe>
+                                                    <iframe src="{{ route('pdf', ['id' => $buku->id,'originalname' => $filebuku->original_name]) }}#toolbar=0" frameborder="0" width="100%" height="550"></iframe>
                                                 </div>
                                             @else
                                                 <p class="text-capitalize p-2">
@@ -710,6 +734,63 @@
 
                 Swal.fire({
                     title: "Maaf Anda Telah Melampaui Batas Pinjam/Pesan Buku",
+                    icon: "error",
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Oke",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Warning Belum Terverifikasi
+            $(".booking").on("click", ".btn-belum-verifikasi", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Maaf Anda Belum Terverifikasi",
+                    icon: "error",
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Oke",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Warning Role Booking
+            $(".booking").on("click", ".btn-role-booking", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Maaf Jenis Keanggotaan Anda Tidak Diperbolehkan Memesan/Meminjam Buku",
+                    icon: "error",
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Oke",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Warning Role Booking
+            $(".booking").on("click", ".btn-belum-login", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Maaf Anda Belum Login/Daftar",
                     icon: "error",
                     confirmButtonClass: "bg-danger",
                     confirmButtonText: "Oke",

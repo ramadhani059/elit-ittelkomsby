@@ -39,9 +39,9 @@ return new class extends Migration
             $table->boolean('role_download');
             $table->timestamps();
 
-            $table->foreign('id_prodi')->references('id')->on('m__prodis');
-            $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus');
-            $table->foreign('id_sirkulasi')->references('id')->on('r__sirkulasis');
+            $table->foreign('id_prodi')->references('id')->on('m__prodis')->onDelete('cascade');
+            $table->foreign('id_jenis_buku')->references('id')->on('r__jenis__bukus')->onDelete('cascade');
+            $table->foreign('id_sirkulasi')->references('id')->on('r__sirkulasis')->onDelete('cascade');
         });
     }
 

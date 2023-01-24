@@ -33,9 +33,9 @@ return new class extends Migration
             $table->string('ijazah_encrypt')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_jenis_keanggotaan')->references('id')->on('r__jenis__keanggotaans');
-            $table->foreign('id_institusi')->references('id')->on('r__institusis');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_jenis_keanggotaan')->references('id')->on('r__jenis__keanggotaans')->onDelete('cascade');
+            $table->foreign('id_institusi')->references('id')->on('r__institusis')->onDelete('cascade');
         });
     }
 

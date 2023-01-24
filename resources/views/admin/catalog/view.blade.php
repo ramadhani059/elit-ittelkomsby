@@ -7,7 +7,7 @@
         <div class="col-md-12 col-lg-12 mb-2">
             <div class="card">
                 <div class="card-body mt-3 mx-2">
-                    <h4 class="card-title fw-bolder">
+                    <h4 class="card-title fw-bolder text-capitalize">
                         {{ $catalog->judul }}
                     </h4>
                     <p class="card-text">
@@ -247,7 +247,7 @@
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
-                                                        <strong>Penyunting</strong>
+                                                        <strong>Pembimbing</strong>
                                                     </div>
                                                 </td>
                                                 <td class="col-md-1 col-1 align-top">
@@ -540,7 +540,7 @@
                         @foreach ($catalog->file as $filebuku)
                             @if($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile')
                                 <div class="px-2 py-1">
-                                    <iframe src="{{ route('pdf', ['id' => $catalog->id]) }}" frameborder="0" width="100%" height="550"></iframe>
+                                    <iframe src="{{ route('pdf', ['id' => $catalog->id,'originalname' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
                                 </div>
                             @endif
                         @endforeach

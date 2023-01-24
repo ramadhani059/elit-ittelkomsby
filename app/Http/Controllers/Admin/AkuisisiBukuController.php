@@ -76,10 +76,10 @@ class AkuisisiBukuController extends Controller
             'role_download_'.$jenisbuku => 'required',
         ], $messages);
 
-        $check = M_Buku::where('kode_buku', $request->kode_buku)->exists();
+        $check = M_Buku::where('kode_buku', $request->{'kode_buku_'.$jenisbuku})->exists();
 
         if ($check){
-            $checkbuku = M_Buku::where('kode_buku', $request->kode_buku)->get()->first();
+            $checkbuku = M_Buku::where('kode_buku', $request->{'kode_buku_'.$jenisbuku})->get()->first();
 
             Alert::error('Buku Anda Tidak Tersimpan!', 'Buku Anda Sudah Terdaftar !!');
 
@@ -205,7 +205,7 @@ class AkuisisiBukuController extends Controller
             foreach ($file as $filebook) {
                 $filestore = $request->file('fullfile_'.$filebook->id.'_'.$jenisbuku);
 
-                $filejudul = Str::of($request->{'judul_buku_'.$jenisbuku})->slug();
+                $filejudul = Str::of($request->{'kode_buku_'.$jenisbuku})->slug('-')->append('-'.$slug);
 
                 $filestore->store('public/buku/'.$filejudul);
 
@@ -214,13 +214,14 @@ class AkuisisiBukuController extends Controller
                     'id_file_place' => $filebook->id,
                     'original_name' => $filestore->getClientOriginalName(),
                     'encrypt_name' => $filestore->hashName(),
+                    'location_path' => 'buku/'.$filejudul.'/',
                 );
             }
 
             foreach ($results as $files) {
                 $filestore = $request->file('filepdf_'.$files->id.'_'.$jenisbuku);
 
-                $filejudul = Str::of($request->{'judul_buku_'.$jenisbuku})->slug();
+                $filejudul = Str::of($request->{'kode_buku_'.$jenisbuku})->slug('-')->append('-'.$slug);
 
                 $filestore->store('public/buku/'.$filejudul);
 
@@ -229,6 +230,7 @@ class AkuisisiBukuController extends Controller
                     'id_file_place' => $files->id,
                     'original_name' => $filestore->getClientOriginalName(),
                     'encrypt_name' => $filestore->hashName(),
+                    'location_path' => 'buku/'.$filejudul.'/',
                 );
             }
 

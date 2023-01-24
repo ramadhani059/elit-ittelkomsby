@@ -2,6 +2,62 @@
 
 @section('content')
 
+<div class="modal fade" id="modalDecline" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+    <form action="{{ route('donasi-admin.checkditolak', ['donasi_admin_ditolak' => $donasi->id]) }}" method="POST" enctype="multipart/form-data" id="katalogForm">
+      @csrf
+      @method('put')
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel3">Pesan Penolakan Donasi Buku</h5>
+          <a
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></a>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="nameLarge" class="form-label">Nama Donatur</label>
+              <input value="{{ $donasi->anggota->nama_lengkap }}" type="text" id="nameLarge" class="form-control" placeholder="Enter Name" readonly/>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col mb-0">
+                <label for="defaultFormControlInput" class="form-label">
+                    Pesan
+                </label>
+                <div class="input-group input-group-merge">
+                    <textarea
+                        id="pesan"
+                        type="text"
+                        class="form-control @error('pesan') is-invalid @enderror"
+                        name="pesan"
+                        placeholder="Enter Your Message"
+                        aria-label="Enter Your Message"
+                        aria-describedby="basic-icon-default-message2"
+                        required
+                    ><p>Maaf donasi anda ditolak karena...</p></textarea>
+                </div>
+                <div id="defaultFormControlHelp" class="form-text text-danger">
+                    <span class="errorTxt" id="pesan-errorMsg"></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Close
+          </a>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-md-12 col-lg-12 mb-2">
@@ -99,6 +155,42 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @if ($donasi->id_prodi != null)
+                                    <tr>
+                                        <td class="col-md-3 col-4 align-top">
+                                            <div class="px-2 py-1">
+                                                <strong>Program Studi</strong>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-1 col-1 align-top">
+                                            <div class="px-2 py-1">
+                                                <strong>:</strong>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-8 col-7 align-top">
+                                            <div class="px-2 py-1">
+                                                {{ $donasi->prodi->nama }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-3 col-4 align-top">
+                                            <div class="px-2 py-1">
+                                                <strong>Fakultas</strong>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-1 col-1 align-top">
+                                            <div class="px-2 py-1">
+                                                <strong>:</strong>
+                                            </div>
+                                        </td>
+                                        <td class="col-md-8 col-7 align-top">
+                                            <div class="px-2 py-1">
+                                                {{ $donasi->prodi->fakultas->nama }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -213,7 +305,7 @@
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
-                                                        <strong>Penyunting</strong>
+                                                        <strong>Pembimbing</strong>
                                                     </div>
                                                 </td>
                                                 <td class="col-md-1 col-1 align-top">
@@ -378,14 +470,14 @@
                                         <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; {{ $filebuku->file_place->name }}</span>
                                     </div>
                                     <div class="px-2 py-1">
-                                        <iframe src="{{ route('pdfDonasi', ['id' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
+                                        <iframe src="{{ route('pdfDonasi', ['id' => $donasi->id, 'originalname' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
                                     </div>
                                 @elseif($filebuku->file_place->type == 'fullfile')
                                     <div class="p-2">
                                         <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; Full File</span>
                                     </div>
                                     <div class="px-2 py-1">
-                                        <iframe src="{{ route('pdfDonasi', ['id' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
+                                        <iframe src="{{ route('pdfDonasi', ['id' => $donasi->id, 'originalname' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
                                     </div>
                                 @endif
                             @endforeach
@@ -509,6 +601,40 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-2 d-grid gap-2 mt-3">
+            <form action="{{ route('donasi-admin.checkberhasil', ['donasi_admin_berhasil' => $donasi->id]) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-primary btn-lg text-white" style="width: 100%;">
+                    Approve
+                </button>
+            </form>
+        </div>
+        <div class="col-md-12 col-lg-6 mb-2 d-grid gap-2 mt-3">
+            <a class="btn btn-danger btn-lg text-white" data-bs-toggle="modal" data-bs-target="#modalDecline">
+                Reject
+            </a>
+        </div>
+    </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script>
+        tinymce.init({
+            selector: "#pesan",
+            height: 500,
+            menubar: false,
+            width: "100%",
+            plugins: "link lists searchreplace fullscreen hr print preview " +
+                "anchor code save emoticons directionality spellchecker",
+            toolbar: "cut copy | undo redo | styleselect searchplace formatselect " +
+                "fullscreen | bold italic underline strikethrough " +
+                "| removeformat | alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent " +
+                "| preview code cancel"
+        });
+    </script>
 @endsection

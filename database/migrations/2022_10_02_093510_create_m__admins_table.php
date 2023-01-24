@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('karpeg_ktm_encrypt')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

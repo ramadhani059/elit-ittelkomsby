@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\M_Buku;
 use App\Models\M_Eksemplar;
 use App\Models\R_File;
+use App\Models\R_Jenis_Buku;
 use App\Models\T_Peminjaman_Buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +43,9 @@ class AnggotaController extends Controller
 
         // ELOQUENT
         $buku = M_Buku::paginate(20);
+        $jenisbuku = R_Jenis_Buku::all();
 
-        return view('anggota.katalog', compact('pageTitle', 'buku'));
+        return view('anggota.katalog', compact('pageTitle', 'buku', 'jenisbuku'));
     }
 
     public function detail_buku($slug)

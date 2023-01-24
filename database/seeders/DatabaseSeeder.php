@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
             AnggotaSeeder::class,
             FakultasSeeder::class,
             JurusanSeeder::class,
+            SirkulasiSeeder::class,
+            KoleksiBukuSeeder::class,
+            JenisBukuSeeder::class,
+            FilePlaceSeeder::class,
         ]);
     }
 }

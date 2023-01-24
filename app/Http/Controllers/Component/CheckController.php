@@ -60,10 +60,15 @@ class CheckController extends Controller
     public function disetujui($id){
         $peminjaman = T_Peminjaman_Buku::find($id);
 
+        $checkeksemplar = M_Eksemplar::find($peminjaman->id_eksemplar);
+
+        $checkeksemplar->status = 'dipinjam';
+
         $peminjaman->batas_pinjam = Carbon::now()->addDay(7);
         $peminjaman->total_denda = 0;
         $peminjaman->status = 'dipinjam';
         $peminjaman->save();
+        $checkeksemplar->save();
 
         return back();
     }
@@ -71,10 +76,15 @@ class CheckController extends Controller
     public function selesai($id){
         $peminjaman = T_Peminjaman_Buku::find($id);
 
+        $checkeksemplar = M_Eksemplar::find($peminjaman->id_eksemplar);
+
+        $checkeksemplar->status = 'dapat dipinjam';
+
         $peminjaman->tgl_kembali = Carbon::now();
         $peminjaman->total_denda = 0;
         $peminjaman->status = 'selesai';
         $peminjaman->save();
+        $checkeksemplar->save();
 
         return redirect()->route('booking-admin.index');
     }

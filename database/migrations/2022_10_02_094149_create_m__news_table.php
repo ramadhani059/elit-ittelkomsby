@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('m__news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_admin');
+            $table->unsignedBigInteger('id_admin')->nullable();
             $table->string('judul');
             $table->string('isi');
             $table->date('tanggal');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('img_encrypt');
             $table->timestamps();
 
-            $table->foreign('id_admin')->references('id')->on('m__admins');
+            $table->foreign('id_admin')->references('id')->on('m__admins')->onDelete('set null');
         });
     }
 

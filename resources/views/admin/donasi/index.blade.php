@@ -106,7 +106,7 @@
                 @endif
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="# role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('donasi-admin.show', ['donasi_admin' => $donasibuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="tf-icons bx bx-show"></span>
                         </a>
                         @if ($donasibuku->status_donasi == 'diajukan')
@@ -114,15 +114,18 @@
                                 <span class="tf-icons bx bx-check"></span>
                             </a>
                         @elseif ($donasibuku->status_donasi == 'diterima')
-                            <a class="btn btn-icon btn-sm btn-secondary me-2" data-toggle="tooltip" href="# role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('donasi-admin.edit', ['donasi_admin' => $donasibuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="tf-icons bx bxs-file-export"></span>
                             </a>
+                            <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="{{ route('BASerahTerima', ['id' => $donasibuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="tf-icons bx bxs-file-pdf"></span>
+                            </a>
                         @elseif ($donasibuku->status_donasi == 'selesai')
-                            <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="# role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="{{ route('BASerahTerima', ['id' => $donasibuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="tf-icons bx bxs-file-pdf"></span>
                             </a>
                         @endif
-                        <form action="#" method="POST">
+                        <form action="{{ route('donasi-admin.destroy', ['donasi_admin' => $donasibuku->id]) }}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $donasibuku->judul }}" ><span class="tf-icons bx bx-trash"></span></button>

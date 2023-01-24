@@ -61,6 +61,145 @@ $(document).ready(function () {
     };
     messages['dendaharian']={ required: 'This field is required' };
 
+    if ($('#jenis_buku').val() != null) {
+        var target = $('#jenis_buku').val();
+
+        $.ajax({
+            url: '/getFilePlace/'+target,
+            type: "GET",
+            dataType: "json",
+            success: function(fileplace){
+                $.each(fileplace, function(key, value){
+                    if(value.type == 'pdf'){
+                        $('input[name="filepdf_'+ value.id +'_'+ target +'"]').each(function() {
+                            rules[this.name] = {
+                                extension: "pdf",
+                                filesize: 10485760,
+                            };
+                            messages[this.name] = {
+                                extension: 'Format yang diterima : pdf',
+                                filesize: 'File size must be less than 10 MB',
+                            };
+                        });
+
+                        myValidate();
+                    }
+                    if(value.type == 'fullfile'){
+                        $('input[name="fullfile_'+ value.id +'_'+ target +'"]').each(function() {
+                            rules[this.name] = {
+                                required: true,
+                                extension: "pdf",
+                                filesize: 10485760,
+                            };
+                            messages[this.name] = {
+                                required: 'This field is required',
+                                extension: 'Format yang diterima : pdf',
+                                filesize: 'File size must be less than 10 MB',
+                            };
+                        });
+
+                        myValidate();
+                    }
+                });
+            }
+        });
+
+        rules['jenis_pengadaan_'+target]={ required: true };
+        rules['status_pengadaan_'+target]={ required: true };
+        rules['fakultas_'+target]={ required: true };
+        rules['prodi_'+target]={ required: true };
+        rules['sirkulasi_'+target]={ required: true };
+        rules['status_'+target]={ required: true };
+        rules['role_download_'+target]={ required: true };
+
+        $('input[name="kode_buku_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="isbn_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="lokasi_buku_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="judul_buku_inggris_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="judul_buku_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="jumlah_eksemplar_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+                digits: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="kota_terbit_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="tahun_terbit_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+                digits: true,
+                maxlength: 4,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        $('input[name="filecover_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                extension: "png|jpe?g|gif",
+                filesize: 3145728,
+            };
+            messages[this.name] = {
+                extension: 'Format yang diterima : png, jpg, jpeg, gif ',
+                filesize: 'File size must be less than 3 MB',
+            };
+        });
+
+        $('input[name="penerbit_'+ target +'"]').each(function() {
+            rules[this.name] = {
+                required: true,
+            };
+
+            messages[this.name] = { required: 'This field is required' };
+        });
+
+        myValidate();
+    }
+
     $('#jenis_buku').on('change',function(){
         const contoh = $(this).find('option:selected').val();
 

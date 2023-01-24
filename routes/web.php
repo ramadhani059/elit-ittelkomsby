@@ -42,10 +42,10 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\AnggotaController::class, 'index'])->name('home');
-
 Route::get('/catalog', [App\Http\Controllers\AnggotaController::class, 'catalog'])->name('catalog');
-
 Route::get('/catalog/{slug}', [App\Http\Controllers\AnggotaController::class, 'detail_buku'])->name('catalog.detail');
+Route::get('/catalog/main/cari/',  [SearchController::class, 'searchCatalog'])->name('search.catalog');
+Route::get('/catalog/main/filter/',  [SearchController::class, 'filterCatalog'])->name('filter.catalog');
 
 Auth::routes([
     'register' => false
@@ -63,8 +63,10 @@ Route::get('getProdi/', [DropDownController::class, 'getProdi']);
 Route::middleware(['auth'])->group(function () {
     Route::get('getJenisBuku/', [DropDownController::class, 'getJenisBuku']);
     Route::get('getPengarang/', [DropDownController::class, 'getPengarang']);
-    Route::get('pdf/{id}', [FilePdfController::class, 'getPdfViews'])->name('pdf');
+    Route::get('pdf/{id}/{originalname}', [FilePdfController::class, 'getPdfViews'])->name('pdf');
     Route::get('download/{filename}', [FilePdfController::class, 'downloadFile'])->name('download');
+    Route::get('pdfDonasi/{id}/{originalname}', [FilePdfController::class, 'getPdfViewsDonasi'])->name('pdfDonasi');
+    Route::get('fileSerahTerima/{id}',[FilePdfController::class, 'fileSerahTerima'])->name('BASerahTerima');
 
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
@@ -75,8 +77,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('user/user-admin', UserController::class);
         Route::resource('admin/booking-admin', BookingAdminController::class);
         Route::resource('admin/donasi-admin', DonasiAdminController::class);
-        Route::get('admin/donasi-admin/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'check'])->name('donasi-admin.check');
-        Route::match(['put', 'patch'],'admin/donasi-admin/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'disetujui'])->name('donasi-admin.updatecheck');
+        Route::get('admin/donasi-admin/check/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'check'])->name('donasi-admin.check');
         Route::resource('admin/news-admin', NewsAdminController::class);
         Route::resource('admin/information-admin', InformationAdminController::class);
         Route::resource('admin/gallery-admin', GalleryAdminController::class);
@@ -91,14 +92,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
         Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
         Route::get('getFilePlace/{id}', [SearchController::class, 'getFilePlace']);
-        Route::get('pdfDonasi/{id}', [FilePdfController::class, 'getPdfViewsDonasi'])->name('pdfDonasi');
+        Route::match(['put', 'patch'],'admin/donasi-admin/accept/{donasi_admin_berhasil}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'checkberhasil'])->name('donasi-admin.checkberhasil');
+        Route::match(['put', 'patch'],'admin/donasi-admin/decline/{donasi_admin_ditolak}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'checkditolak'])->name('donasi-admin.checkditolak');
+        // Search
+        Route::get('buku/catalog-admin-search/',  [SearchController::class, 'searchCatalogAdmin'])->name('searchcatalog.admin');
+        Route::get('buku/jenis-buku-search/',  [SearchController::class, 'searchJenisBukuAdmin'])->name('searchjenisbuku.admin');
+
     });
 
     // For Consumen
     Route::middleware(['is_anggota'])->group(function () {
         Route::match(['put', 'patch'],'catalog/{booking_anggota}', [App\Http\Controllers\Component\CheckController::class, 'pinjam'])->name('booking-anggota.pinjam');
         Route::match(['put', 'patch'],'history/{history_cancel}', [App\Http\Controllers\Component\CheckController::class, 'cancel'])->name('history.cancel');
-        Route::match(['put', 'patch'],'donasibuku/{donasi_cancel}', [App\Http\Controllers\Anggota\DonasiController::class, 'cancel'])->name('donasibuku.cancel');
+        Route::match(['put', 'patch'],'donasibuku/cancel/{donasi_cancel}', [App\Http\Controllers\Anggota\DonasiController::class, 'cancel'])->name('donasibuku.cancel');
         Route::resource('history', HistoryController::class);
         Route::resource('donasibuku', DonasiController::class);
 

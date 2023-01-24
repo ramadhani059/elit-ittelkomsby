@@ -101,11 +101,11 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                                    <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('donasibuku.show', ['donasibuku' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                                         <span class="tf-icons bx bx-show"></span>
                                                     </a>
                                                     @if ($donasiku->status_donasi == 'diajukan')
-                                                        <a class="btn btn-icon btn-sm btn-dark disabled me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('donasibuku.edit', ['donasibuku' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                                             <span class="tf-icons bx bx-edit"></span>
                                                         </a>
                                                         <form action="{{ route('donasibuku.cancel', ['donasi_cancel' => $donasiku->id]) }}" method="POST">
@@ -114,18 +114,15 @@
                                                             <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span class="tf-icons bx bx-x"></span></button>
                                                         </form>
                                                     @elseif($donasiku->status_donasi == 'diterima')
-                                                        <a class="btn btn-icon btn-sm btn-dark disabled me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bx-edit"></span>
-                                                        </a>
-                                                        <a class="btn btn-icon btn-sm btn-danger disabled" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bx-x"></span>
+                                                        <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="{{ route('BASerahTerima', ['id' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="tf-icons bx bxs-file-pdf"></span>
                                                         </a>
                                                     @elseif($donasiku->status_donasi == 'selesai')
-                                                        <a class="btn btn-icon btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <a class="btn btn-icon btn-sm btn-danger" data-toggle="tooltip" href="{{ route('BASerahTerima', ['id' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                                             <span class="tf-icons bx bxs-file-pdf"></span>
                                                         </a>
                                                     @elseif($donasiku->status_donasi == 'ditolak')
-                                                        <a class="btn btn-icon btn-sm btn-dark disabled me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('donasibuku.edit', ['donasibuku' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                                                             <span class="tf-icons bx bx-edit"></span>
                                                         </a>
                                                         <form action="{{ route('donasibuku.cancel', ['donasi_cancel' => $donasiku->id]) }}" method="POST">
@@ -134,7 +131,7 @@
                                                             <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span class="tf-icons bx bx-x"></span></button>
                                                         </form>
                                                     @else
-                                                        <form action="#" method="POST">
+                                                        <form action="{{ route('donasibuku.destroy', ['donasibuku' => $donasiku->id]) }}" method="POST">
                                                             @csrf
                                                             @method('delete')
                                                             <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $donasiku->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
@@ -175,6 +172,26 @@
 
                 Swal.fire({
                     title: "Apakah Anda Yakin Ingin Membatalkan Donasi Ini ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Yes, I'am Sure !",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Sweet alert delete
+            $(".datadonasi").on("click", ".btn-delete", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Apakah Anda Yakin Ingin Menghapus Donasi Ini ?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "bg-danger",

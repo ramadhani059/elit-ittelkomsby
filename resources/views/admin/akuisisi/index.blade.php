@@ -73,7 +73,7 @@
                                     required
                                     autofocus
                                 />
-                                <button
+                                <a
                                     class="btn btn-outline-primary"
                                     id="checkkodebuku_{{ $jenis_buku->id}}"
                                     data-bs-toggle="tooltip"
@@ -83,7 +83,7 @@
                                     title="<span>Check Kode Buku</span>"
                                 >
                                     <i class="bx bx-search-alt-2"></i>
-                                </button>
+                                </a>
                             </div>
                             <div id="defaultFormControlHelp" class="form-text text-danger">
                                 <span class="errorTxt" id="kode_buku_{{ $jenis_buku->id}}-errorMsg"></span>

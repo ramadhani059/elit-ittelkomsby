@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('m__galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_admin');
+            $table->unsignedBigInteger('id_admin')->nullable();
             $table->string('judul');
             $table->string('img_original');
             $table->string('img_encrypt');
             $table->timestamps();
 
-            $table->foreign('id_admin')->references('id')->on('m__admins');
+            $table->foreign('id_admin')->references('id')->on('m__admins')->onDelete('set null');
         });
     }
 

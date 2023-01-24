@@ -26,7 +26,7 @@ class AnggotaSeeder extends Seeder
                 'prodi' => 'S1 Sistem Informasi',
                 'fakultas' => 'Fakultas Teknologi Informasi dan Bisnis',
                 'status' => 'Active',
-                'verifikasi' => 'Belum Terverifikasi',
+                'verifikasi' => 'Terverifikasi',
             ],
         ]);
     }

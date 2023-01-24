@@ -3,15 +3,20 @@
 @section('search-navbar')
 
 <div class="navbar-nav align-items-center">
-    <div class="nav-item d-flex align-items-center">
-      <i class="bx bx-search fs-4 lh-0"></i>
-      <input
-        type="text"
-        class="form-control border-0 shadow-none"
-        placeholder="Search..."
-        aria-label="Search..."
-      />
-    </div>
+    <form class="d-flex" action="{{ route('searchcatalog.admin') }}" method="GET" id="form">
+        @csrf
+        <div class="nav-item d-flex align-items-center">
+            <i class="bx bx-search fs-4 lh-0"></i>
+            <input
+                type="text"
+                name="searchbuku"
+                value="{{ old('searchbuku') }}"
+                class="form-control border-0 shadow-none"
+                placeholder="Search..."
+                aria-label="Search..."
+            />
+        </div>
+    </form>
 </div>
 
 @endsection
@@ -40,10 +45,12 @@
             <thead>
               <tr class="text-nowrap">
                 <th><strong>Cover</strong></th>
+                <th><strong>Kode Buku</strong></th>
                 <th><strong>Judul</strong></th>
                 <th><strong>Pengarang</strong></th>
                 <th><strong>Penerbit</strong></th>
                 <th><strong>Jenis Buku</strong></th>
+                <th><strong>Status</strong></th>
                 <th><strong>Jumlah Eksemplar</strong></th>
                 <th></th>
               </tr>
@@ -61,6 +68,9 @@
                         @endif"
                       alt="Card image cap"
                     />
+                </td>
+                <td>
+                    {{ $catalogs->kode_buku }}
                 </td>
                 <td class="text-capitalize">
                     <?php echo \Illuminate\Support\Str::limit(strip_tags($catalogs->judul), 37, $end='...') ?>
@@ -81,6 +91,13 @@
                 </td>
                 <td>
                     {{ $catalogs->jenis_buku->nama }}
+                </td>
+                <td>
+                    @if ($catalogs->status_active == 1)
+                        Aktif
+                    @else
+                        Tidak Aktif
+                    @endif
                 </td>
                 <td>{{ $catalogs->eksemplar->count('pivot.id_buku') }} Buku</td>
                 <td>
@@ -109,4 +126,16 @@
     {{ $catalog->links('layout.pagination') }}
 </div>
 
+@endsection
+
+@section('script')
+
+    <script>
+        document.getElementById('body').onkeyup = function(e) {
+            if (e.keyCode === 13) {
+                document.getElementById('form').submit(); // your form has an id="form"
+            }
+            return true;
+        }
+    </script>
 @endsection

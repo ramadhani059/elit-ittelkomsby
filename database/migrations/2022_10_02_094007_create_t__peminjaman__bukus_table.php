@@ -31,8 +31,8 @@ return new class extends Migration
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('id_eksemplar')->references('id')->on('m__eksemplars');
-            $table->foreign('id_anggota')->references('id')->on('m__anggotas');
+            $table->foreign('id_eksemplar')->references('id')->on('m__eksemplars')->onDelete('cascade');
+            $table->foreign('id_anggota')->references('id')->on('m__anggotas')->onDelete('cascade');
         });
     }
 

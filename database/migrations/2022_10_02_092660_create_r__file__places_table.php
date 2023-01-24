@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('type');
             $table->timestamps();
 
-            $table->foreign('id_jenisbuku')->references('id')->on('r__jenis__bukus');
+            $table->foreign('id_jenisbuku')->references('id')->on('r__jenis__bukus')->onDelete('cascade');
         });
     }
 

@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('nama_belakang');
             $table->timestamps();
 
-            $table->foreign('id_donasi')->references('id')->on('t__donasi__bukus');
-            $table->foreign('id_buku')->references('id')->on('m__bukus');
+            $table->foreign('id_donasi')->references('id')->on('t__donasi__bukus')->onDelete('set null');
+            $table->foreign('id_buku')->references('id')->on('m__bukus')->onDelete('set null');
         });
     }
 
