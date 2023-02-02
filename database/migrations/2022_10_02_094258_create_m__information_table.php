@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('img_original');
             $table->string('img_encrypt');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('id_admin')->references('id')->on('m__admins')->onDelete('set null');

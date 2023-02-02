@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -119,7 +119,7 @@
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-user"></i>
+                                            <iconify-icon icon="bxs:user"></iconify-icon>
                                         </span>
                                         <input
                                             id="email"
@@ -144,7 +144,7 @@
                                     <label class="form-label" for="basic-default-password12">Password</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-lock-alt"></i>
+                                            <iconify-icon icon="bxs:lock-alt"></iconify-icon>
                                         </span>
                                         <input
                                             id="password"
@@ -158,7 +158,7 @@
                                             autocomplete="current-password"
                                         />
                                         <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                            <i class="bx bx-hide"></i>
+                                            <iconify-icon icon="bx:hide"></iconify-icon>
                                         </span>
                                     </div>
                                     @error('password')
@@ -183,7 +183,7 @@
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">
-                                        <i class="bx bxs-user"></i>
+                                        <iconify-icon icon="bxs:user"></iconify-icon>
                                     </span>
                                     <input
                                         id="fullname"
@@ -204,7 +204,7 @@
                                 <label class="form-label" for="basic-default-password12">Password</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">
-                                        <i class="bx bxs-lock-alt"></i>
+                                        <iconify-icon icon="bxs:lock-alt"></iconify-icon>
                                     </span>
                                     <input
                                         id="bxs-lock-alt"
@@ -217,7 +217,7 @@
                                         autocomplete="current-password"
                                     />
                                     <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                        <i class="bx bx-hide"></i>
+                                        <iconify-icon icon="bx:hide"></iconify-icon>
                                     </span>
                                 </div>
                                 <div id="defaultFormControlHelp" class="form-text text-danger">
@@ -230,7 +230,7 @@
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">
-                                        <i class="bx bx-at"></i>
+                                        <iconify-icon icon="bx:at"></iconify-icon>
                                     </span>
                                     <input
                                         id="email"
@@ -252,7 +252,7 @@
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">
-                                        <i class="bx bxs-phone"></i>
+                                        <iconify-icon icon="bxs:phone"></iconify-icon>
                                     </span>
                                     <input
                                         id="telp"
@@ -275,7 +275,7 @@
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">
-                                        <i class="bx bxs-home"></i>
+                                        <iconify-icon icon="bxs:home"></iconify-icon>
                                     </span>
                                     <input
                                         id="address"
@@ -298,7 +298,7 @@
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">
-                                        <i class="bx bxs-user"></i>
+                                        <iconify-icon icon="bxs:user"></iconify-icon>
                                     </span>
                                     <select class="form-select jenisanggota @error('jenisanggota') is-invalid @enderror" id="jenisanggota" name="jenisanggota">
                                         <option value=""></option>
@@ -320,7 +320,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-buildings"></i>
+                                                    <iconify-icon icon="bxs:buildings"></iconify-icon>
                                                 </span>
                                                 <select class="form-select namainstitusi @error('namainstitusi') is-invalid @enderror" id="namainstitusi_{{ $jenisanggota->id }}" name="namainstitusi_{{ $jenisanggota->id }}">
                                                     <option value=""></option>
@@ -338,7 +338,7 @@
                                                 </label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon11">
-                                                        <i class="bx bxs-buildings"></i>
+                                                        <iconify-icon icon="bxs:buildings"></iconify-icon>
                                                     </span>
                                                     <input
                                                         id="tambahinstitusi_{{ $jenisanggota->id }}"
@@ -362,7 +362,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-graduation"></i>
+                                                    <iconify-icon icon="bxs:graduation"></iconify-icon>
                                                 </span>
                                                 <select class="form-select fakultas @error('jenisanggota') is-invalid @enderror" id="fakultas_{{ $jenisanggota->id }}" name="fakultas_{{ $jenisanggota->id }}">
                                                     <option value=""></option>
@@ -378,7 +378,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-graduation"></i>
+                                                    <iconify-icon icon="bxs:graduation"></iconify-icon>
                                                 </span>
                                                 <select class="form-select jurusan @error('jenisanggota') is-invalid @enderror" id="jurusan_{{ $jenisanggota->id }}" name="jurusan_{{ $jenisanggota->id }}">
                                                     <option value=""></option>
@@ -398,7 +398,7 @@
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-id-card"></i>
+                                                    <iconify-icon icon="bxs:id-card"></iconify-icon>
                                                 </span>
                                                 <input class="form-control" type="file" id="photo_{{ $jenisanggota->id }}" name="photo_{{ $jenisanggota->id }}" />
                                             </div>
@@ -413,7 +413,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-id-card"></i>
+                                                    <iconify-icon icon="bxs:id-card"></iconify-icon>
                                                 </span>
                                                 <input class="form-control" type="file" id="filektp_{{ $jenisanggota->id }}" name="filektp_{{ $jenisanggota->id }}" />
                                             </div>
@@ -429,7 +429,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-id-card"></i>
+                                                    <iconify-icon icon="bxs:id-card"></iconify-icon>
                                                 </span>
                                                 <input class="form-control" type="file" id="filekarpegktm_{{ $jenisanggota->id }}" name="filekarpegktm_{{ $jenisanggota->id }}" />
                                             </div>
@@ -445,7 +445,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">
-                                                    <i class="bx bxs-file"></i>
+                                                    <iconify-icon icon="bxs:file"></iconify-icon>
                                                 </span>
                                                 <input class="form-control" type="file" id="fileijazah_{{ $jenisanggota->id }}" name="fileijazah_{{ $jenisanggota->id }}" />
                                             </div>
@@ -492,6 +492,8 @@
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"></script>
 
     <!-- AJAX -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>

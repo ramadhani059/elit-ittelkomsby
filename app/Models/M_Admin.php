@@ -28,9 +28,4 @@ class M_Admin extends Model
     {
         return $this->hasMany(M_Information::class);
     }
-
-    public function news()
-    {
-        return $this->hasMany(M_News::class);
-    }
 }

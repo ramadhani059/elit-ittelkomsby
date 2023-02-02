@@ -20,10 +20,12 @@ class UserSeeder extends Seeder
             [
                 'email' => 'pratamaramadhani059@gmail.com',
                 'password' => Hash::make('12345678'),
+                'status' => 'Active',
                 'level' => 'anggota',
             ], [
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('12345678'),
+                'status' => 'Active',
                 'level' => 'admin',
             ]
         ]);

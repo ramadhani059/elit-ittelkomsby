@@ -29,11 +29,6 @@ class M_Buku extends Model
         return $this->hasMany('App\Models\R_File', 'id_buku');
     }
 
-    public function opname()
-    {
-        return $this->hasMany('App\Models\R_Opname', 'id_buku');
-    }
-
     public function pengarang_place()
     {
         return $this->hasMany('App\Models\R_Pengarang_Place', 'id_buku');

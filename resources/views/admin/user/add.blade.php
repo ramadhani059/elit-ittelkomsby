@@ -27,7 +27,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-user"></i>
+                            <iconify-icon icon="bxs:user"></iconify-icon>
                         </span>
                         <input
                             id="fullname"
@@ -49,7 +49,7 @@
                     <label class="form-label" for="basic-default-password12">Password</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-lock-alt"></i>
+                            <iconify-icon icon="bxs:lock-alt"></iconify-icon>
                         </span>
                         <input
                             id="bxs-lock-alt"
@@ -62,7 +62,7 @@
                             autocomplete="current-password"
                         />
                         <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                            <i class="bx bx-hide"></i>
+                            <iconify-icon icon="bx:hide"></iconify-icon>
                         </span>
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">
@@ -75,7 +75,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-phone"></i>
+                            <iconify-icon icon="bxs:phone"></iconify-icon>
                         </span>
                         <input
                             id="telp"
@@ -98,7 +98,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-home"></i>
+                            <iconify-icon icon="bxs:home"></iconify-icon>
                         </span>
                         <input
                             id="address"
@@ -121,7 +121,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-user"></i>
+                            <iconify-icon icon="bxs:user"></iconify-icon>
                         </span>
                         <select class="form-select level @error('level') is-invalid @enderror" id="level" name="level">
                             <option value=""></option>
@@ -139,7 +139,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-home"></i>
+                            <iconify-icon icon="bxs:home"></iconify-icon>
                         </span>
                         <input
                             id="emailadmin"
@@ -162,7 +162,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-user"></i>
+                            <iconify-icon icon="bxs:user"></iconify-icon>
                         </span>
                         <select class="form-select jenisanggota @error('jenisanggota') is-invalid @enderror" id="jenisanggota" name="jenisanggota">
                             <option value=""></option>
@@ -185,7 +185,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-buildings"></i>
+                                    <iconify-icon icon="bxs:buildings"></iconify-icon>
                                 </span>
                                 <select class="form-select namainstitusi @error('namainstitusi') is-invalid @enderror" id="namainstitusi_{{ $jenisanggota->id }}" name="namainstitusi_{{ $jenisanggota->id }}">
                                     <option value=""></option>
@@ -201,7 +201,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-buildings"></i>
+                                    <iconify-icon icon="bxs:buildings"></iconify-icon>
                                 </span>
                                 <input
                                     id="tambahinstitusi_{{ $jenisanggota->id }}"
@@ -223,7 +223,7 @@
                         </label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon11">
-                                <i class="bx bx-at"></i>
+                                <iconify-icon icon="bx:at"></iconify-icon>
                             </span>
                             <input
                                 id="email_register_{{ $jenisanggota->id }}"
@@ -242,20 +242,15 @@
                     @if ($jenisanggota->role_user == 1)
                         <div class="col-sm-6 mb-3">
                             <label for="defaultFormControlInput" class="form-label">
-                                Fakultas (Masukkan Secara Lengkap)
+                                Fakultas
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-graduation"></i>
+                                    <iconify-icon icon="bxs:graduation"></iconify-icon>
                                 </span>
-                                <input
-                                    id="fakultas_{{ $jenisanggota->id }}"
-                                    type="text"
-                                    class="form-control @error('fakultas') is-invalid @enderror"
-                                    name="fakultas_{{ $jenisanggota->id }}"
-                                    placeholder="Fakultas Teknologi Informasi dan Bisnis"
-                                    aria-describedby="basic-addon13"
-                                />
+                                <select class="form-select fakultas @error('jenisanggota') is-invalid @enderror" id="fakultas_{{ $jenisanggota->id }}" name="fakultas_{{ $jenisanggota->id }}">
+                                    <option value=""></option>
+                                </select>
                             </div>
                             <div id="defaultFormControlHelp" class="form-text text-danger">
                                 <span class="errorTxt" id="fakultas_{{ $jenisanggota->id }}-errorMsg"></span>
@@ -263,20 +258,15 @@
                         </div>
                         <div class="col-sm-6 mb-3">
                             <label for="defaultFormControlInput" class="form-label">
-                                Jurusan (Masukkan Secara Lengkap)
+                                Jurusan
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-graduation"></i>
+                                    <iconify-icon icon="bxs:graduation"></iconify-icon>
                                 </span>
-                                <input
-                                    id="jurusan_{{ $jenisanggota->id }}"
-                                    type="text"
-                                    class="form-control @error('jurusan') is-invalid @enderror"
-                                    name="jurusan_{{ $jenisanggota->id }}"
-                                    placeholder="S1 Sistem Informasi"
-                                    aria-describedby="basic-addon13"
-                                />
+                                <select class="form-select jurusan @error('jenisanggota') is-invalid @enderror" id="jurusan_{{ $jenisanggota->id }}" name="jurusan_{{ $jenisanggota->id }}">
+                                    <option value=""></option>
+                                </select>
                             </div>
                             <div id="defaultFormControlHelp" class="form-text text-danger">
                                 <span class="errorTxt" id="jurusan_{{ $jenisanggota->id }}-errorMsg"></span>
@@ -292,7 +282,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-id-card"></i>
+                            <iconify-icon icon="bxs:id-card"></iconify-icon>
                         </span>
                         <input class="form-control" type="file" id="filektp_admin" name="filektp_admin" />
                     </div>
@@ -306,7 +296,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-id-card"></i>
+                            <iconify-icon icon="bxs:id-card"></iconify-icon>
                         </span>
                         <input class="form-control" type="file" id="filekarpegktm_admin" name="filekarpegktm_admin" />
                     </div>
@@ -383,6 +373,16 @@
                     placeholder: "Please Select",
                 });
 
+                $("#fakultas_" + some).select2({
+                    theme: 'bootstrap4',
+                    placeholder: "Please Select",
+                });
+
+                $("#jurusan_" + some).select2({
+                    theme: 'bootstrap4',
+                    placeholder: "Please Select",
+                });
+
                 $.ajax({
                     url: '/getJenisAnggota/'+some,
                     type: "GET",
@@ -404,6 +404,32 @@
                                     $('select[name="namainstitusi_'+ some +'"]').append('<option value="'+ value.id +'">'+ value.nama +'</option>');
                                 });
                             }
+                        });
+                    }
+                });
+
+                $.ajax({
+                    url: '/getFakultas/',
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data){
+                        $('select[name="fakultas_'+ some +'"]').empty();
+                        $('select[name="fakultas_'+ some +'"]').append('<option value="">Please Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="fakultas_'+ some +'"]').append('<option value="'+ value.kode_fakultas +'">'+ value.nama +'</option>');
+                        });
+                    }
+                });
+
+                $.ajax({
+                    url: '/getProdi/',
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data){
+                        $('select[name="jurusan_'+ some +'"]').empty();
+                        $('select[name="jurusan_'+ some +'"]').append('<option value="">Please Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="jurusan_'+ some +'"]').append('<option value="'+ value.nama +'">'+ value.nama +'</option>');
                         });
                     }
                 });

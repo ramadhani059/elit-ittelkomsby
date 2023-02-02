@@ -27,7 +27,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
+                            <iconify-icon icon="bx:hash"></iconify-icon>
                         </span>
                         <input
                             id="koleksibuku"

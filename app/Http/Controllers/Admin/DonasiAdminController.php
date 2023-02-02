@@ -32,7 +32,7 @@ class DonasiAdminController extends Controller
     {
         $pageTitle = 'Donasi Buku | ELIT ITTelkom Surabaya';
 
-        $donasi = T_Donasi_Buku::paginate(15);
+        $donasi = T_Donasi_Buku::paginate(50);
 
         return view('admin/donasi/index', [
             'pageTitle' => $pageTitle,
@@ -319,13 +319,13 @@ class DonasiAdminController extends Controller
 
             $idfile = [
                 'id_jenisbuku' => $jenisbuku,
-                'type' => 'pdf',
+                'tipe' => 'pdf',
             ];
 
             $fullfile = [
                 'id_jenisbuku' => $jenisbuku,
-                'name' => 'File',
-                'type' => 'fullfile',
+                'nama' => 'File',
+                'tipe' => 'fullfile',
             ];
 
             $results = R_File_Place::where($idfile)->get();

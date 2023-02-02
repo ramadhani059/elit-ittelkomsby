@@ -13,7 +13,7 @@
                     <p class="card-text">
                         <div class="row media">
                             <div class="col-12">
-                                <span class="tf-icons bx bx-user"></span>&nbsp;
+                                <span><iconify-icon icon="bx:user" class="tf-icons bx"></iconify-icon></span>&nbsp;
                                     @if ($catalog->pengarang_place->count('pivot.id_buku') != 1)
                                         @foreach ($catalog->pengarang_place->take(1) as $pengarangbuku)
                                             {{ $pengarangbuku->nama }}, dkk
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-primary"><span class="tf-icons bx bxs-book"></span>&nbsp; &nbsp; Informasi Umum</span>
+                            <span class="badge bg-primary"><span><iconify-icon icon="bxs:book" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Informasi Umum</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">
@@ -188,7 +188,7 @@
                     </div>
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-info"><span class="tf-icons bx bxs-book"></span>&nbsp; &nbsp; Abstrak / Ringkasan Buku</span>
+                            <span class="badge bg-info"><span><iconify-icon icon="bxs:book" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Abstrak / Ringkasan Buku</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -216,7 +216,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-danger"><span class="tf-icons bx bxs-user"></span>&nbsp; &nbsp; Pengarang</span>
+                            <span class="badge bg-danger"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Pengarang</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -243,7 +243,7 @@
                                         </td>
                                     </tr>
                                     @foreach ($catalog->jenis_buku->file_place as $field)
-                                        @if($field->name == 'Pembimbing')
+                                        @if($field->nama == 'Pembimbing')
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
@@ -264,7 +264,7 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                        @if($field->name == 'Penyunting')
+                                        @if($field->nama == 'Penyunting')
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
@@ -289,7 +289,7 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                        @if($field->name == 'Penerjemah')
+                                        @if($field->nama == 'Penerjemah')
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
@@ -327,7 +327,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-warning"><span class="tf-icons bx bxs-buildings"></span>&nbsp; &nbsp; Penerbit</span>
+                            <span class="badge bg-warning"><span><iconify-icon icon="bxs:buildings" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Penerbit</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -401,7 +401,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-dark"><span class="tf-icons bx bxs-bookmark"></span>&nbsp; &nbsp; Sirkulasi</span>
+                            <span class="badge bg-dark"><span><iconify-icon icon="bxs:bookmark" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Sirkulasi</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -474,11 +474,11 @@
                     <div class="col-md-12 col-lg-12">
                         <div class="row align-items-center p-2">
                             <div class="col-lg-6 col-6">
-                                <span class="badge bg-primary"><span class="tf-icons bx bxs-book"></span>&nbsp; &nbsp; Detail Eksemplar</span>
+                                <span class="badge bg-primary"><span><iconify-icon icon="bxs:book" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Detail Eksemplar</span>
                             </div>
                             <div class="col-lg-6 col-6 text-end">
                                 <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span class="tf-icons bx bx-plus"></span>&nbsp; Add
+                                    <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>&nbsp; Add
                                 </a>
                             </div>
                         </div>
@@ -507,15 +507,15 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="tf-icons bx bxs-barcode"></span>
+                                                    <span><iconify-icon icon="bxs:barcode" class="tf-icons bx"></iconify-icon></span>
                                                 </a>
                                                 <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="tf-icons bx bx-edit"></span>
+                                                    <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                                                 </a>
                                                 <form action="#" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="#" ><span class="tf-icons bx bx-trash"></span></button>
+                                                    <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="#" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                                                 </form>
                                             </div>
                                         </td>
@@ -535,30 +535,30 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; Flipbook</span>
+                            <span class="badge bg-dark"><span><iconify-icon icon="bxs:file" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Flipbook</span>
                         </div>
                         @foreach ($catalog->file as $filebuku)
-                            @if($filebuku->file_place->name == 'File' && $filebuku->file_place->type == 'fullfile')
+                            @if($filebuku->file_place->nama == 'File' && $filebuku->file_place->tipe == 'fullfile')
                                 <div class="px-2 py-1">
                                     <iframe src="{{ route('pdf', ['id' => $catalog->id,'originalname' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
                                 </div>
                             @endif
                         @endforeach
                         <div class="p-2">
-                            <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; File</span>
+                            <span class="badge bg-dark"><span><iconify-icon icon="bxs:file" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; File</span>
                         </div>
                         @guest
                             @if (Route::has('login'))
                             @endif
                         @else
                             @foreach($file as $filebuku)
-                                @if($filebuku->file_place->name == 'File')
+                                @if($filebuku->file_place->nama == 'File')
                                     <div class="row p-2 text-capitalize">
                                         <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->buku->judul }}</a>
                                     </div>
                                 @else
                                     <div class="row p-2">
-                                        <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->file_place->name }}</a>
+                                        <a href="{{ route('download', ['filename' => $filebuku->original_name]) }}">{{ $filebuku->file_place->nama }}</a>
                                     </div>
                                 @endif
                             @endforeach

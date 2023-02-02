@@ -188,13 +188,13 @@ class AkuisisiBukuController extends Controller
 
             $idfile = [
                 'id_jenisbuku' => $jenisbuku,
-                'type' => 'pdf',
+                'tipe' => 'pdf',
             ];
 
             $fullfile = [
                 'id_jenisbuku' => $jenisbuku,
-                'name' => 'File',
-                'type' => 'fullfile',
+                'nama' => 'File',
+                'tipe' => 'fullfile',
             ];
 
             $results = R_File_Place::where($idfile)->get();

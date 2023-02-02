@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('prodi')->nullable();
             $table->string('fakultas')->nullable();
-            $table->string('status');
             $table->string('verifikasi');
             $table->string('ktp_original')->nullable();
             $table->string('ktp_encrypt')->nullable();

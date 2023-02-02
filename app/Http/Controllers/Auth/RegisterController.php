@@ -51,6 +51,7 @@ class RegisterController extends Controller
             $institusi = new R_Institusi;
             $user->password = Hash::make($request->password_register);
             $user->email = $request->email;
+            $user->status = 'Active';
             $user->level = 'anggota';
 
             $photo = $request->file('photo_'.$jenisanggota);
@@ -78,7 +79,6 @@ class RegisterController extends Controller
             $anggota->nama_lengkap = $request->fullname;
             $anggota->no_hp = $request->telp;
             $anggota->alamat = $request->address;
-            $anggota->status = 'Active';
             $anggota->verifikasi = 'Belum Terverifikasi';
 
             $fakultas = $request->{'fakultas_'.$jenisanggota};

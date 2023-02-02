@@ -4,7 +4,7 @@
 
 {{-- <div class="navbar-nav align-items-center">
     <div class="nav-item d-flex align-items-center">
-      <i class="bx bx-search fs-4 lh-0"></i>
+      <iconify-icon icon="bx:search" class="fs-4 lh-0"></iconify-icon>
       <input
         type="text"
         class="form-control border-0 shadow-none"
@@ -42,7 +42,7 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <i class="bx bx-dots-vertical-rounded"></i>
+                      <iconify-icon icon="bx:dots-vertical-rounded"></iconify-icon>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                       <a class="dropdown-item" href="javascript:void(0);">View More</a>
@@ -52,7 +52,7 @@
                 </div>
                 <span class="fw-semibold d-block mb-1">User</span>
                 <h3 class="card-title mb-2">400</h3>
-                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
+                <small class="text-success fw-semibold"><iconify-icon icon="bx:up-arrow-alt"></iconify-icon> +72.80%</small>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <i class="bx bx-dots-vertical-rounded"></i>
+                      <iconify-icon icon="bx:dots-vertical-rounded"></iconify-icon>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                       <a class="dropdown-item" href="javascript:void(0);">View More</a>
@@ -86,7 +86,7 @@
                 </div>
                 <span class="fw-semibold d-block mb-1">Book</span>
                 <h3 class="card-title mb-2">255</h3>
-                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
+                <small class="text-success fw-semibold"><iconify-icon icon="bx:up-arrow-alt"></iconify-icon> +72.80%</small>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <i class="bx bx-dots-vertical-rounded"></i>
+                      <iconify-icon icon="bx:dots-vertical-rounded"></iconify-icon>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                       <a class="dropdown-item" href="javascript:void(0);">View More</a>
@@ -120,7 +120,7 @@
                 </div>
                 <span class="fw-semibold d-block mb-1">Borrowed</span>
                 <h3 class="card-title mb-2">2</h3>
-                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
+                <small class="text-success fw-semibold"><iconify-icon icon="bx:up-arrow-alt"></iconify-icon> +72.80%</small>
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="bx bx-dots-vertical-rounded"></i>
+                    <iconify-icon icon="bx:dots-vertical-rounded"></iconify-icon>
                   </button>
                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
                     <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>

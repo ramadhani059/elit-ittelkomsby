@@ -14,11 +14,15 @@
                 <h4 class="fw-bolder my-2">Katalog Terbaru</h4>
             </div>
             <div class="col-md-4 col-5">
-                <form class="d-flex">
+                <form class="d-flex" action="{{ route('search.catalog') }}" method="GET" id="form">
+                    @csrf
                     <div class="input-group">
-                        <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search..." />
+                        <span class="input-group-text"><iconify-icon icon="bx:search" class="tf-icons bx"></iconify-icon></span>
+                        <input type="text" class="form-control" name="search_catalog" placeholder="Cari Judul, Kode, Pengarang, Subjek" value="{{ old('search_catalog') }}" />
                     </div>
+                    <a type="button" class="btn btn-icon btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                        <span><iconify-icon icon="bxs:filter-alt" class="tf-icons bx text-white"></iconify-icon></span>
+                    </a>
                 </form>
             </div>
         </div>
@@ -98,39 +102,45 @@
     <!-- Card Groups -->
     <div class="container-fluid">
         <div class="card-group mb-5">
-            <div class="card pt-3">
+            <div class="card pt-2">
                 <div class="card-body">
-                    <h5 class="card-title">Informasi Penting</h5>
+                    <h5 class="card-title text-uppercase">Informasi Penting</h5>
                     <p class="card-text">
-                        This is a wider card with supporting text below as a natural lead-in to additional content. This
-                        content is a little bit longer.
+                        <a href="#">
+                            <span class="badge bg-danger me-2">24/12/2022</span><?php echo \Illuminate\Support\Str::limit(strip_tags('TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest'), 60, $end='...') ?>
+                        </a>
                     </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
                 </div>
             </div>
-            <div class="card pt-3">
+            <div class="card pt-2">
                 <div class="card-body">
-                    <h5 class="card-title">News</h5>
-                    <p class="card-text">
-                        This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-            <div class="card pt-3">
-                <div class="card-body">
-                    <h5 class="card-title">Akses Jurnal</h5>
-                    <p class="card-text">
-                        This is a wider card with supporting text below as a natural lead-in to additional content. This
-                        card has even longer content than the first to show that equal height action.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <h5 class="card-title text-uppercase">Akses Jurnal</h5>
+                    <div class="row">
+                        <div class="col-md-4 col-6 p-2">
+                            <a href="https://garuda.kemdikbud.go.id/">
+                                <img
+                                  class="img-fluid d-flex mx-auto"
+                                  src="{{ asset('assets/img/jurnal/garuda.png') }}"
+                                />
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-6 p-2">
+                            <a href="https://garuda.kemdikbud.go.id/">
+                                <img
+                                  class="img-fluid d-flex mx-auto"
+                                  src="{{ asset('assets/img/jurnal/its.png') }}"
+                                />
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-6 p-2">
+                            <a href="https://garuda.kemdikbud.go.id/">
+                                <img
+                                  class="img-fluid d-flex mx-auto"
+                                  src="{{ asset('assets/img/jurnal/openlib.png') }}"
+                                />
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

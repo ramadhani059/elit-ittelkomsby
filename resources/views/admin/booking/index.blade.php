@@ -3,15 +3,20 @@
 @section('search-navbar')
 
 <div class="navbar-nav align-items-center">
-    <div class="nav-item d-flex align-items-center">
-      <i class="bx bx-search fs-4 lh-0"></i>
-      <input
-        type="text"
-        class="form-control border-0 shadow-none"
-        placeholder="Search..."
-        aria-label="Search..."
-      />
-    </div>
+    <form class="d-flex" action="{{ route('searchpeminjaman.admin') }}" method="GET" id="form">
+        @csrf
+        <div class="nav-item d-flex align-items-center">
+            <iconify-icon icon="bx:search" class="fs-4 lh-0"></iconify-icon>
+            <input
+                type="text"
+                name="keyword"
+                value="{{ old('keyword') }}"
+                class="form-control border-0 shadow-none"
+                placeholder="Search..."
+                aria-label="Search..."
+            />
+        </div>
+    </form>
 </div>
 
 @endsection
@@ -25,13 +30,13 @@
         </div>
         <div class="col-lg-6 col-12 text-end">
             <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('booking-admin.create' )}}" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-plus"></span>&nbsp; Add
+                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>&nbsp; Add
             </a>
             <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-import"></span>&nbsp; Import
+                <span><iconify-icon icon="bx:import" class="tf-icons bx"></iconify-icon></span>&nbsp; Import
             </a>
             <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-export"></span>&nbsp; Export
+                <span><iconify-icon icon="bx:export" class="tf-icons bx"></iconify-icon></span>&nbsp; Export
             </a>
         </div>
     </div>
@@ -82,26 +87,26 @@
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('booking-admin.show', ['booking_admin' => $bookings->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-show"></span>
+                            <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('booking-admin.edit', ['booking_admin' => $bookings->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-edit"></span>
+                            <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         @if ($bookings->status == 'proses')
                             <form action="{{ route('booking-admin.disetujui', ['booking_admin' => $bookings->id]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span class="tf-icons bx bx-check"></span></button>
+                                <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span><iconify-icon icon="bx:check" class="tf-icons bx"></iconify-icon></span></button>
                             </form>
                         @elseif ($bookings->status == 'dipinjam')
                             <form action="{{ route('booking-admin.selesai', ['booking_admin' => $bookings->id]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span class="tf-icons bx bx-check"></span></button>
+                                <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" ><span><iconify-icon icon="bx:check" class="tf-icons bx"></iconify-icon></span></button>
                             </form>
                         @else
                             <a class="btn btn-icon btn-sm btn-danger disabled" data-toggle="tooltip" href="{{ route('booking-admin.index') }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                <span class="tf-icons bx bx-check"></span>
+                                <span><iconify-icon icon="bx:check" class="tf-icons bx"></iconify-icon></span>
                             </a>
                         @endif
                     </div>
@@ -114,6 +119,7 @@
         </div>
     </div>
     <!--/ Hoverable Table rows -->
+    {{ $booking->links('layout.pagination') }}
 </div>
 
 @endsection

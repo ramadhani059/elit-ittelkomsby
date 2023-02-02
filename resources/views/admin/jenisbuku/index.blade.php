@@ -6,7 +6,7 @@
     <form class="d-flex" action="{{ route('searchjenisbuku.admin') }}" method="GET" id="form">
         @csrf
         <div class="nav-item d-flex align-items-center">
-            <i class="bx bx-search fs-4 lh-0"></i>
+            <iconify-icon icon="bx:search" class="fs-4 lh-0"></iconify-icon>
             <input
                 type="text"
                 name="keyword"
@@ -30,7 +30,7 @@
         </div>
         <div class="col-lg-6 col-12 text-end">
             <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('jenis-buku.create' )}}" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-plus"></span>&nbsp; Add
+                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>&nbsp; Add
             </a>
         </div>
     </div>
@@ -38,7 +38,7 @@
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="table-responsive text-nowrap">
-          <table class="table table-hover mt-3 mb-3">
+          <table class="table table-hover mt-3 mb-3 datatable">
             <thead>
               <tr class="text-nowrap">
                 <th><strong>No.</strong></th>
@@ -63,16 +63,13 @@
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-show"></span>
-                        </a>
-                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('jenis-buku.edit', ['jenis_buku' => $jenisbuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-edit"></span>
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('jenis-buku.show', ['jenis_buku' => $jenisbuku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         <form action="{{ route('jenis-buku.destroy', ['jenis_buku' => $jenisbuku->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" data-name="{{ $jenisbuku->nama }}" ><span class="tf-icons bx bx-trash"></span></button>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $jenisbuku->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                         </form>
                     </div>
                 </td>

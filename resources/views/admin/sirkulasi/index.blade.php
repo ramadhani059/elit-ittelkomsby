@@ -9,7 +9,7 @@
         </div>
         <div class="col-lg-6 col-12 text-end">
             <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('sirkulasi.create' )}}" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-plus"></span>&nbsp; Add
+                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>&nbsp; Add
             </a>
         </div>
     </div>
@@ -17,7 +17,7 @@
     <!-- Hoverable Table rows -->
     <div class="card">
         <div class="table-responsive text-nowrap">
-          <table class="table table-hover mt-3 mb-3">
+          <table class="table table-hover mt-3 mb-3 datatable">
             <thead>
               <tr class="text-nowrap">
                 <th><strong>No.</strong></th>
@@ -43,12 +43,12 @@
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('sirkulasi.edit', ['sirkulasi' => $sirkulasi->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-edit"></span>
+                            <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         <form action="{{ route('sirkulasi.destroy', ['sirkulasi' => $sirkulasi->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger" data-name="{{ $sirkulasi->nama }}" ><span class="tf-icons bx bx-trash"></span></button>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $sirkulasi->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                         </form>
                     </div>
                 </td>

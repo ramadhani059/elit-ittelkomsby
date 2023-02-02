@@ -21,7 +21,7 @@ class M_Anggota extends Model
 
     public function institusi()
     {
-        return $this->belongsTo(R_Institusi::class);
+        return $this->belongsTo('App\Models\R_Institusi', 'id_institusi');
     }
 
     public function donasi_buku()

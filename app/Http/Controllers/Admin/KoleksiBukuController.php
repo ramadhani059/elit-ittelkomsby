@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\R_Koleksi_Buku;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KoleksiBukuController extends Controller
 {
@@ -72,7 +73,10 @@ class KoleksiBukuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle = 'Edit Koleksi Buku | Dashboard';
+        $koleksibuku = R_Koleksi_Buku::find($id);
+
+        return view('admin.koleksibuku.edit', compact('pageTitle', 'koleksibuku'));
     }
 
     /**
@@ -84,7 +88,14 @@ class KoleksiBukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $koleksibuku = R_Koleksi_Buku::find($id);
+
+        $koleksibuku->nama = $request->koleksibuku;
+        $koleksibuku->save();
+
+        Alert::success('You are Successfully Edit Collection of Book');
+
+        return redirect()->route('koleksi-buku.index');
     }
 
     /**

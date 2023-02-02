@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Component;
 
 use App\Http\Controllers\Controller;
+use App\Models\M_Anggota;
 use App\Models\M_Buku;
 use App\Models\R_File;
 use App\Models\T_Donasi_Buku;
@@ -24,11 +25,28 @@ class FilePdfController extends Controller
         $buku = M_Buku::where('id', $encrypt->id_buku)->first();
 
         foreach ($buku->file as $filebuku) {
-            if ($filebuku->file_place->type == 'fullfile') {
+            if ($filebuku->file_place->tipe == 'fullfile') {
                 $file = public_path('storage/'.$encrypt->location_path.$encrypt->encrypt_name);
-                $filename = $encrypt->file_place->name;
+                $filename = $encrypt->file_place->nama;
             }
         }
+
+        return Response::stream(function () use ($file){
+            readfile($file);
+        }, 200, [
+            'content-Type' => 'application/pdf',
+            'content-Disposition' => 'inline; filename='.$filename,
+        ]);
+    }
+
+    public function getPdfIjazah($id, $originalname){
+        $encrypt = M_Anggota::where([
+            'id' => $id,
+            'ijazah_original' => $originalname,
+        ])->first();
+
+        $file = public_path('storage/user/ijazah/'.$encrypt->ijazah_encrypt);
+        $filename = 'Ijazah - '.$encrypt->nama_lengkap;
 
         return Response::stream(function () use ($file){
             readfile($file);
@@ -45,7 +63,7 @@ class FilePdfController extends Controller
         ])->first();
         $donasi = T_Donasi_Buku::where('id', $encrypt->id_donasi)->first();
 
-        $filename = $encrypt->file_place->name;
+        $filename = $encrypt->file_place->nama;
         $file = public_path('storage/'.$encrypt->location_path.$encrypt->encrypt_name);
 
         return Response::stream(function () use ($file){
@@ -65,7 +83,7 @@ class FilePdfController extends Controller
             if (file_exists($file_path))
             {
                 // Send Download
-                return Response::download($file_path, $data->file_place->name.'.pdf', [
+                return Response::download($file_path, $data->file_place->nama.'.pdf', [
                     'Content-Length: '. filesize($file_path)
                 ]);
 

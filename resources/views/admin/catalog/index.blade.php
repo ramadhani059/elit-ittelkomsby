@@ -6,7 +6,7 @@
     <form class="d-flex" action="{{ route('searchcatalog.admin') }}" method="GET" id="form">
         @csrf
         <div class="nav-item d-flex align-items-center">
-            <i class="bx bx-search fs-4 lh-0"></i>
+            <iconify-icon icon="bx:search" class="fs-4 lh-0"></iconify-icon>
             <input
                 type="text"
                 name="searchbuku"
@@ -30,10 +30,10 @@
         </div>
         <div class="col-lg-6 col-12 text-end">
             <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-import"></span>&nbsp; Import
+                <span><iconify-icon icon="bx:import" class="tf-icons bx"></iconify-icon></span>&nbsp; Import
             </a>
             <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="tf-icons bx bx-export"></span>&nbsp; Export
+                <span><iconify-icon icon="bx:export" class="tf-icons bx"></iconify-icon></span>&nbsp; Export
             </a>
         </div>
     </div>
@@ -103,15 +103,15 @@
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('catalog-admin.show', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-show"></span>
+                            <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('catalog-admin.edit', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="tf-icons bx bx-edit"></span>
+                            <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         <form action="{{ route('catalog-admin.destroy', ['catalog_admin' => $catalogs->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalogs->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
+                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalogs->judul }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                         </form>
                     </div>
                 </td>

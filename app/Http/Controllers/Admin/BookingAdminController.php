@@ -20,7 +20,7 @@ class BookingAdminController extends Controller
     {
         $pageTitle = 'Peminjaman | ELIT ITTelkom Surabaya';
 
-        $booking = T_Peminjaman_Buku::all();
+        $booking = T_Peminjaman_Buku::paginate(50);
 
         return view('admin/booking/index', [
             'pageTitle' => $pageTitle,

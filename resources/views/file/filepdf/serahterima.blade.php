@@ -354,7 +354,7 @@
                 @endif
             </tr>
             @foreach ($donasi->file as $index => $filedonasi)
-                @if ($filedonasi->file_place->type == 'fullfile')
+                @if ($filedonasi->file_place->tipe == 'fullfile')
                     <tr>
                         <td class="table-hasil" style="width:10%; text-align: center;"><p class="p-content">{{ $index +2 }}.</p></th>
                         <td class="table-hasil" style="width:75%; text-align: left;"><p class="p-content" style="margin-left: 10px; margin-right: 10px;">Buku yang akan didonasikan telah diupload ke repository dengan bentuk softfile</p></th>
@@ -369,7 +369,7 @@
                 @else
                     <tr>
                         <td class="table-hasil" style="width:10%; text-align: center;"><p class="p-content">{{ $index +2 }}.</p></th>
-                        <td class="table-hasil" style="width:75%; text-align: left;"><p class="p-content" style="margin-left: 10px; margin-right: 10px;">{{ $filedonasi->file_place->name }}</p></th>
+                        <td class="table-hasil" style="width:75%; text-align: left;"><p class="p-content" style="margin-left: 10px; margin-right: 10px;">{{ $filedonasi->file_place->nama }}</p></th>
                         @if(($donasi->status_donasi == 'diterima') || ($donasi->status_donasi == 'selesai'))
                             <td class="table-hasil p-content" style="width:15%; text-align: center;">
                                 <p class="p-content"><img src="https://img.icons8.com/ios-filled/512/checkmark.png" style="width: 15px; height: 15px"/></p>

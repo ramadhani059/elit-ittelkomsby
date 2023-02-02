@@ -66,9 +66,9 @@ class JenisBukuController extends Controller
             for ($x=0; $x<$target1; $x++){
                 $checkbox[] = array(
                     'id_jenisbuku' => $jenisbuku->id,
-                    'name' => $request->identitas_buku[$x],
-                    'note' => null,
-                    'type' => 'text',
+                    'nama' => $request->identitas_buku[$x],
+                    'catatan' => null,
+                    'tipe' => 'text',
                 );
             }
             DB::table('r__file__places')->insert($checkbox);
@@ -78,9 +78,9 @@ class JenisBukuController extends Controller
             for ($i=0; $i<$target2; $i++){
                 $data[] = array(
                     'id_jenisbuku' => $jenisbuku->id,
-                    'name' => $request->nama_file[$i],
-                    'note' => $request->note_file[$i],
-                    'type' => 'pdf',
+                    'nama' => $request->nama_file[$i],
+                    'catatan' => $request->note_file[$i],
+                    'tipe' => 'pdf',
                 );
             }
             DB::table('r__file__places')->insert($data);
@@ -89,9 +89,9 @@ class JenisBukuController extends Controller
         if ($request->fullfile != null){
             $fullfile[] = array(
                 'id_jenisbuku' => $jenisbuku->id,
-                'name' => $request->fullfile,
-                'note' => null,
-                'type' => 'fullfile',
+                'nama' => $request->fullfile,
+                'catatan' => null,
+                'tipe' => 'fullfile',
             );
             DB::table('r__file__places')->insert($fullfile);
         }
@@ -107,7 +107,14 @@ class JenisBukuController extends Controller
      */
     public function show($id)
     {
-        //
+        $jenisbuku = R_Jenis_Buku::find($id);
+
+        $pageTitle = $jenisbuku->nama.' | ELIT ITTelkom Surabaya';
+
+        return view('admin/jenisbuku/view', [
+            'pageTitle' => $pageTitle,
+            'jenisbuku' => $jenisbuku
+        ]);
     }
 
     /**

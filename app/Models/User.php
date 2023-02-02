@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\M_Anggota', 'id_user');
     }
+
+    public function notifikasi()
+    {
+        return $this->hasMany('App\Models\M_Notification', 'id_user_penerima');
+    }
 }

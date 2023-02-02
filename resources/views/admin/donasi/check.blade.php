@@ -69,7 +69,7 @@
                     <p class="card-text">
                         <div class="row media">
                             <div class="col-12">
-                                <span class="tf-icons bx bx-user"></span>&nbsp;
+                                <span><iconify-icon icon="bx:user" class="tf-icons bx"></iconify-icon></span>&nbsp;
                                     @if ($donasi->pengarang_place->count('pivot.id_buku') != 1)
                                         @foreach ($donasi->pengarang_place->take(1) as $pengarangbuku)
                                             {{ $pengarangbuku->nama }}, dkk
@@ -107,7 +107,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-primary"><span class="tf-icons bx bxs-book"></span>&nbsp; &nbsp; Informasi Umum</span>
+                            <span class="badge bg-primary"><span><iconify-icon icon="bxs:book" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Informasi Umum</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">
@@ -246,7 +246,7 @@
                     </div>
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-info"><span class="tf-icons bx bxs-book"></span>&nbsp; &nbsp; Abstrak / Ringkasan Buku</span>
+                            <span class="badge bg-info"><span><iconify-icon icon="bxs:book" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Abstrak / Ringkasan Buku</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -274,7 +274,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-danger"><span class="tf-icons bx bxs-user"></span>&nbsp; &nbsp; Pengarang</span>
+                            <span class="badge bg-danger"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Pengarang</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -301,7 +301,7 @@
                                         </td>
                                     </tr>
                                     @foreach ($donasi->jenis_buku->file_place as $field)
-                                        @if($field->name == 'Pembimbing')
+                                        @if($field->nama == 'Pembimbing')
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
@@ -322,7 +322,7 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                        @if($field->name == 'Penyunting')
+                                        @if($field->nama == 'Penyunting')
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
@@ -347,7 +347,7 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                        @if($field->name == 'Penerjemah')
+                                        @if($field->nama == 'Penerjemah')
                                             <tr>
                                                 <td class="col-md-4 col-4 align-top">
                                                     <div class="px-2 py-1">
@@ -385,7 +385,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-warning"><span class="tf-icons bx bxs-buildings"></span>&nbsp; &nbsp; Penerbit</span>
+                            <span class="badge bg-warning"><span><iconify-icon icon="bxs:buildings" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Penerbit</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-12">
@@ -465,16 +465,16 @@
                             @endif
                         @else
                             @foreach ($donasi->file as $filebuku)
-                                @if($filebuku->file_place->type == 'pdf')
+                                @if($filebuku->file_place->tipe == 'pdf')
                                     <div class="p-2">
-                                        <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; {{ $filebuku->file_place->name }}</span>
+                                        <span class="badge bg-dark"><span><iconify-icon icon="bxs:file" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; {{ $filebuku->file_place->nama }}</span>
                                     </div>
                                     <div class="px-2 py-1">
                                         <iframe src="{{ route('pdfDonasi', ['id' => $donasi->id, 'originalname' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
                                     </div>
-                                @elseif($filebuku->file_place->type == 'fullfile')
+                                @elseif($filebuku->file_place->tipe == 'fullfile')
                                     <div class="p-2">
-                                        <span class="badge bg-dark"><span class="tf-icons bx bxs-file"></span>&nbsp; &nbsp; Full File</span>
+                                        <span class="badge bg-dark"><span><iconify-icon icon="bxs:file" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Full File</span>
                                     </div>
                                     <div class="px-2 py-1">
                                         <iframe src="{{ route('pdfDonasi', ['id' => $donasi->id, 'originalname' => $filebuku->original_name]) }}" frameborder="0" width="100%" height="550"></iframe>
@@ -493,7 +493,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
                         <div class="p-2">
-                            <span class="badge bg-primary"><span class="tf-icons bx bxs-user"></span>&nbsp; &nbsp; Data Donatur</span>
+                            <span class="badge bg-primary"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Data Donatur</span>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">

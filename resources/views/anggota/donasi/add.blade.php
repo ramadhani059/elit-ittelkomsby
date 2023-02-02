@@ -30,7 +30,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-book-alt"></i>
+                            <iconify-icon icon="bxs:book-alt"></iconify-icon>
                         </span>
                         <select class="form-select jenis_buku @error('jenis_buku') is-invalid @enderror" id="jenis_buku" name="jenis_buku">
                             <option value=""></option>
@@ -48,14 +48,14 @@
                 <div class="some" id="some_{{ $jenis_buku->id}}" style="display: none;">
                     <div class="row">
                         @foreach ($jenis_buku->file_place as $field)
-                            @if($field->name == 'ISBN' && $field->type == 'text')
+                            @if($field->nama == 'ISBN' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         ISBN
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bx-hash"></i>
+                                            <iconify-icon icon="bx:hash"></iconify-icon>
                                         </span>
                                         <input
                                             id="isbn_{{ $jenis_buku->id}}"
@@ -80,7 +80,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-book-alt"></i>
+                                    <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                 </span>
                                 <input
                                     id="judul_buku_{{ $jenis_buku->id}}"
@@ -98,14 +98,14 @@
                             </div>
                         </div>
                         @foreach ($jenis_buku->file_place as $field)
-                            @if($field->name == 'Judul Buku Inggris' && $field->type == 'text')
+                            @if($field->nama == 'Judul Buku Inggris' && $field->tipe == 'text')
                                 <div class="col-sm-12 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Judul Buku (Bahasa Inggris)
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-book-alt"></i>
+                                            <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                         </span>
                                         <input
                                             id="judul_buku_inggris_{{ $jenis_buku->id}}"
@@ -123,14 +123,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Anak Judul' && $field->type == 'text')
+                            @if($field->nama == 'Anak Judul' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Anak Judul
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-book-alt"></i>
+                                            <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                         </span>
                                         <input
                                             id="anak_judul_{{ $jenis_buku->id}}"
@@ -146,14 +146,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Edisi' && $field->type == 'text')
+                            @if($field->nama == 'Edisi' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Edisi
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-book-alt"></i>
+                                            <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                         </span>
                                         <input
                                             id="edisi_buku_{{ $jenis_buku->id}}"
@@ -169,14 +169,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Ilustrasi' && $field->type == 'text')
+                            @if($field->nama == 'Ilustrasi' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Ilustrasi
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-book-alt"></i>
+                                            <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                         </span>
                                         <input
                                             id="ilustrasi_{{ $jenis_buku->id}}"
@@ -192,14 +192,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Dimensi Buku' && $field->type == 'text')
+                            @if($field->nama == 'Dimensi Buku' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Dimensi Buku
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-book-alt"></i>
+                                            <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                         </span>
                                         <input
                                             id="dimensi_{{ $jenis_buku->id}}"
@@ -215,14 +215,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Program Studi' && $field->type == 'text')
+                            @if($field->nama == 'Program Studi' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Fakultas
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-graduation"></i>
+                                            <iconify-icon icon="bxs:graduation"></iconify-icon>
                                         </span>
                                         <select class="form-select fakultas @error('fakultas_{{ $jenis_buku->id}}') is-invalid @enderror" id="fakultas_{{ $jenis_buku->id}}" name="fakultas_{{ $jenis_buku->id}}">
                                             <option value=""></option>
@@ -241,7 +241,7 @@
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-graduation"></i>
+                                            <iconify-icon icon="bxs:graduation"></iconify-icon>
                                         </span>
                                         <select class="form-select prodi @error('prodi_{{ $jenis_buku->id}}') is-invalid @enderror" id="prodi_{{ $jenis_buku->id}}" name="prodi_{{ $jenis_buku->id}}">
                                             <option value=""></option>
@@ -262,7 +262,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-book-alt"></i>
+                                    <iconify-icon icon="bxs:book-alt"></iconify-icon>
                                 </span>
                                 <input
                                     id="jumlah_eksemplar_{{ $jenis_buku->id}}"
@@ -285,7 +285,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-buildings"></i>
+                                    <iconify-icon icon="bxs:buildings"></iconify-icon>
                                 </span>
                                 <input
                                     id="kota_terbit_{{ $jenis_buku->id}}"
@@ -308,7 +308,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-calendar"></i>
+                                    <iconify-icon icon="bxs:calendar"></iconify-icon>
                                 </span>
                                 <input
                                     id="tahun_terbit_{{ $jenis_buku->id}}"
@@ -331,21 +331,21 @@
                     <div class="pengarang_wrapper_{{ $jenis_buku->id}}">
                     </div>
                     @foreach ($jenis_buku->file_place as $field)
-                        @if($field->name == 'Pembimbing' && $field->type == 'text')
+                        @if($field->nama == 'Pembimbing' && $field->tipe == 'text')
                             <div class="pembimbing_wrapper_{{ $jenis_buku->id}}">
                             </div>
                         @endif
                     @endforeach
                     <div class="row">
                         @foreach ($jenis_buku->file_place as $field)
-                            @if($field->name == 'Penyunting' && $field->type == 'text')
+                            @if($field->nama == 'Penyunting' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Nama Penyunting
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-user"></i>
+                                            <iconify-icon icon="bxs:user"></iconify-icon>
                                         </span>
                                         <input
                                             id="penyunting_{{ $jenis_buku->id}}"
@@ -361,14 +361,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Penerjemah' && $field->type == 'text')
+                            @if($field->nama == 'Penerjemah' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Nama Penerjemah
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-user"></i>
+                                            <iconify-icon icon="bxs:user"></iconify-icon>
                                         </span>
                                         <input
                                             id="penerjemah_{{ $jenis_buku->id}}"
@@ -384,14 +384,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($field->name == 'Penerbit' && $field->type == 'text')
+                            @if($field->nama == 'Penerbit' && $field->tipe == 'text')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Nama Penerbit
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-user"></i>
+                                            <iconify-icon icon="bxs:user"></iconify-icon>
                                         </span>
                                         <input
                                             id="penerbit_{{ $jenis_buku->id}}"
@@ -416,7 +416,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon11">
-                                    <i class="bx bxs-file-image"></i>
+                                    <iconify-icon icon="bxs:file-image"></iconify-icon>
                                 </span>
                                 <input class="form-control" type="file" id="filecover_{{ $jenis_buku->id}}" name="filecover_{{ $jenis_buku->id}}" />
                             </div>
@@ -425,14 +425,14 @@
                             </div>
                         </div>
                         @foreach ($jenis_buku->file_place as $field)
-                            @if($field->name == 'File' && $field->type == 'fullfile')
+                            @if($field->nama == 'File' && $field->tipe == 'fullfile')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
                                         Full File (PDF) / E-Book
                                     </label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-file-pdf"></i>
+                                            <iconify-icon icon="bxs:file-pdf"></iconify-icon>
                                         </span>
                                         <input class="form-control" type="file" id="fullfile_{{ $field->id }}_{{ $jenis_buku->id }}" name="fullfile_{{ $field->id }}_{{ $jenis_buku->id }}" />
                                     </div>
@@ -465,19 +465,19 @@
                     </div>
                     <div class="row">
                         @foreach ($jenis_buku->file_place as $field)
-                            @if($field->type == 'pdf')
+                            @if($field->tipe == 'pdf')
                                 <div class="col-sm-6 mb-3">
                                     <label for="defaultFormControlInput" class="form-label">
-                                        {{ $field->name }}
+                                        {{ $field->nama }}
                                     </label>
-                                    @if($field->note != null)
+                                    @if($field->catatan != null)
                                         <div id="defaultFormControlHelp" class="form-text mb-2" style="margin-top:  -3px;">
-                                            <span>{{ $field->note }}</span>
+                                            <span>{{ $field->catatan }}</span>
                                         </div>
                                     @endif
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">
-                                            <i class="bx bxs-file-pdf"></i>
+                                            <iconify-icon icon="bxs:file-pdf"></iconify-icon>
                                         </span>
                                         <input class="form-control" type="file" id="filepdf_{{ $field->id }}_{{ $jenis_buku->id }}" name="filepdf_{{ $field->id }}_{{ $jenis_buku->id }}" />
                                     </div>
@@ -568,7 +568,7 @@
                         <div class="col-10 col-lg-11 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="subjek_${some}" type="text" class="form-control @error('subjek_${some}') is-invalid @enderror" name="subjek_${some}[]" placeholder="Enter A Subject " aria-describedby="basic-addon13" required autofocus />\
                             </div>\
@@ -578,7 +578,7 @@
                         </div>\
                         <div class="col-2 col-lg-1 mb-3 text-end" id="btn_plus">\
                             <a class="btn btn-icon btn-dark add_button_subjek_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -593,7 +593,7 @@
                             </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bx-hash"></i>\
+                                    <iconify-icon icon="bx:hash"></iconify-icon>\
                                 </span>\
                                 <input id="no_pengarang_${some}" type="text" class="form-control @error('no_pengarang_${some}') is-invalid @enderror" name="no_pengarang_${some}[]" placeholder="Enter An ID Author " aria-describedby="basic-addon13" autofocus />\
                             </div>\
@@ -607,7 +607,7 @@
                             </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="nama_pengarang_depan_${some}" type="text" class="form-control @error('nama_pengarang_depan_${some}') is-invalid @enderror" name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" required autofocus />\
                             </div>\
@@ -621,7 +621,7 @@
                             </div>\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="nama_pengarang_belakang_${some}" type="text" class="form-control @error('nama_pengarang_belakang_${some}') is-invalid @enderror" name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's Last Name " aria-describedby="basic-addon13" required autofocus />\
                             </div>\
@@ -631,7 +631,7 @@
                         </div>\
                         <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pengarang_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -651,7 +651,7 @@
                         <div class="col-12 col-lg-6 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bx-hash"></i>\
+                                    <iconify-icon icon="bx:hash"></iconify-icon>\
                                 </span>\
                                 <input id="no_pembimbing_${some}" type="text" class="form-control @error('no_pembimbing_${some}') is-invalid @enderror" name="no_pembimbing_${some}[]" placeholder="Enter An ID Mentor " aria-describedby="basic-addon13" autofocus />\
                             </div>\
@@ -662,7 +662,7 @@
                         <div class="col-10 col-lg-5 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="pembimbing_${some}" type="text" class="form-control @error('pembimbing_${some}') is-invalid @enderror" name="pembimbing_${some}[]" placeholder="Enter A Mentor " aria-describedby="basic-addon13" required autofocus />\
                             </div>\
@@ -672,7 +672,7 @@
                         </div>\
                         <div class="col-2 col-lg-1 mb-3 text-end" id="btn_plus">\
                             <a class="btn btn-icon btn-dark add_button_pembimbing_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -762,7 +762,7 @@
                                 <div class="col-10 col-lg-11 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="subjek_${some}" type="text" class="form-control @error('subjek_${some}') is-invalid @enderror" name="subjek_${some}[]" placeholder="Enter A Subject " aria-describedby="basic-addon13" required autofocus />\
                                     </div>\
@@ -772,7 +772,7 @@
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-3 text-end" id="btn_remove_${x}">\
                                     <a class="btn btn-icon btn-danger remove_subjek_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bxs-trash"></span>\
+                                        <span><iconify-icon icon="bxs:trash" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -794,7 +794,7 @@
                                 <div class="col-12 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bx-hash"></i>\
+                                            <iconify-icon icon="bx:hash"></iconify-icon>\
                                         </span>\
                                         <input id="no_pengarang_${some}" type="text" class="form-control @error('no_pengarang_${some}') is-invalid @enderror" name="no_pengarang_${some}[]" placeholder="Enter An ID Author " aria-describedby="basic-addon13" autofocus />\
                                     </div>\
@@ -805,7 +805,7 @@
                                 <div class="col-12 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="nama_pengarang_depan_${some}" type="text" class="form-control @error('nama_pengarang_depan_${some}') is-invalid @enderror" name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" required autofocus />\
                                     </div>\
@@ -816,7 +816,7 @@
                                 <div class="col-10 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="nama_pengarang_belakang_${some}" type="text" class="form-control @error('nama_pengarang_belakang_${some}') is-invalid @enderror" name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" required autofocus />\
                                     </div>\
@@ -826,7 +826,7 @@
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pengarang_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bxs-trash"></span>\
+                                        <span><iconify-icon icon="bxs:trash" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -848,7 +848,7 @@
                                 <div class="col-12 col-lg-6 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bx-hash"></i>\
+                                            <iconify-icon icon="bx:hash"></iconify-icon>\
                                         </span>\
                                         <input id="no_pembimbing_${some}" type="text" class="form-control @error('no_pembimbing_${some}') is-invalid @enderror" name="no_pembimbing_${some}[]" placeholder="Enter An ID Mentor " aria-describedby="basic-addon13" autofocus />\
                                     </div>\
@@ -859,7 +859,7 @@
                                 <div class="col-10 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="pembimbing_${some}" type="text" class="form-control @error('pembimbing_${some}') is-invalid @enderror" name="pembimbing_${some}[]" placeholder="Enter A Mentor " aria-describedby="basic-addon13" required autofocus />\
                                     </div>\
@@ -869,7 +869,7 @@
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-3 text-end" id="btn_remove_${x}">\
                                     <a class="btn btn-icon btn-danger remove_pembimbing_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bxs-trash"></span>\
+                                        <span><iconify-icon icon="bxs:trash" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\

@@ -16,11 +16,11 @@
             <div class="col-md-4 col-8">
                 <form class="d-flex">
                     <div class="input-group">
-                        <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                        <span class="input-group-text"><iconify-icon icon="bx:search" class="tf-icons bx"></iconify-icon></span>
                         <input type="text" class="form-control" placeholder="Search..." />
                     </div>
                     <a class="btn btn-icon btn-primary ms-2" data-toggle="tooltip" role="button" aria-haspopup="true" aria-expanded="false" href="{{ route('donasibuku.create') }}">
-                        <span class="tf-icons bx bx-plus"></span>
+                        <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>
                     </a>
                 </form>
             </div>
@@ -102,39 +102,39 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('donasibuku.show', ['donasibuku' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="tf-icons bx bx-show"></span>
+                                                        <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                                                     </a>
                                                     @if ($donasiku->status_donasi == 'diajukan')
                                                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('donasibuku.edit', ['donasibuku' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bx-edit"></span>
+                                                            <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                                                         </a>
                                                         <form action="{{ route('donasibuku.cancel', ['donasi_cancel' => $donasiku->id]) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span class="tf-icons bx bx-x"></span></button>
+                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span></button>
                                                         </form>
                                                     @elseif($donasiku->status_donasi == 'diterima')
                                                         <a class="btn btn-icon btn-sm btn-danger me-2" data-toggle="tooltip" href="{{ route('BASerahTerima', ['id' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bxs-file-pdf"></span>
+                                                            <span><iconify-icon icon="bxs:file-pdf" class="tf-icons bx"></iconify-icon></span>
                                                         </a>
                                                     @elseif($donasiku->status_donasi == 'selesai')
                                                         <a class="btn btn-icon btn-sm btn-danger" data-toggle="tooltip" href="{{ route('BASerahTerima', ['id' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bxs-file-pdf"></span>
+                                                            <span><iconify-icon icon="bxs:file-pdf" class="tf-icons bx"></iconify-icon></span>
                                                         </a>
                                                     @elseif($donasiku->status_donasi == 'ditolak')
                                                         <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('donasibuku.edit', ['donasibuku' => $donasiku->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bx-edit"></span>
+                                                            <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                                                         </a>
                                                         <form action="{{ route('donasibuku.cancel', ['donasi_cancel' => $donasiku->id]) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span class="tf-icons bx bx-x"></span></button>
+                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span></button>
                                                         </form>
                                                     @else
                                                         <form action="{{ route('donasibuku.destroy', ['donasibuku' => $donasiku->id]) }}" method="POST">
                                                             @csrf
                                                             @method('delete')
-                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $donasiku->judul }}" ><span class="tf-icons bx bx-trash"></span></button>
+                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $donasiku->judul }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                                                         </form>
                                                     @endif
                                                 </div>

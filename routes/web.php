@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('getJenisBuku/', [DropDownController::class, 'getJenisBuku']);
     Route::get('getPengarang/', [DropDownController::class, 'getPengarang']);
     Route::get('pdf/{id}/{originalname}', [FilePdfController::class, 'getPdfViews'])->name('pdf');
+    Route::get('ijazah/{id}/{originalname}', [FilePdfController::class, 'getPdfIjazah'])->name('ijazahpdf');
     Route::get('download/{filename}', [FilePdfController::class, 'downloadFile'])->name('download');
     Route::get('pdfDonasi/{id}/{originalname}', [FilePdfController::class, 'getPdfViewsDonasi'])->name('pdfDonasi');
     Route::get('fileSerahTerima/{id}',[FilePdfController::class, 'fileSerahTerima'])->name('BASerahTerima');
@@ -92,11 +93,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
         Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
         Route::get('getFilePlace/{id}', [SearchController::class, 'getFilePlace']);
+        // Check
         Route::match(['put', 'patch'],'admin/donasi-admin/accept/{donasi_admin_berhasil}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'checkberhasil'])->name('donasi-admin.checkberhasil');
         Route::match(['put', 'patch'],'admin/donasi-admin/decline/{donasi_admin_ditolak}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'checkditolak'])->name('donasi-admin.checkditolak');
+        Route::match(['put', 'patch'],'user/user-admin/block/{user_non_active}', [App\Http\Controllers\Admin\UserController::class, 'userblock'])->name('user-admin.userblock');
         // Search
         Route::get('buku/catalog-admin-search/',  [SearchController::class, 'searchCatalogAdmin'])->name('searchcatalog.admin');
         Route::get('buku/jenis-buku-search/',  [SearchController::class, 'searchJenisBukuAdmin'])->name('searchjenisbuku.admin');
+        Route::get('user/user-admin-search/',  [SearchController::class, 'searchPenggunaAdmin'])->name('searchpengguna.admin');
+        Route::get('admin/booking-admin-search/',  [SearchController::class, 'searchPeminjamanAdmin'])->name('searchpeminjaman.admin');
+        Route::get('admin/donasi-admin-search/',  [SearchController::class, 'searchDonasiAdmin'])->name('searchdonasi.admin');
 
     });
 

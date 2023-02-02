@@ -4,13 +4,13 @@
         @if ($paginator->onFirstPage())
             <li class="page-item prev">
                 <a class="page-link" href="#" tabindex="-1">
-                    <i class="tf-icon bx bx-chevrons-left"></i>
+                    <iconify-icon icon="bx:chevrons-left" class="tf-icon bx" ></iconify-icon>
                 </a>
             </li>
         @else
             <li class="page-item prev">
                 <a class="page-link" href="{{ $paginator->previousPageUrl() }}">
-                    <i class="tf-icon bx bx-chevrons-left"></i>
+                    <iconify-icon icon="bx:chevrons-left" class="tf-icon bx" ></iconify-icon>
                 </a>
             </li>
         @endif
@@ -37,13 +37,13 @@
         @if ($paginator->hasMorePages())
             <li class="page-item next">
                 <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">
-                    <i class="tf-icon bx bx-chevrons-right"></i>
+                    <iconify-icon icon="bx:chevrons-right" class="tf-icon bx" ></iconify-icon>
                 </a>
             </li>
         @else
             <li class="page-item next">
                 <a class="page-link" href="#">
-                    <i class="tf-icon bx bx-chevrons-right"></i>
+                    <iconify-icon icon="bx:chevrons-right" class="tf-icon bx" ></iconify-icon>
                 </a>
             </li>
         @endif

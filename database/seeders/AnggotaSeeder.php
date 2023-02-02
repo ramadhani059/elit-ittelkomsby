@@ -25,7 +25,6 @@ class AnggotaSeeder extends Seeder
                 'alamat' => 'Jl Manyar Tegal 1-A Surabaya',
                 'prodi' => 'S1 Sistem Informasi',
                 'fakultas' => 'Fakultas Teknologi Informasi dan Bisnis',
-                'status' => 'Active',
                 'verifikasi' => 'Terverifikasi',
             ],
         ]);

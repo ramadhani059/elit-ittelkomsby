@@ -27,7 +27,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-book"></i>
+                            <iconify-icon icon="bxs:book"></iconify-icon>
                         </span>
                         <select class="form-select judul_buku @error('judul_buku') is-invalid @enderror" id="judul_buku" name="judul_buku">
                             <option value=""></option>
@@ -46,7 +46,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-id-card"></i>
+                            <iconify-icon icon="bxs:id-card"></iconify-icon>
                         </span>
                         <select class="form-select jenis_identitas @error('jenis_identitas') is-invalid @enderror" id="jenis_identitas" name="jenis_identitas">
                             <option value=""></option>
@@ -66,7 +66,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
+                            <iconify-icon icon="bx:hash"></iconify-icon>
                         </span>
                         <input
                             id="nomor_identitas"
@@ -90,7 +90,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-user"></i>
+                            <iconify-icon icon="bxs:user"></iconify-icon>
                         </span>
                         <select class="form-select nama_lengkap @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name="nama_lengkap">
                             <option value=""></option>
@@ -109,7 +109,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-at"></i>
+                            <iconify-icon icon="bx:at"></iconify-icon>
                         </span>
                         <input
                             id="email"
@@ -131,7 +131,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-phone"></i>
+                            <iconify-icon icon="bx:phone"></iconify-icon>
                         </span>
                         <input
                             id="no_hp"
@@ -155,7 +155,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-map-pin"></i>
+                            <iconify-icon icon="bx:map-pin"></iconify-icon>
                         </span>
                         <input
                             id="address"
@@ -179,7 +179,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-calendar"></i>
+                            <iconify-icon icon="bxs:calendar"></iconify-icon>
                         </span>
                         <input
                             name="tgl_pinjam"
@@ -198,7 +198,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-calendar"></i>
+                            <iconify-icon icon="bxs:calendar"></iconify-icon>
                         </span>
                         <input
                           class="form-control"

@@ -137,3 +137,23 @@ $(".datatable").on("click", ".btn-delete", function (e) {
         }
     });
 });
+
+// Sweet alert block data
+$(".datatable").on("click", ".btn-block", function (e) {
+    e.preventDefault();
+
+    var form = $(this).closest("form");
+    var name = $(this).data("name");
+
+    Swal.fire({
+        title: "Are you sure want to non active this user ?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "bg-danger",
+        confirmButtonText: "Yes, block it !",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});

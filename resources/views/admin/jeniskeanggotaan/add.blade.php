@@ -27,7 +27,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-user"></i>
+                            <iconify-icon icon="bxs:user"></iconify-icon>
                         </span>
                         <input
                             id="namajeniskeanggotaan"
@@ -51,7 +51,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-calendar"></i>
+                            <iconify-icon icon="bxs:calendar"></iconify-icon>
                         </span>
                         <input
                             id="bataspeminjaman"
@@ -75,7 +75,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-book"></i>
+                            <iconify-icon icon="bxs:book"></iconify-icon>
                         </span>
                         <input
                             id="jumlahpinjam"
@@ -99,7 +99,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-user"></i>
+                            <iconify-icon icon="bxs:user"></iconify-icon>
                         </span>
                         <select class="form-select statususer @error('statususer') is-invalid @enderror" id="statususer" name="statususer">
                             <option value=""></option>

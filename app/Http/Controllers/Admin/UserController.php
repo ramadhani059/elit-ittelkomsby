@@ -10,6 +10,7 @@ use App\Models\R_Jenis_Keanggotaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
     {
         $pageTitle = 'List User | ELIT ITTelkom Surabaya';
 
-        $user = User::all();
+        $user = User::paginate(50);
 
         return view('admin/user/index', [
             'pageTitle' => $pageTitle,
@@ -59,6 +60,7 @@ class UserController extends Controller
             $admin = new M_Admin;
             $user->password = Hash::make($request->password_register);
             $user->email = $request->emailadmin;
+            $user->status = 'Active';
             $user->level = $request->level;
             $user->save();
 
@@ -66,7 +68,6 @@ class UserController extends Controller
             $admin->nama_lengkap = $request->fullname;
             $admin->no_hp = $request->telp;
             $admin->alamat = $request->address;
-            $admin->status = 'Active';
 
             // Get File Image
             $ktpadmin = $request->file('filektp_admin');
@@ -95,6 +96,7 @@ class UserController extends Controller
             $tambahinstitusi = $request->{'namainstitusi_'.$jenisanggota};
             $user->email = $request->{'email_register_'.$jenisanggota};
             $user->password = Hash::make($request->password_register);
+            $user->status = 'Active';
             $user->level = $request->level;
             $user->save();
 
@@ -118,7 +120,6 @@ class UserController extends Controller
             $anggota->alamat = $request->address;
             $anggota->prodi = $request->{'jurusan_'.$jenisanggota};
             $anggota->fakultas = $request->{'fakultas_'.$jenisanggota};
-            $anggota->status = 'Active';
             $anggota->verifikasi = 'Belum Terverifikasi';
 
             $anggota->save();
@@ -135,7 +136,32 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user->level == 'anggota') {
+            $nama = $user->anggota->nama_lengkap;
+        } else {
+            $nama = $user->admin->nama_lengkap;
+        }
+        $pageTitle = $nama.' | ELIT ITTelkom Surabaya';
+
+        return view('admin/user/view', [
+            'pageTitle' => $pageTitle,
+            'user' => $user
+        ]);
+    }
+
+    public function userblock(Request $request, $id)
+    {
+        // $donasi = T_Donasi_Buku::find($id);
+
+        // $donasi->status_donasi = 'ditolak';
+        // $donasi->keterangan = $request->pesan;
+        // $donasi->save();
+
+        // Alert::success('Donate Decline Successfully', 'Donate Data Decline Successfully');
+
+        // return redirect()->route('donasi-admin.index');
     }
 
     /**
@@ -173,10 +199,23 @@ class UserController extends Controller
 
         if ($user->level == 'admin'){
             $admin = M_Admin::find($user->admin->id);
+
+            // delete storage
+            Storage::disk('public')->delete('user/photo/'.$user->profile_photo_path);
+            Storage::disk('public')->delete('user/ktp/'.$admin->ktp_encrypt);
+            Storage::disk('public')->delete('user/karpegktm/'.$admin->karpeg_ktm_encrypt);
+
             $admin->delete();
             $user->delete();
         } else {
             $anggota = M_Anggota::find($user->anggota->id);
+
+            // delete storage
+            Storage::disk('public')->delete('user/photo/'.$user->profile_photo_path);
+            Storage::disk('public')->delete('user/ktp/'.$anggota->ktp_encrypt);
+            Storage::disk('public')->delete('user/karpegktm/'.$anggota->karpeg_ktm_encrypt);
+            Storage::disk('public')->delete('user/ijazah/'.$anggota->ijazah_encrypt);
+
             $anggota->delete();
             $user->delete();
         }

@@ -10,11 +10,11 @@
                 <form class="d-flex" action="{{ route('search.catalog') }}" method="GET" id="form">
                     @csrf
                     <div class="input-group">
-                        <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                        <span class="input-group-text"><iconify-icon icon="bx:search" class="tf-icons bx"></iconify-icon></span>
                         <input type="text" class="form-control" name="search_catalog" placeholder="Cari Judul, Kode, Pengarang, Subjek" value="{{ old('search_catalog') }}" />
                     </div>
                     <a type="button" class="btn btn-icon btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#modalCenter">
-                        <span class="tf-icons bx bxs-filter-alt text-white"></span>
+                        <span><iconify-icon icon="bxs:filter-alt" class="tf-icons bx text-white"></iconify-icon></span>
                     </a>
                 </form>
             </div>
@@ -158,10 +158,10 @@
                                         <p class="card-text">
                                             <div class="row media">
                                                 <div class="col-12 mb-2">
-                                                    <span class="tf-icons bx bx-hash"></span>&nbsp; {{ $databuku->kode_buku }}
+                                                    <span><iconify-icon icon="bx:hash" class="tf-icons bx"></iconify-icon></span>&nbsp; {{ $databuku->kode_buku }}
                                                 </div>
                                                 <div class="col-12 mb-2">
-                                                    <span class="tf-icons bx bxs-user"></span>&nbsp;
+                                                    <span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp;
                                                     @if ($databuku->pengarang_place->count('pivot.id_buku') != 1)
                                                         @foreach ($databuku->pengarang_place->take(1) as $pengarangbuku)
                                                             <?php echo \Illuminate\Support\Str::limit(strip_tags( $pengarangbuku->nama), 18, $end='...') ?>
@@ -173,7 +173,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-12 mb-2 media-body d-none d-lg-block ">
-                                                    <span class="tf-icons bx bxs-buildings"></span>&nbsp;
+                                                    <span><iconify-icon icon="bxs:buildings" class="tf-icons bx"></iconify-icon></span>&nbsp;
                                                     @if($databuku->penerbit == null)
                                                         -
                                                     @else
@@ -181,10 +181,10 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-12 mb-2 media-body d-none d-lg-block ">
-                                                    <span class="tf-icons bx bxs-bookmark"></span>&nbsp; {{ $databuku->sirkulasi->nama }}
+                                                    <span><iconify-icon icon="bxs:bookmark" class="tf-icons bx"></iconify-icon></span>&nbsp; {{ $databuku->sirkulasi->nama }}
                                                 </div>
                                                 <div class="col-12 media-body d-none d-lg-block ">
-                                                    <span class="tf-icons bx bxs-book"></span>&nbsp; Tersedia {{ $databuku->eksemplar->count('pivot.id_buku') }} dari {{ $databuku->eksemplar->count('pivot.id_buku') }} Eksemplar
+                                                    <span><iconify-icon icon="bxs:book" class="tf-icons bx"></iconify-icon></span>&nbsp; Tersedia {{ $databuku->eksemplar->count('pivot.id_buku') }} dari {{ $databuku->eksemplar->count('pivot.id_buku') }} Eksemplar
                                                 </div>
                                             </div>
                                         </p>

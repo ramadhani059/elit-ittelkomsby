@@ -38,7 +38,7 @@ var x = 0;
                         <div class="col-10 col-lg-11 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="subjek_${some}" type="text" class="form-control" name="subjek_${some}[]" placeholder="Enter A Subject " aria-describedby="basic-addon13" />\
                             </div>\
@@ -48,7 +48,7 @@ var x = 0;
                         </div>\
                         <div class="col-2 col-lg-1 mb-3 text-end" id="btn_plus">\
                             <a class="btn btn-icon btn-dark add_button_subjek_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -60,7 +60,7 @@ var x = 0;
                         <div class="col-12 col-lg-5 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bx-hash"></i>\
+                                    <iconify-icon icon="bx:hash"></iconify-icon>\
                                 </span>\
                                 <input id="no_pengarang_${some}" type="text" class="form-control" name="no_pengarang_${some}[]" placeholder="Enter An ID Author " aria-describedby="basic-addon13" autofocus />\
                             </div>\
@@ -71,7 +71,7 @@ var x = 0;
                         <div class="col-12 col-lg-3 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="nama_pengarang_depan_${some}" type="text" class="form-control" name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" />\
                             </div>\
@@ -82,7 +82,7 @@ var x = 0;
                         <div class="col-10 col-lg-3 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="nama_pengarang_belakang_${some}" type="text" class="form-control" name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's Last Name " aria-describedby="basic-addon13" />\
                             </div>\
@@ -92,7 +92,7 @@ var x = 0;
                         </div>\
                         <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pengarang_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -104,7 +104,7 @@ var x = 0;
                         <div class="col-12 col-lg-6 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bx-hash"></i>\
+                                    <iconify-icon icon="bx:hash"></iconify-icon>\
                                 </span>\
                                 <input id="no_pembimbing_${some}" type="text" class="form-control" name="no_pembimbing_${some}[]" placeholder="Enter An ID Mentor " aria-describedby="basic-addon13" autofocus />\
                             </div>\
@@ -115,7 +115,7 @@ var x = 0;
                         <div class="col-10 col-lg-5 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="pembimbing_${some}" type="text" class="form-control " name="pembimbing_${some}[]" placeholder="Enter A Mentor " aria-describedby="basic-addon13" />\
                             </div>\
@@ -125,7 +125,7 @@ var x = 0;
                         </div>\
                         <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pembimbing_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -215,7 +215,7 @@ var x = 0;
                                 <div class="col-10 col-lg-11 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="subjek_${some}" type="text" class="form-control " name="subjek_${some}[]" placeholder="Enter A Subject " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -225,7 +225,7 @@ var x = 0;
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-3 text-end" id="btn_remove_${x}">\
                                     <a class="btn btn-icon btn-danger remove_subjek_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bx-x"></span>\
+                                        <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -247,7 +247,7 @@ var x = 0;
                                 <div class="col-12 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bx-hash"></i>\
+                                            <iconify-icon icon="bx:hash"></iconify-icon>\
                                         </span>\
                                         <input id="no_pengarang_${some}" type="text" class="form-control " name="no_pengarang_${some}[]" placeholder="Enter An ID Author " aria-describedby="basic-addon13" autofocus />\
                                     </div>\
@@ -258,7 +258,7 @@ var x = 0;
                                 <div class="col-12 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="nama_pengarang_depan_${some}" type="text" class="form-control " name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -269,7 +269,7 @@ var x = 0;
                                 <div class="col-10 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="nama_pengarang_belakang_${some}" type="text" class="form-control " name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -279,7 +279,7 @@ var x = 0;
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pengarang_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bx-x"></span>\
+                                        <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -301,7 +301,7 @@ var x = 0;
                                 <div class="col-12 col-lg-6 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bx-hash"></i>\
+                                            <iconify-icon icon="bx:hash"></iconify-icon>\
                                         </span>\
                                         <input id="no_pembimbing_${some}" type="text" class="form-control " name="no_pembimbing_${some}[]" placeholder="Enter An ID Mentor " aria-describedby="basic-addon13" autofocus />\
                                     </div>\
@@ -312,7 +312,7 @@ var x = 0;
                                 <div class="col-10 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="pembimbing_${some}" type="text" class="form-control " name="pembimbing_${some}[]" placeholder="Enter A Mentor " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -322,7 +322,7 @@ var x = 0;
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pembimbing_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bx-x"></span>\
+                                        <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -365,7 +365,7 @@ var x = 0;
                         <div class="col-10 col-lg-11 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="subjek_${some}" type="text" class="form-control " name="subjek_${some}[]" placeholder="Enter A Subject " aria-describedby="basic-addon13" />\
                             </div>\
@@ -375,7 +375,7 @@ var x = 0;
                         </div>\
                         <div class="col-2 col-lg-1 mb-3 text-end" id="btn_plus">\
                             <a class="btn btn-icon btn-dark add_button_subjek_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -387,7 +387,7 @@ var x = 0;
                         <div class="col-12 col-lg-5 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bx-hash"></i>\
+                                    <iconify-icon icon="bx:hash"></iconify-icon>\
                                 </span>\
                                 <input id="no_pengarang_${some}" type="text" class="form-control" name="no_pengarang_${some}[]" placeholder="Enter An ID Author " aria-describedby="basic-addon13" autofocus />\
                             </div>\
@@ -398,7 +398,7 @@ var x = 0;
                         <div class="col-12 col-lg-3 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="nama_pengarang_depan_${some}" type="text" class="form-control " name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" />\
                             </div>\
@@ -409,7 +409,7 @@ var x = 0;
                         <div class="col-10 col-lg-3 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="nama_pengarang_belakang_${some}" type="text" class="form-control " name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's Last Name " aria-describedby="basic-addon13" />\
                             </div>\
@@ -419,7 +419,7 @@ var x = 0;
                         </div>\
                         <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pengarang_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -431,7 +431,7 @@ var x = 0;
                         <div class="col-12 col-lg-6 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bx-hash"></i>\
+                                    <iconify-icon icon="bx:hash"></iconify-icon>\
                                 </span>\
                                 <input id="no_pembimbing_${some}" type="text" class="form-control " name="no_pembimbing_${some}[]" placeholder="Enter An ID Mentor " aria-describedby="basic-addon13" autofocus />\
                             </div>\
@@ -442,7 +442,7 @@ var x = 0;
                         <div class="col-10 col-lg-5 mb-3">\
                             <div class="input-group">\
                                 <span class="input-group-text" id="basic-addon11">\
-                                    <i class="bx bxs-user"></i>\
+                                    <iconify-icon icon="bxs:user"></iconify-icon>\
                                 </span>\
                                 <input id="pembimbing_${some}" type="text" class="form-control " name="pembimbing_${some}[]" placeholder="Enter A Mentor " aria-describedby="basic-addon13" />\
                             </div>\
@@ -452,7 +452,7 @@ var x = 0;
                         </div>\
                         <div class="col-2 col-lg-1 mb-4 text-end" id="btn_plus" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                             <a class="btn btn-icon btn-dark add_button_pembimbing_${some}" id="tombol_plus" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);" >\
-                                <span class="tf-icons bx bx-plus"></span>\
+                                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>\
@@ -542,7 +542,7 @@ var x = 0;
                                 <div class="col-10 col-lg-11 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="subjek_${some}" type="text" class="form-control " name="subjek_${some}[]" placeholder="Enter A Subject " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -552,7 +552,7 @@ var x = 0;
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-3 text-end" id="btn_remove_${x}">\
                                     <a class="btn btn-icon btn-danger remove_subjek_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bx-x"></span>\
+                                        <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -574,7 +574,7 @@ var x = 0;
                                 <div class="col-12 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bx-hash"></i>\
+                                            <iconify-icon icon="bx:hash"></iconify-icon>\
                                         </span>\
                                         <input id="no_pengarang_${some}" type="text" class="form-control " name="no_pengarang_${some}[]" placeholder="Enter An ID Author " aria-describedby="basic-addon13" autofocus />\
                                     </div>\
@@ -585,7 +585,7 @@ var x = 0;
                                 <div class="col-12 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="nama_pengarang_depan_${some}" type="text" class="form-control " name="nama_pengarang_depan_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -596,7 +596,7 @@ var x = 0;
                                 <div class="col-10 col-lg-3 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="nama_pengarang_belakang_${some}" type="text" class="form-control" name="nama_pengarang_belakang_${some}[]" placeholder="Enter The Author's First Name " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -606,7 +606,7 @@ var x = 0;
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pengarang_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bx-x"></span>\
+                                        <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\
@@ -628,7 +628,7 @@ var x = 0;
                                 <div class="col-12 col-lg-6 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bx-hash"></i>\
+                                            <iconify-icon icon="bx:hash"></iconify-icon>\
                                         </span>\
                                         <input id="no_pembimbing_${some}" type="text" class="form-control" name="no_pembimbing_${some}[]" placeholder="Enter An ID Mentor " aria-describedby="basic-addon13" autofocus />\
                                     </div>\
@@ -639,7 +639,7 @@ var x = 0;
                                 <div class="col-10 col-lg-5 mb-3">\
                                     <div class="input-group">\
                                         <span class="input-group-text" id="basic-addon11">\
-                                            <i class="bx bxs-user"></i>\
+                                            <iconify-icon icon="bxs:user"></iconify-icon>\
                                         </span>\
                                         <input id="pembimbing_${some}" type="text" class="form-control" name="pembimbing_${some}[]" placeholder="Enter A Mentor " aria-describedby="basic-addon13" />\
                                     </div>\
@@ -649,7 +649,7 @@ var x = 0;
                                 </div>\
                                 <div class="col-2 col-lg-1 mb-4 text-end" id="btn_remove_${x}" style="display: flex; align-items: flex-end; justify-content: flex-end;">\
                                     <a class="btn btn-icon btn-danger remove_pembimbing_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                        <span class="tf-icons bx bx-x"></span>\
+                                        <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>\
                                     </a>\
                                 </div>\
                             </div>\

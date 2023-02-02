@@ -21,7 +21,7 @@
     <!-- Progressive Web App -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,7 +79,7 @@
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+              <iconify-icon icon="bx:chevron-left" class="bx bx-sm align-middle"></iconify-icon>
             </a>
           </div>
 
@@ -89,21 +89,21 @@
             <!-- Dashboard -->
             <li class="menu-item @if($route == 'dashboard-admin.index') active @endif">
               <a href="{{ route('dashboard-admin.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <iconify-icon icon="bx:home-circle" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
             <li class="menu-item @if($route == 'akuisisi-buku.index') active @endif">
                 <a href="{{ route('akuisisi-buku.index') }}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-book-add"></i>
+                  <iconify-icon icon="bx:book-add" class="menu-icon tf-icons bx"></iconify-icon>
                   <div data-i18n="Analytics">Akuisisi Buku</div>
                 </a>
             </li>
 
             <li class="menu-item {{  (request()->is('buku*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-book"></i>
+                <iconify-icon icon="bx:book" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Account Settings">Katalog Buku</div>
               </a>
               <ul class="menu-sub">
@@ -132,7 +132,7 @@
 
             <li class="menu-item {{  (request()->is('user*')) ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-user"></i>
+                <iconify-icon icon="bx:user" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Account Settings">Pengguna</div>
               </a>
               <ul class="menu-sub">
@@ -151,42 +151,35 @@
 
             <li class="menu-item {{  (request()->is('admin/booking-admin*')) ? 'active' : '' }}">
               <a href="{{ route('booking-admin.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-bookmark"></i>
+                <iconify-icon icon="bx:bookmark" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Peminjaman Buku</div>
               </a>
             </li>
 
             <li class="menu-item {{  (request()->is('admin/donasi-admin*')) ? 'active' : '' }}">
               <a href="{{ route('donasi-admin.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-donate-heart"></i>
+                <iconify-icon icon="bx:donate-heart" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Donasi Buku</div>
               </a>
             </li>
 
             <li class="menu-item">
               <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-news"></i>
-                <div data-i18n="Analytics">Berita</div>
-              </a>
-            </li>
-
-            <li class="menu-item">
-              <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-news"></i>
+                <iconify-icon icon="bx:news" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Informasi Penting</div>
               </a>
             </li>
 
             <li class="menu-item">
               <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-image"></i>
+                <iconify-icon icon="bx:image" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Galeri</div>
               </a>
             </li>
 
             <li class="menu-item">
               <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-link"></i>
+                <iconify-icon icon="bx:link" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Akses Jurnal</div>
               </a>
             </li>
@@ -205,7 +198,7 @@
           >
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                <i class="bx bx-menu bx-sm"></i>
+                <iconify-icon icon="bx:menu" class="bx bx-sm"></iconify-icon>
               </a>
             </div>
 
@@ -231,14 +224,14 @@
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
+                        <iconify-icon icon="bx:user" class="bx me-2"></iconify-icon>
                         <span class="align-middle">Profil Saya</span>
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="#">
                         <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-bell me-2"></i>
+                          <iconify-icon icon="bx:bell" class="flex-shrink-0 bx me-2"></iconify-icon>
                           <span class="flex-grow-1 align-middle">Notifikasi</span>
                           <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
@@ -249,7 +242,7 @@
                     </li>
                     <li>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="bx bx-power-off me-2"></i>
+                        <iconify-icon icon="bx:power-off" class="me-2 bx"></iconify-icon>
                         <span class="align-middle">Keluar</span>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -307,6 +300,7 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"></script>
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>

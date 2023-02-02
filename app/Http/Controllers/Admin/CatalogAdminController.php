@@ -33,7 +33,7 @@ class CatalogAdminController extends Controller
     {
         $pageTitle = 'Catalog Buku | ELIT ITTelkom Surabaya';
 
-        $catalog = M_Buku::paginate(15);
+        $catalog = M_Buku::paginate(50);
 
         return view('admin/catalog/index', [
             'pageTitle' => $pageTitle,
@@ -242,13 +242,13 @@ class CatalogAdminController extends Controller
 
             $idfile = [
                 'id_jenisbuku' => $jenisbuku,
-                'type' => 'pdf',
+                'tipe' => 'pdf',
             ];
 
             $fullfile = [
                 'id_jenisbuku' => $jenisbuku,
-                'name' => 'File',
-                'type' => 'fullfile',
+                'nama' => 'File',
+                'tipe' => 'fullfile',
             ];
 
             $results = R_File_Place::where($idfile)->get();

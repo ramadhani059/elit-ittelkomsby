@@ -27,7 +27,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-book-bookmark"></i>
+                            <iconify-icon icon="bxs:book-bookmark"></iconify-icon>
                         </span>
                         <select class="form-select koleksibuku @error('koleksibuku') is-invalid @enderror" id="koleksibuku" name="koleksibuku">
                             <option value=""></option>
@@ -46,7 +46,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bx-hash"></i>
+                            <iconify-icon icon="bx:hash"></iconify-icon>
                         </span>
                         <input
                             id="kodejenisbuku"
@@ -70,7 +70,7 @@
                     </label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11">
-                            <i class="bx bxs-book"></i>
+                            <iconify-icon icon="bxs:book"></iconify-icon>
                         </span>
                         <input
                             id="namajenisbuku"
@@ -92,111 +92,111 @@
                     <label for="defaultFormControlInput" class="form-label">
                         Identitas Buku
                     </label>
-                    <div class="col-sm-6 form-check mt-2">
+                    <div class="col-sm-12 form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="Kode Buku" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Kode Buku </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="ISBN" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> ISBN </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Lokasi Buku" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Lokasi Buku </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Judul Buku" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Judul Buku </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Judul Buku Inggris" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Judul Buku (Bahasa Inggris) </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Anak Judul" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Anak Judul </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Edisi" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Edisi </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Jenis Pengadaan" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Jenis Pengadaan </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="status_pengadaan" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Status Pengadaan </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Program Studi" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Program Studi </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Ilustrasi" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Ilustrasi </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Dimensi Buku" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Dimensi Buku </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Jumlah Eksemplar" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Jumlah Eksemplar </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Kota Terbit" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Kota Terbit </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Tahun Terbit" id="disabledCheck2"" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Tahun Terbit </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Pengarang" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Pengarang </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Subjek" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Subjek </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Penyunting" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Penyunting </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Penerjemah" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Penerjemah </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Pembimbing" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Pembimbing </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Penerbit" id="defaultCheck1" name="identitas_buku[]"/>
                         <label class="form-check-label" for="defaultCheck1"> Penerbit </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Cover Buku" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Cover Buku (Img) </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="File" id="defaultCheck1" name="fullfile"/>
                         <label class="form-check-label" for="defaultCheck1"> File PDF / E-Book </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Sirkulasi" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Sirkulasi </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Status Buku" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Status Buku </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Role Download" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Role Download </label>
                     </div>
-                    <div class="col-sm-6 form-check mt-3">
+                    <div class="col-sm-12 form-check mt-3">
                         <input class="form-check-input" type="checkbox" value="Role Download" id="disabledCheck2" disabled checked/>
                         <label class="form-check-label" for="disabledCheck2"> Ringkasan Buku / Abstrak </label>
                     </div>
@@ -253,7 +253,7 @@
                                         width: calc(2.2rem + 2px);
                                         height: calc(2.2rem + 2px);"
                                 >
-                                    <span class="tf-icons bx bx-plus"></span>
+                                    <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>
                                 </a>
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                         </div>\
                         <div class="col-2 col-lg-2 mb-3 text-end" id="btn_remove_${x}">\
                             <a class="btn btn-icon btn-danger remove_button" data-toggle="tooltip" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false" style=" width: calc(2.2rem + 2px); height: calc(2.2rem + 2px);">\
-                                <span class="tf-icons bx bxs-trash"></span>\
+                                <span><iconify-icon icon="bxs:trash" class="tf-icons bx"></iconify-icon></span>\
                             </a>\
                         </div>\
                     </div>`);

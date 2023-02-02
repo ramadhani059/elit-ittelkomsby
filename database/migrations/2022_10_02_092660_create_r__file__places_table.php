@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('r__file__places', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_jenisbuku');
-            $table->string('name');
-            $table->string('note')->nullable();
-            $table->string('type');
+            $table->string('nama');
+            $table->string('catatan')->nullable();
+            $table->string('tipe');
             $table->timestamps();
 
             $table->foreign('id_jenisbuku')->references('id')->on('r__jenis__bukus')->onDelete('cascade');

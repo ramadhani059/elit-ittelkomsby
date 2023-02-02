@@ -75,7 +75,14 @@ class SirkulasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle = 'Edit Sirkulasi Buku | ELIT ITTelkom Surabaya';
+
+        $sirkulasi = R_Sirkulasi::find($id);
+
+        return view('admin/sirkulasi/edit', [
+            'pageTitle' => $pageTitle,
+            'sirkulasi' => $sirkulasi
+        ]);
     }
 
     /**
@@ -87,7 +94,15 @@ class SirkulasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sirkulasi = R_Sirkulasi::find($id);
+
+        $sirkulasi->nama = $request->namasirkulasi;
+        $sirkulasi->biaya_sewa = $request->biayasewa;
+        $sirkulasi->denda_harian = $request->dendaharian;
+
+        $sirkulasi->save();
+
+        return redirect()->route('sirkulasi.index');
     }
 
     /**

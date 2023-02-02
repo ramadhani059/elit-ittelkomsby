@@ -11,7 +11,7 @@ class R_Institusi extends Model
 
     public function anggota()
     {
-        return $this->hasMany(M_Anggota::class);
+        return $this->hasMany('App\Models\M_Anggota', 'id_institusi');
     }
 
     public function jenis_keanggotaan()

@@ -16,7 +16,7 @@
             <div class="col-md-4 col-8">
                 <form class="d-flex">
                     <div class="input-group">
-                        <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+                        <span class="input-group-text"><iconify-icon icon="bx:search" class="tf-icons bx"></iconify-icon></span>
                         <input type="text" class="form-control" placeholder="Search..." />
                     </div>
                 </form>
@@ -85,17 +85,17 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('catalog.detail', ['slug' => $bookings->eksemplar->buku->slug]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="tf-icons bx bx-show"></span>
+                                                        <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                                                     </a>
                                                     @if ($bookings->status == 'proses')
                                                         <form action="{{ route('history.cancel', ['history_cancel' => $bookings->id]) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span class="tf-icons bx bx-x"></span></button>
+                                                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-cancel"><span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span></button>
                                                         </form>
                                                     @else
                                                         <a class="btn btn-icon btn-sm btn-danger disabled" data-toggle="tooltip" href="{{ route('history.index') }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                                            <span class="tf-icons bx bx-x"></span>
+                                                            <span><iconify-icon icon="bx:x" class="tf-icons bx"></iconify-icon></span>
                                                         </a>
                                                     @endif
                                                 </div>
