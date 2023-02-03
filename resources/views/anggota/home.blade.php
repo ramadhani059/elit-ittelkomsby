@@ -20,9 +20,6 @@
                         <span class="input-group-text"><iconify-icon icon="bx:search" class="tf-icons bx"></iconify-icon></span>
                         <input type="text" class="form-control" name="search_catalog" placeholder="Cari Judul, Kode, Pengarang, Subjek" value="{{ old('search_catalog') }}" />
                     </div>
-                    <a type="button" class="btn btn-icon btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#modalCenter">
-                        <span><iconify-icon icon="bxs:filter-alt" class="tf-icons bx text-white"></iconify-icon></span>
-                    </a>
                 </form>
             </div>
         </div>
@@ -116,30 +113,16 @@
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">Akses Jurnal</h5>
                     <div class="row">
-                        <div class="col-md-4 col-6 p-2">
-                            <a href="https://garuda.kemdikbud.go.id/">
-                                <img
-                                  class="img-fluid d-flex mx-auto"
-                                  src="{{ asset('assets/img/jurnal/garuda.png') }}"
-                                />
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-6 p-2">
-                            <a href="https://garuda.kemdikbud.go.id/">
-                                <img
-                                  class="img-fluid d-flex mx-auto"
-                                  src="{{ asset('assets/img/jurnal/its.png') }}"
-                                />
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-6 p-2">
-                            <a href="https://garuda.kemdikbud.go.id/">
-                                <img
-                                  class="img-fluid d-flex mx-auto"
-                                  src="{{ asset('assets/img/jurnal/openlib.png') }}"
-                                />
-                            </a>
-                        </div>
+                        @foreach($akses as $aksesjurnal)
+                            <div class="col-md-4 col-6 p-2">
+                                <a href="{{ $aksesjurnal->link }}" target="_blank">
+                                    <img
+                                    class="img-fluid d-flex mx-auto"
+                                    src="{{ asset('storage/aksesjurnal/'.$aksesjurnal->img_encrypt) }}"
+                                    />
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -736,7 +736,7 @@
                                     icon: "warning",
                                     showCancelButton: true,
                                     confirmButtonClass: "bg-danger",
-                                    confirmButtonText: "Yes, I'am Sure !",
+                                    confirmButtonText: "Ya, Saya yakin !",
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         window.location.href = "{{URL::to('/home')}}"

@@ -107,7 +107,7 @@ class DonasiAdminController extends Controller
         $donasi->keterangan = '<p><strong>Terima kasih atas donasi buku</strong> yang anda berikan kepada Perpustakaan ITTelkom Surabaya</p> <p>Anda dapat menyerahkan buku fisik pada hari <strong>Senin - Jumat</strong> jam <strong>08.00 - 16.00</strong></p>';
         $donasi->save();
 
-        Alert::success('Donate Approve Successfully', 'Donate Data Approve Successfully');
+        Alert::success('Anda Berhasil Menerima Data Donasi Buku');
 
         return redirect()->route('donasi-admin.index');
     }
@@ -120,7 +120,7 @@ class DonasiAdminController extends Controller
         $donasi->keterangan = $request->pesan;
         $donasi->save();
 
-        Alert::success('Donate Decline Successfully', 'Donate Data Decline Successfully');
+        Alert::success('Anda Berhasil Menolak Data Donasi Buku');
 
         return redirect()->route('donasi-admin.index');
     }
@@ -427,7 +427,7 @@ class DonasiAdminController extends Controller
             $donasi->save();
         }
 
-        Alert::success('You are Successfully Transfer Donation Book to Catalog');
+        Alert::success('Anda Berhasil Memindahkan Data Donasi Kedalam Katalog');
 
         return redirect()->route('catalog-admin.index');
     }
@@ -477,7 +477,7 @@ class DonasiAdminController extends Controller
         }
         $donasi->delete();
 
-        Alert::success('Deleted Successfully', 'Donate Data Deleted Successfully');
+        Alert::success('Anda Berhasil Menghapus Data Donasi Buku');
 
         return redirect()->route('donasi-admin.index');
     }

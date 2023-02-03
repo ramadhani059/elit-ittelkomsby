@@ -196,6 +196,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12 d-grid gap-2 mx-auto mb-2">
+            <a class="btn btn-danger col-sm-12 d-grid gap-2 mx-auto btn-accept" type="button" href="{{ route('jenis-buku.index') }}" >Kembali</a>
+        </div>
+    </div>
 </div>
 
 @endsection

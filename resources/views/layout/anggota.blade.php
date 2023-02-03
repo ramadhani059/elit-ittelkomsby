@@ -128,7 +128,7 @@
                                       </a>
                                     </li>
                                     @if (Auth::user() -> level == 'anggota')
-                                        @if (Auth::user() -> anggota -> verifikasi == 'Belum Terverifikasi')
+                                        @if (Auth::user() -> anggota -> verifikasi != 'Terverifikasi')
                                             <li>
                                                 <a class="dropdown-item btn-checkverif" href="#">
                                                     <iconify-icon icon="bx:history" class="me-2 bx"></iconify-icon>
@@ -141,12 +141,12 @@
                                                     <span class="align-middle">Donasi/Repository</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 <a class="dropdown-item btn-checkverif" href="#">
                                                     <iconify-icon icon="bxs:key" class="me-2 bx"></iconify-icon>
                                                     <span class="align-middle">Pinjam Loker</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         @else
                                             <li>
                                                 <a class="dropdown-item" href="{{ route('history.index') }}">
@@ -160,12 +160,12 @@
                                                 <span class="align-middle">Donasi/Repository</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 <a class="dropdown-item" href="#">
                                                 <iconify-icon icon="bxs:key" class="me-2 bx"></iconify-icon>
                                                 <span class="align-middle">Pinjam Loker</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         @endif
                                     @endif
                                     <li>

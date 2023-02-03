@@ -32,9 +32,10 @@
             <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:import" class="tf-icons bx"></iconify-icon></span>&nbsp; Import
             </a>
-            <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{-- Export --}}
+            {{-- <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:export" class="tf-icons bx"></iconify-icon></span>&nbsp; Export
-            </a>
+            </a> --}}
         </div>
     </div>
 
@@ -102,16 +103,16 @@
                 <td>{{ $catalogs->eksemplar->count('pivot.id_buku') }} Buku</td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('catalog-admin.show', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Show</span>" href="{{ route('catalog-admin.show', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                         </a>
-                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('catalog-admin.edit', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-dark me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Edit</span>" href="{{ route('catalog-admin.edit', ['catalog_admin' => $catalogs->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                         </a>
                         <form action="{{ route('catalog-admin.destroy', ['catalog_admin' => $catalogs->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalogs->judul }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
+                            <button type="submit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Delete</span>" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $catalogs->judul }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                         </form>
                     </div>
                 </td>

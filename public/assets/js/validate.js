@@ -15,6 +15,10 @@ $(document).ready(function () {
         minlength: 8,
     };
     messages['password_register']={ required: 'This field is required' };
+    rules['password_edit']={
+        minlength: 8,
+    };
+    messages['password_edit']={ required: 'This field is required' };
     rules['telp']={
         required: true,
         digits: true,
@@ -66,6 +70,20 @@ $(document).ready(function () {
         required: true
     };
     messages['namajeniskeanggotaan']={ required: 'This field is required' };
+    rules['bataspeminjaman']={
+        required: true,
+        digits: true
+    };
+    messages['bataspeminjaman']={ required: 'This field is required' };
+    rules['jumlahpinjam']={
+        required: true,
+        digits: true
+    };
+    messages['jumlahpinjam']={ required: 'This field is required' };
+    rules['statususer']={
+        required: true
+    };
+    messages['statususer']={ required: 'This field is required' };
 
     $('#jenisanggota').on('change',function(){
         const contoh = $(this).find('option:selected').val();

@@ -163,8 +163,8 @@
               </a>
             </li>
 
-            <li class="menu-item">
-              <a href="#" class="menu-link">
+            <li class="menu-item {{  (request()->is('admin/information-admin*')) ? 'active' : '' }}">
+              <a href="{{ route('information-admin.index') }}" class="menu-link">
                 <iconify-icon icon="bx:news" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Informasi Penting</div>
               </a>
@@ -177,8 +177,8 @@
               </a>
             </li>
 
-            <li class="menu-item">
-              <a href="#" class="menu-link">
+            <li class="menu-item {{  (request()->is('admin/akses-jurnal*')) ? 'active' : '' }}">
+              <a href="{{ route('akses-jurnal.index') }}" class="menu-link">
                 <iconify-icon icon="bx:link" class="menu-icon tf-icons bx"></iconify-icon>
                 <div data-i18n="Analytics">Akses Jurnal</div>
               </a>
@@ -217,13 +217,17 @@
                                 <span class="fw-semibold d-block">{{ Auth::user() -> admin -> nama_lengkap }}</span>
                             </div>
                             <div class="avatar avatar-online ">
-                                <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                                @if (Auth::user()->profile_photo_path != null)
+                                    <img src="{{ asset('storage/user/photo/'.Auth::user()->profile_photo_path) }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                                @else
+                                    <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                                @endif
                             </div>
                         </div>
                     </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('myprofile') }}">
                         <iconify-icon icon="bx:user" class="bx me-2"></iconify-icon>
                         <span class="align-middle">Profil Saya</span>
                       </a>
@@ -314,6 +318,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/pages-account-settings-account.js') }}"></script>
 
     <!-- Page JS -->
     <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>

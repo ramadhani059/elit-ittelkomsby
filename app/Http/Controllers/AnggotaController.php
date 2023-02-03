@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\M_Akses_Jurnal;
 use App\Models\M_Buku;
 use App\Models\M_Eksemplar;
 use App\Models\R_File;
@@ -33,8 +34,9 @@ class AnggotaController extends Controller
 
         // ELOQUENT
         $buku = M_Buku::all() ->take(10);
+        $akses = M_Akses_Jurnal::all();
 
-        return view('anggota.home', compact('pageTitle', 'buku'));
+        return view('anggota.home', compact('pageTitle', 'buku', 'akses'));
     }
 
     public function catalog()

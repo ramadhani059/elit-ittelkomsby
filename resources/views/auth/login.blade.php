@@ -157,9 +157,7 @@
                                             required
                                             autocomplete="current-password"
                                         />
-                                        <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                            <iconify-icon icon="bx:hide"></iconify-icon>
-                                        </span>
+                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                     @error('password')
                                         <div id="defaultFormControlHelp" class="form-text text-danger">
@@ -216,9 +214,7 @@
                                         value="{{ old('password_register')}}"
                                         autocomplete="current-password"
                                     />
-                                    <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                        <iconify-icon icon="bx:hide"></iconify-icon>
-                                    </span>
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                                 <div id="defaultFormControlHelp" class="form-text text-danger">
                                     <span class="errorTxt" id="password_register-errorMsg"></span>

@@ -18,7 +18,7 @@
     <div class="col-xxl">
         <div class="card mb-4">
           <div class="card-body">
-            <form action="{{ route('jenis-keanggotaan.store') }}" method="POST" enctype="multipart/form-data" id="katalogForm">
+            <form action="{{ route('jenis-keanggotaan.store') }}" method="POST" enctype="multipart/form-data" id="registerForm">
               @csrf
               <div class="row">
                 <div class="col-sm-6 mb-3">
@@ -37,8 +37,6 @@
                             value="{{ old('namajeniskeanggotaan') }}"
                             placeholder="Enter The Membership Type"
                             aria-describedby="basic-addon13"
-                            required
-                            autofocus
                         />
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">
@@ -61,8 +59,6 @@
                             value="{{ old('bataspeminjaman') }}"
                             placeholder="Enter The Limit For Borrowing Books"
                             aria-describedby="basic-addon13"
-                            required
-                            autofocus
                         />
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">
@@ -85,8 +81,6 @@
                             value="{{ old('jumlahpinjam') }}"
                             placeholder="Enter The Loan Amount"
                             aria-describedby="basic-addon13"
-                            required
-                            autofocus
                         />
                     </div>
                     <div id="defaultFormControlHelp" class="form-text text-danger">

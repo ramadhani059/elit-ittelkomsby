@@ -8,13 +8,13 @@
             <div class="card">
                 <div class="card-body mt-3 mx-2">
                     <h4 class="card-title fw-bolder text-capitalize">
-                        @if(Auth::user()->level == 'anggota')
-                            {{ Auth::user()->anggota->nama_lengkap }}
-                            @if(Auth::user()->anggota->verifikasi == 'Terverifikasi')
+                        @if($user->level == 'anggota')
+                            {{ $user->anggota->nama_lengkap }}
+                            @if($user->anggota->verifikasi == 'Terverifikasi')
                                 <span><iconify-icon icon="bxs:check-shield" class="tf-icons bx text-primary mx-2" style="font-size: 30px"></iconify-icon></span>
                             @endif
                         @else
-                            {{ Auth::user()->admin->nama_lengkap }}
+                            {{ $user->admin->nama_lengkap }}
 
                             <span><iconify-icon icon="bxs:check-shield" class="tf-icons bx text-primary mx-2" style="font-size: 30px"></iconify-icon></span>
                         @endif
@@ -23,7 +23,7 @@
                         <div class="row media">
                             <div class="col-12 text-capitalize">
                                 <span><iconify-icon icon="bx:user" class="tf-icons bx"></iconify-icon></span>&nbsp;
-                                    {{ Auth::user()->level }}
+                                    {{ $user->level }}
                             </div>
                         </div>
                     </p>
@@ -37,21 +37,13 @@
               <div class="card-body">
                 <img
                   class="img-fluid d-flex mx-auto"
-                  src="@if (Auth::user()->profile_photo_path != null)
-                        {{ asset('storage/user/photo/'.Auth::user()->profile_photo_path) }}
+                  src="@if ($user->profile_photo_path != null)
+                        {{ asset('storage/user/photo/'.$user->profile_photo_path) }}
                     @else
                         {{ asset('assets/img/avatars/user.jpg') }}
                     @endif"
                   alt="Card image cap"
                 />
-              </div>
-              @if(Auth::user()->admin->verfikasi == 'Terverifikasi')
-                <div class="d-grid gap-2 col-lg-12 px-3 mt-1 mb-1">
-                    <a type="submit" data-toggle="tooltip" class="btn btn-primary text-white" style="width: 100%" >Verifikasi</a>
-                </div>
-              @endif
-              <div class="d-grid gap-2 col-lg-12 px-3 mt-1 mb-3">
-                <a type="submit" href="{{ route('editmyprofile', ['id' => Auth::user()->id]) }}" data-toggle="tooltip" class="btn btn-danger text-white" style="width: 100%" >Edit Profile</a>
               </div>
             </div>
         </div>
@@ -79,10 +71,10 @@
                                     </td>
                                     <td class="col-md-8 col-7 align-top">
                                         <div class="px-2 py-1">
-                                            @if(Auth::user()->level == 'anggota')
-                                                {{ Auth::user()->anggota->nama_lengkap }}
+                                            @if($user->level == 'anggota')
+                                                {{ $user->anggota->nama_lengkap }}
                                             @else
-                                                {{ Auth::user()->admin->nama_lengkap }}
+                                                {{ $user->admin->nama_lengkap }}
                                             @endif
                                         </div>
                                     </td>
@@ -100,8 +92,8 @@
                                     </td>
                                     <td class="col-md-8 col-7 align-top">
                                         <div class="px-2 py-1">
-                                            @if(Auth::user()->level == 'anggota')
-                                                {{ Auth::user()->anggota->jenis_keanggotaan->nama }}
+                                            @if($user->level == 'anggota')
+                                                {{ $user->anggota->jenis_keanggotaan->nama }}
                                             @else
                                                 Admin
                                             @endif
@@ -121,15 +113,15 @@
                                     </td>
                                     <td class="col-md-8 col-7 align-top">
                                         <div class="px-2 py-1">
-                                            @if(Auth::user()->status == 'Active')
-                                                <span class="badge bg-primary me-2">{{ Auth::user()->status }}</span>
+                                            @if($user->status == 'Active')
+                                                <span class="badge bg-primary me-2">{{ $user->status }}</span>
                                             @else
-                                                <span class="badge bg-danger me-2">{{ Auth::user()->status }}</span>
+                                                <span class="badge bg-danger me-2">{{ $user->status }}</span>
                                             @endif
                                         </div>
                                     </td>
                                 </tr>
-                                @if(Auth::user()->level == 'anggota')
+                                @if($user->level == 'anggota')
                                     <tr>
                                         <td class="col-md-3 col-4 align-top">
                                             <div class="px-2 py-1">
@@ -143,11 +135,11 @@
                                         </td>
                                         <td class="col-md-8 col-7 align-top">
                                             <div class="px-2 py-1">
-                                                {{ Auth::user()->anggota->institusi->nama }}
+                                                {{ $user->anggota->institusi->nama }}
                                             </div>
                                         </td>
                                     </tr>
-                                    @if(Auth::user()->anggota->fakultas != null)
+                                    @if($user->anggota->fakultas != null)
                                         <tr>
                                             <td class="col-md-3 col-4 align-top">
                                                 <div class="px-2 py-1">
@@ -161,7 +153,7 @@
                                             </td>
                                             <td class="col-md-8 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    @if(Auth::user()->anggota->fakultas == 'FTIB')
+                                                    @if($user->anggota->fakultas == 'FTIB')
                                                         Fakultas Teknologi Informasi dan Bisnis
                                                     @else
                                                         Fakultas Teknologi Elektro dan Industri Cerdas
@@ -182,7 +174,7 @@
                                             </td>
                                             <td class="col-md-8 col-7 align-top">
                                                 <div class="px-2 py-1">
-                                                    {{ Auth::user()->anggota->prodi }}
+                                                    {{ $user->anggota->prodi }}
                                                 </div>
                                             </td>
                                         </tr>
@@ -201,10 +193,10 @@
                                     </td>
                                     <td class="col-md-8 col-7 align-top">
                                         <div class="px-2 py-1">
-                                            @if(Auth::user()->level == 'anggota')
-                                                {{ Auth::user()->anggota->alamat }}
+                                            @if($user->level == 'anggota')
+                                                {{ $user->anggota->alamat }}
                                             @else
-                                                {{ Auth::user()->admin->alamat }}
+                                                {{ $user->admin->alamat }}
                                             @endif
                                         </div>
                                     </td>
@@ -235,7 +227,7 @@
                                     </td>
                                     <td class="col-md-8 col-7 align-top">
                                         <div class="px-2 py-1">
-                                            {{ Auth::user()->email }}
+                                            {{ $user->email }}
                                         </div>
                                     </td>
                                 </tr>
@@ -252,10 +244,10 @@
                                     </td>
                                     <td class="col-md-8 col-7 align-top">
                                         <div class="px-2 py-1">
-                                            @if(Auth::user()->level == 'anggota')
-                                                {{ Auth::user()->anggota->no_hp }}
+                                            @if($user->level == 'anggota')
+                                                {{ $user->anggota->no_hp }}
                                             @else
-                                                {{ Auth::user()->admin->no_hp }}
+                                                {{ $user->admin->no_hp }}
                                             @endif
                                         </div>
                                     </td>
@@ -267,35 +259,209 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <h5 class="card-header">Delete Account</h5>
-        <div class="card-body">
-          <div class="mb-3 col-12 mb-0">
-            <div class="alert alert-danger">
-              <h6 class="alert-heading fw-bold mb-1">Apakah anda yakin untuk menonaktifkan akun ini ?</h6>
-              <p class="mb-0">Setelah anda menonaktifkan akun, anda tidak dapat masuk kedalam sistem lagi !!!</p>
-            </div>
-          </div>
-          <form action="{{ route('nonactiveaccount', ['id' => Auth::user()->id]) }}" method="POST" enctype="multipart/form-data" id="registerForm">
-            @csrf
-            @method('put')
-            <div class="form-check mb-3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="accountActivation"
-                value=1
-                id="accountActivation"
-                required
-              />
-              <label class="form-check-label" for="accountActivation"
-                >Saya setuju ingin menonaktifkan akun</label
-              >
-            </div>
-            <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-          </form>
+    @if ($user->level == 'anggota')
+        @if ($user->anggota->jenis_keanggotaan->role_ijazah == 1)
+            @if($user->anggota->ijazah_encrypt != null)
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 mb-2">
+                        <div class="card  p-2">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="pb-2">
+                                        <span class="badge bg-info"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Ijazah</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div>
+                                        <iframe src="{{ route('ijazahpdf', ['id' => $user->anggota->id,'originalname' => $user->anggota->ijazah_original]) }}" frameborder="0" width="100%" height="550"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 mb-2">
+                        <div class="card  p-2">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="pb-2">
+                                        <span class="badge bg-info"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Ijazah</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    Tidak Ada Data Ijazah Pengguna
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endif
+    @endif
+    <div class="row">
+            @if ($user->level == 'anggota')
+                @if ($user->anggota->jenis_keanggotaan->role_ktp == 1)
+                <div class="col-md-12 col-lg-6 mb-2">
+                    <div class="card  p-2">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="pb-2">
+                                    <span class="badge bg-danger"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; KTP</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12">
+                                @if($user->anggota->ktp_encrypt != null)
+                                    <img
+                                        class="img-fluid d-flex mx-auto"
+                                        src="{{ asset('storage/user/ktp/'.$user->anggota->ktp_encrypt) }}"
+                                        alt="Card image cap"
+                                    />
+                                @else
+                                    Tidak Ada Data KTP Pengguna
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            @else
+                <div class="col-md-12 col-lg-6 mb-2">
+                    <div class="card  p-2">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="pb-2">
+                                    <span class="badge bg-danger"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; KTP</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12">
+                                @if($user->admin->ktp_encrypt != null)
+                                    <img
+                                        class="img-fluid d-flex mx-auto"
+                                        src="{{ asset('storage/user/ktp/'.$user->admin->ktp_encrypt) }}"
+                                        alt="Card image cap"
+                                    />
+                                @else
+                                    Tidak Ada Data KTP Pengguna
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if ($user->level == 'anggota')
+                @if ($user->anggota->jenis_keanggotaan->role_karpeg_ktm == 1)
+                <div class="col-md-12 col-lg-6 mb-2">
+                    <div class="card  p-2">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="pb-2">
+                                    <span class="badge bg-warning"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Kartu Pegawai / KTM</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12">
+                                @if($user->anggota->karpeg_ktm_encrypt != null)
+                                    <img
+                                        class="img-fluid d-flex mx-auto"
+                                        src="{{ asset('storage/user/karpegktm/'.$user->anggota->karpeg_ktm_encrypt) }}"
+                                        alt="Card image cap"
+                                    />
+                                @else
+                                    Tidak Ada Data Kartu Pegawai / KTM Pengguna
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            @else
+                <div class="col-md-12 col-lg-6 mb-2">
+                    <div class="card  p-2">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="pb-2">
+                                    <span class="badge bg-warning"><span><iconify-icon icon="bxs:user" class="tf-icons bx"></iconify-icon></span>&nbsp; &nbsp; Kartu Pegawai / KTM</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12">
+                                @if($user->admin->karpeg_ktm_encrypt != null)
+                                    <img
+                                        class="img-fluid d-flex mx-auto"
+                                        src="{{ asset('storage/user/karpegktm/'.$user->admin->karpeg_ktm_encrypt) }}"
+                                        alt="Card image cap"
+                                    />
+                                @else
+                                    Tidak Ada Data Kartu Pegawai / KTM Pengguna
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+    </div>
+    <div class="row buttonverifikasi">
+        <div class="col-sm-6 d-grid gap-2 mx-auto mb-2">
+            <form action="{{ route('user-admin.updateaccept', ['user_admin' => $user->id]) }}" method="POST">
+                @csrf
+                @method('put')
+                <button class="btn btn-primary col-sm-12 d-grid gap-2 mx-auto btn-accept" type="submit">Accept</button>
+            </form>
+        </div>
+        <div class="col-sm-6 d-grid gap-2 mx-auto mb-2">
+            <form action="{{ route('user-admin.updatedecline', ['user_admin' => $user->id]) }}" method="POST">
+                @csrf
+                @method('put')
+                <button class="btn btn-danger col-sm-12 d-grid gap-2 mx-auto btn-decline" type="submit">Decline</button>
+            </form>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            // Sweet alert accept
+            $(".buttonverifikasi").on("click", ".btn-accept", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Apakah kamu yakin untuk menerima verifikasi user ini ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Yes, Saya yakin !",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Sweet alert decline
+            $(".buttonverifikasi").on("click", ".btn-decline", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Apakah kamu yakin untuk menerima verifikasi user ini ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Ya, Saya yakin !",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

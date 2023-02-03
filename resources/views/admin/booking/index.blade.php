@@ -28,7 +28,8 @@
         <div class="col-lg-6 col-12 media-body d-none d-lg-block f-grow-1">
             <h5 class="fw-bold">Peminjaman Buku</h5>
         </div>
-        <div class="col-lg-6 col-12 text-end">
+        {{-- Add, Eksport, dan Import --}}
+        {{-- <div class="col-lg-6 col-12 text-end">
             <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('booking-admin.create' )}}" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>&nbsp; Add
             </a>
@@ -38,7 +39,7 @@
             <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:export" class="tf-icons bx"></iconify-icon></span>&nbsp; Export
             </a>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Hoverable Table rows -->

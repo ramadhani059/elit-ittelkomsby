@@ -29,15 +29,10 @@
             <h5 class="fw-bold"><span class="text-muted fw-light">Donasi Buku/</h5>
         </div>
         <div class="col-lg-6 col-12 text-end">
-            <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span><iconify-icon icon="bx:import" class="tf-icons bx"></iconify-icon></span>&nbsp; Import
-            </a>
-            <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{-- Export --}}
+            {{-- <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:export" class="tf-icons bx"></iconify-icon></span>&nbsp; Export
-            </a>
-            <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span><iconify-icon icon="bx:plus" class="tf-icons bx"></iconify-icon></span>&nbsp; Add
-            </a>
+            </a> --}}
         </div>
     </div>
 

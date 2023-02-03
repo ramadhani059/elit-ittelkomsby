@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -125,6 +126,7 @@ class UserController extends Controller
             $anggota->save();
         }
 
+        Alert::success('Anda Berhasil Menambahkan Data Pengguna');
         return redirect()->route('user-admin.index');
     }
 
@@ -151,19 +153,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function userblock(Request $request, $id)
-    {
-        // $donasi = T_Donasi_Buku::find($id);
-
-        // $donasi->status_donasi = 'ditolak';
-        // $donasi->keterangan = $request->pesan;
-        // $donasi->save();
-
-        // Alert::success('Donate Decline Successfully', 'Donate Data Decline Successfully');
-
-        // return redirect()->route('donasi-admin.index');
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -172,7 +161,19 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user->level == 'anggota') {
+            $nama = $user->anggota->nama_lengkap;
+        } else {
+            $nama = $user->admin->nama_lengkap;
+        }
+        $pageTitle = $nama.' | ELIT ITTelkom Surabaya';
+
+        return view('admin/user/verifikasi', [
+            'pageTitle' => $pageTitle,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -182,9 +183,69 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateaccept(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if ($user->level == 'admin') {
+            $admin = M_Admin::where('id_user', $user->id)->first();
+            $admin->verifikasi = 'Terverifikasi';
+            $admin->save();
+            Alert::success('Anda Berhasil Menerima Verifikasi Sebuah Akun');
+            return redirect()->route('user-admin.index');
+        } else {
+            $anggota = M_Anggota::where('id_user', $user->id)->first();
+            $anggota->verifikasi = 'Terverifikasi';
+            $anggota->save();
+            Alert::success('Anda Berhasil Menerima Verifikasi Sebuah Akun');
+            return redirect()->route('user-admin.index');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatedecline(Request $request, $id)
+    {
+        $user = User::find($id);
+        if ($user->level == 'admin') {
+            $admin = M_Admin::where('id_user', $user->id)->first();
+            $admin->verifikasi = 'Ditolak';
+            $admin->save();
+            Alert::success('Anda Berhasil Menolak Verifikasi Sebuah Akun');
+            return redirect()->route('user-admin.index');
+        } else {
+            $anggota = M_Anggota::where('id_user', $user->id)->first();
+            $anggota->verifikasi = 'Ditolak';
+            $anggota->save();
+            Alert::success('Anda Berhasil Menolak Verifikasi Sebuah Akun');
+            return redirect()->route('user-admin.index');
+        }
+    }
+
+    public function deactivateuser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->status = 'Non Active';
+        $user->save();
+
+        Alert::success('Anda Berhasil Menonaktifkan Sebuah Akun');
+
+        return redirect()->route('user-admin.index');
+    }
+
+    public function activateuser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->status = 'Active';
+        $user->save();
+
+        Alert::success('Anda Berhasil Mengaktifkan Sebuah Akun');
+
+        return redirect()->route('user-admin.index');
     }
 
     /**
@@ -219,6 +280,8 @@ class UserController extends Controller
             $anggota->delete();
             $user->delete();
         }
+
+        Alert::success('Anda Berhasil Menghapus Sebuah Akun');
 
         return redirect()->route('user-admin.index');
     }

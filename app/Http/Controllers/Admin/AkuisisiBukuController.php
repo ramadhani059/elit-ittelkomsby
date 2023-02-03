@@ -239,7 +239,7 @@ class AkuisisiBukuController extends Controller
             }
         }
 
-        Alert::success('You are Successfully Add Book');
+        Alert::success('Anda Berhasil Menambah Buku Kedalam Sistem');
 
         return redirect()->route('akuisisi-buku.index');
     }

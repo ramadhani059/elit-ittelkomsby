@@ -61,6 +61,19 @@ $(document).ready(function () {
     };
     messages['dendaharian']={ required: 'This field is required' };
 
+    rules['koleksibuku']={
+        required: true,
+    };
+    messages['koleksibuku']={ required: 'This field is required' };
+    rules['kodejenisbuku']={
+        required: true,
+    };
+    messages['kodejenisbuku']={ required: 'This field is required' };
+    rules['namajenisbuku']={
+        required: true,
+    };
+    messages['namajenisbuku']={ required: 'This field is required' };
+
     if ($('#jenis_buku').val() != null) {
         var target = $('#jenis_buku').val();
 

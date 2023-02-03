@@ -71,7 +71,7 @@
                                 </form>
                             </div>
                         @else
-                            @if ( Auth::user() -> anggota -> verifikasi == 'Belum Terverifikasi' )
+                            @if ( Auth::user() -> anggota -> verifikasi != 'Terverifikasi' )
                                 <div class="d-grid gap-2 col-lg-12 px-4 mt-1 mb-3 booking">
                                     <button type="submit" data-toggle="tooltip" class="btn btn-secondary btn-belum-verifikasi" style="width: 100%" >Booking</button>
                                 </div>
@@ -717,7 +717,7 @@
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "bg-danger",
-                    confirmButtonText: "Yes, I'am Sure !",
+                    confirmButtonText: "Ya, Saya yakin !",
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

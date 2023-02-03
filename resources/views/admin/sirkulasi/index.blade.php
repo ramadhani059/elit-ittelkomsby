@@ -28,28 +28,34 @@
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-              @foreach ($sirkulasi as $sirkulasi)
+              @foreach ($sirkulasi as $sirkulasis)
               <tr class="text-nowrap">
                 <td><strong>{{ $loop->iteration }}</strong></td>
                 <td>
-                    {{ $sirkulasi->nama }}
+                    {{ $sirkulasis->nama }}
                 </td>
                 <td>
-                    Rp. {{ $sirkulasi->biaya_sewa }}
+                    Rp. {{ $sirkulasis->biaya_sewa }}
                 </td>
                 <td>
-                    Rp. {{ $sirkulasi->denda_harian }}
+                    Rp. {{ $sirkulasis->denda_harian }}
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('sirkulasi.edit', ['sirkulasi' => $sirkulasi->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-dark me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Edit</span>" href="{{ route('sirkulasi.edit', ['sirkulasi' => $sirkulasis->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                         </a>
-                        <form action="{{ route('sirkulasi.destroy', ['sirkulasi' => $sirkulasi->id]) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $sirkulasi->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
-                        </form>
+                        @if($sirkulasis->buku->count('pivot.id_sirkulasi') != 0)
+                            <a class="btn btn-icon btn-sm btn-danger btn-not-delete" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Delete</span>" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span>
+                            </a>
+                        @else
+                            <form action="{{ route('sirkulasi.destroy', ['sirkulasi' => $sirkulasis->id]) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Delete</span>" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $sirkulasis->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
+                            </form>
+                        @endif
                     </div>
                 </td>
               </tr>
@@ -61,5 +67,27 @@
     </div>
     <!--/ Hoverable Table rows -->
 </div>
+
+@endsection
+
+@section('script')
+
+<script>
+    $(document).ready(function () {
+        // Sweet alert booking
+        $(".booking").on("click", ".btn-not-delete", function (e) {
+            e.preventDefault();
+
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+
+            Swal.fire({
+                title: "Maaf anda tidak bisa menghapus ini !",
+                text: "Anda memiliki buku dengan sirkulasi ini",
+                icon: "warning",
+            });
+        });
+    });
+</script>
 
 @endsection

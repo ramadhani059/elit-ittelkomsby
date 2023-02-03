@@ -203,7 +203,7 @@ class DonasiController extends Controller
             DB::table('r__files')->insert($listfile);
         }
 
-        Alert::success('You are Successfully Donate Book');
+        Alert::success('Anda Berhasil Mendonasikan Buku');
 
         return redirect()->route('donasibuku.index');
     }
@@ -442,7 +442,7 @@ class DonasiController extends Controller
             DB::table('r__files')->insert($listfile);
         }
 
-        Alert::success('You are Successfully Edit Donate Book');
+        Alert::success('Anda Berhasil Merubah Data Donasi Buku');
 
         return redirect()->route('donasibuku.index');
     }
@@ -467,7 +467,7 @@ class DonasiController extends Controller
             $donasi->delete();
         }
 
-        Alert::success('Deleted Successfully', 'Donate Data Deleted Successfully');
+        Alert::success('Anda Berhasil Menghapus Data Donasi Buku');
 
         return redirect()->route('donasibuku.index');
     }
@@ -479,7 +479,7 @@ class DonasiController extends Controller
 
         $donasi->save();
 
-        Alert::success('Donate Cancelled', 'The Donate Has Been Cancelled');
+        Alert::success('Anda Berhasil Membatalkan Donasi Buku');
 
         return redirect()->route('donasibuku.index');
     }

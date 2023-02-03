@@ -70,4 +70,9 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
+
+    protected function credentials(Request $request)
+    {
+        return ['email' => $request->email, 'password' => $request->password, 'status' => 'Active'];
+    }
 }

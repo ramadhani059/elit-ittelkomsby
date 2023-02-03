@@ -91,7 +91,7 @@ class FilePdfController extends Controller
             else
             {
                 // Error
-                Alert::error('Requested File Does Not Exist On Our Server!');
+                Alert::error('File yang Diminta Tidak Ada Di Server Kami!');
             }
         }
     }

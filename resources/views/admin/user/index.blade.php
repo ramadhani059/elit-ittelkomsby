@@ -35,9 +35,10 @@
             <a class="btn btn-sm btn-dark" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:import" class="tf-icons bx"></iconify-icon></span>&nbsp; Import
             </a>
-            <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{-- Export --}}
+            {{-- <a class="btn btn-sm btn-danger" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span><iconify-icon icon="bx:export" class="tf-icons bx"></iconify-icon></span>&nbsp; Export
-            </a>
+            </a> --}}
         </div>
     </div>
 
@@ -63,7 +64,11 @@
                 <td>
                     <div class="media align-items-center d-flex ">
                         <div class="avatar me-4">
-                            <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                            @if ($users->profile_photo_path != null)
+                                <img src="{{ asset('storage/user/photo/'.$users->profile_photo_path) }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                            @else
+                                <img src="{{ asset('assets/img/avatars/user.jpg') }}" alt class="w-px-40 h-px-40 rounded-circle" />
+                            @endif
                         </div>
                         <div class="media-body d-none d-lg-block f-grow-1">
                             <span class="fw-semibold d-block">
@@ -98,29 +103,35 @@
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('user-admin.show', ['user_admin' => $users->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-dark me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Show</span>" href="{{ route('user-admin.show', ['user_admin' => $users->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                         </a>
+                        @if($users->status == 'Active')
+                            <form action="{{ route('user-admin.deactivate', ['user_admin' => $users->id]) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <button type="submit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Deactivate</span>" class="btn btn-icon btn-sm btn-danger me-2 btn-block" data-name="{{ $users->nama }}" ><span><iconify-icon icon="bx:block" class="tf-icons bx"></iconify-icon></span></button>
+                            </form>
+                        @else
+                            <form action="{{ route('user-admin.activate', ['user_admin' => $users->id]) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <button type="submit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Activate</span>" class="btn btn-icon btn-sm btn-warning me-2 btn-active" data-name="{{ $users->nama }}" ><span><iconify-icon icon="bx:check" class="tf-icons bx"></span></button>
+                            </form>
+                        @endif
                         @if (($users->level == 'anggota'))
-                            @if ($users->anggota->verifikasi == 'Belum Terverifikasi')
-                                <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('user-admin.edit', ['user_admin' => $users->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span><iconify-icon icon="bx:check" class="tf-icons bx"></iconify-icon></span>
-                                </a>
-                            @else
-                                <a class="btn btn-icon btn-sm btn-danger me-2 btn-block" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span><iconify-icon icon="bx:block" class="tf-icons bx"></iconify-icon></span>
+                            @if ($users->anggota->verifikasi == 'Periksa')
+                                <a class="btn btn-icon btn-sm btn-primary me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Verifikasi</span>" href="{{ route('user-admin.edit', ['user_admin' => $users->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span><iconify-icon icon="bxs:check-shield" class="tf-icons bx"></iconify-icon></span>
                                 </a>
                             @endif
                         @else
-                            <a class="btn btn-icon btn-sm btn-danger me-2 btn-block" data-toggle="tooltip" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <span><iconify-icon icon="bx:block" class="tf-icons bx"></iconify-icon></span>
-                            </a>
                         @endif
 
                         <form action="{{ route('user-admin.destroy', ['user_admin' => $users->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $users->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
+                            <button type="submit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Delete</span>" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $users->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
                         </form>
                     </div>
                 </td>

@@ -11,6 +11,6 @@ class R_Sirkulasi extends Model
 
     public function buku()
     {
-        return $this->hasMany(M_Buku::class);
+        return $this->hasMany('App\Models\M_Buku', 'id_sirkulasi');
     }
 }

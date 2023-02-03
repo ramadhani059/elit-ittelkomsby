@@ -27,11 +27,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <img
-                      src="../assets/img/icons/unicons/chart-success.png"
-                      alt="chart success"
-                      class="rounded"
-                    />
+                    <span class="badge bg-primary">
+                        <iconify-icon icon="bxs:user" style="color: white; font-size: 23px"></iconify-icon>
+                    </span>
                   </div>
                   <div class="dropdown">
                     <button
@@ -46,13 +44,12 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                       <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                      <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0);">Export</a>
                     </div>
                   </div>
                 </div>
-                <span class="fw-semibold d-block mb-1">User</span>
-                <h3 class="card-title mb-2">400</h3>
-                <small class="text-success fw-semibold"><iconify-icon icon="bx:up-arrow-alt"></iconify-icon> +72.80%</small>
+                <span class="fw-semibold d-block mb-1">User Verified</span>
+                <h3 class="card-title mb-2">{{ $anggota_verify->count() }} Orang</h3>
               </div>
             </div>
           </div>
@@ -61,11 +58,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <img
-                      src="../assets/img/icons/unicons/chart-success.png"
-                      alt="chart success"
-                      class="rounded"
-                    />
+                    <span class="badge bg-secondary">
+                        <iconify-icon icon="bxs:book-alt" style="color: white; font-size: 23px"></iconify-icon>
+                    </span>
                   </div>
                   <div class="dropdown">
                     <button
@@ -80,13 +75,12 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                       <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                      <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0);">Export</a>
                     </div>
                   </div>
                 </div>
                 <span class="fw-semibold d-block mb-1">Book</span>
-                <h3 class="card-title mb-2">255</h3>
-                <small class="text-success fw-semibold"><iconify-icon icon="bx:up-arrow-alt"></iconify-icon> +72.80%</small>
+                <h3 class="card-title mb-2">{{ $buku->count() }} buku</h3>
               </div>
             </div>
           </div>
@@ -95,11 +89,9 @@
               <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                   <div class="avatar flex-shrink-0">
-                    <img
-                      src="../assets/img/icons/unicons/chart-success.png"
-                      alt="chart success"
-                      class="rounded"
-                    />
+                    <span class="badge bg-danger">
+                        <iconify-icon icon="bxs:donate-heart" style="color: white; font-size: 23px"></iconify-icon>
+                    </span>
                   </div>
                   <div class="dropdown">
                     <button
@@ -114,20 +106,20 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                       <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                      <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0);">Export</a>
                     </div>
                   </div>
                 </div>
-                <span class="fw-semibold d-block mb-1">Borrowed</span>
-                <h3 class="card-title mb-2">2</h3>
-                <small class="text-success fw-semibold"><iconify-icon icon="bx:up-arrow-alt"></iconify-icon> +72.80%</small>
+                <span class="fw-semibold d-block mb-1">Unprocessed Donations</span>
+                <h3 class="card-title mb-2">{{ $donasi->count() }} Buku</h3>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
+    {{-- Graphic --}}
+    {{-- <div class="row">
       <!-- Expense Overview -->
       <div class="col-md-12 col-lg-12 order-1 mb-4">
         <div class="card h-100">
@@ -161,7 +153,7 @@
         </div>
       </div>
       <!--/ Expense Overview -->
-    </div>
+    </div> --}}
 </div>
 
 @endsection

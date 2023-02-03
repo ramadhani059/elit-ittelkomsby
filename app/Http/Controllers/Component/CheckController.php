@@ -52,7 +52,7 @@ class CheckController extends Controller
         $peminjaman->status = 'proses';
         $peminjaman->save();
 
-        Alert::success('Booking Successfully', 'Book Booked Successfully');
+        Alert::success('Anda Berhasil Memesan Buku', 'Silahkan Ambil Buku Fisik Diperpustakaan');
 
         return redirect()->route('history.index');
     }
@@ -102,7 +102,7 @@ class CheckController extends Controller
         $checkeksemplar->save();
 
 
-        Alert::success('Booking Cancelled', 'The Book Has Been Cancelled');
+        Alert::success('Anda Berhasil Membatalkan Pemesanan Buku');
 
         return redirect()->route('history.index');
     }

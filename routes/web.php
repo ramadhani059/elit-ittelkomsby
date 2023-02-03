@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Admin\AksesJurnalController;
 use App\Http\Controllers\Admin\AkuisisiBukuController;
@@ -76,10 +77,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('buku/koleksi-buku', KoleksiBukuController::class);
         Route::resource('buku/catalog-admin', CatalogAdminController::class);
         Route::resource('user/user-admin', UserController::class);
+        Route::match(['put', 'patch'],'user/deactivate-user/{user_admin}', [App\Http\Controllers\Admin\UserController::class, 'deactivateuser'])->name('user-admin.deactivate');
+        Route::match(['put', 'patch'],'user/activate-user/{user_admin}', [App\Http\Controllers\Admin\UserController::class, 'activateuser'])->name('user-admin.activate');
+        Route::match(['put', 'patch'],'user/accept-verif/{user_admin}', [App\Http\Controllers\Admin\UserController::class, 'updateaccept'])->name('user-admin.updateaccept');
+        Route::match(['put', 'patch'],'user/decline-verif/{user_admin}', [App\Http\Controllers\Admin\UserController::class, 'updatedecline'])->name('user-admin.updatedecline');
         Route::resource('admin/booking-admin', BookingAdminController::class);
         Route::resource('admin/donasi-admin', DonasiAdminController::class);
         Route::get('admin/donasi-admin/check/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'check'])->name('donasi-admin.check');
-        Route::resource('admin/news-admin', NewsAdminController::class);
         Route::resource('admin/information-admin', InformationAdminController::class);
         Route::resource('admin/gallery-admin', GalleryAdminController::class);
         Route::resource('user/jenis-keanggotaan', JenisAnggotaController::class);
@@ -93,6 +97,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getBuku/{id}', [DropDownController::class, 'getBuku']);
         Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
         Route::get('getFilePlace/{id}', [SearchController::class, 'getFilePlace']);
+        // My Profile
+        Route::get('myprofile', [AccountController::class, 'myadminprofile'])->name('myprofile');
+        Route::get('editmyprofile', [AccountController::class, 'editmyadminprofile'])->name('editmyprofile');
+        Route::match(['put', 'patch'],'deleteaccount/{id}', [App\Http\Controllers\Admin\AccountController::class, 'nonactiveadminaccount'])->name('nonactiveaccount');
+        Route::match(['put', 'patch'],'editmyprofile/{id}', [App\Http\Controllers\Admin\AccountController::class, 'updatemyadminprofile'])->name('updatemyprofile');
         // Check
         Route::match(['put', 'patch'],'admin/donasi-admin/accept/{donasi_admin_berhasil}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'checkberhasil'])->name('donasi-admin.checkberhasil');
         Route::match(['put', 'patch'],'admin/donasi-admin/decline/{donasi_admin_ditolak}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'checkditolak'])->name('donasi-admin.checkditolak');

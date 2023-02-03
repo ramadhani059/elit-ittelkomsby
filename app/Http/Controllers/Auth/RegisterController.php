@@ -42,88 +42,94 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $jenisanggota = $request->jenisanggota;
-        $tambahinstitusi = $request->{'namainstitusi_'.$jenisanggota};
+        $check = User::where('email', $request->email);
 
-        if($jenisanggota != null):
-            $user = new User;
-            $anggota = new M_Anggota;
-            $institusi = new R_Institusi;
-            $user->password = Hash::make($request->password_register);
-            $user->email = $request->email;
-            $user->status = 'Active';
-            $user->level = 'anggota';
+        if ($check->exists() == true) {
+            Alert::error('Maaf Email Anda Sudah Terdaftar', 'Silahkan Masuk dengan Akun yang Telah Terdaftar');
+            return redirect()->route('login');
+        } else {
+            $jenisanggota = $request->jenisanggota;
+            $tambahinstitusi = $request->{'namainstitusi_'.$jenisanggota};
 
-            $photo = $request->file('photo_'.$jenisanggota);
+            if($jenisanggota != null):
+                $user = new User;
+                $anggota = new M_Anggota;
+                $institusi = new R_Institusi;
+                $user->password = Hash::make($request->password_register);
+                $user->email = $request->email;
+                $user->status = 'Active';
+                $user->level = 'anggota';
 
-            // Store File Image
-            if ($photo != null){
-                $photo->store('public/user/photo');
-                $user->profile_photo_path = $photo->hashName();
-            }
-            $user->save();
+                $photo = $request->file('photo_'.$jenisanggota);
 
-            if ($tambahinstitusi == 'add'){
-                $institusi->nama = $request->{'tambahinstitusi_'.$jenisanggota};
-                $institusi->tipe_institusi = $jenisanggota;
-                $institusi->save();
-                $anggota->id_institusi = $institusi->id;
-            } elseif ($tambahinstitusi == null){
-                $anggota->id_institusi = 7;
-            } else {
-                $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
-            }
+                // Store File Image
+                if ($photo != null){
+                    $photo->store('public/user/photo');
+                    $user->profile_photo_path = $photo->hashName();
+                }
+                $user->save();
 
-            $anggota->id_user = $user->id;
-            $anggota->id_jenis_keanggotaan = $jenisanggota;
-            $anggota->nama_lengkap = $request->fullname;
-            $anggota->no_hp = $request->telp;
-            $anggota->alamat = $request->address;
-            $anggota->verifikasi = 'Belum Terverifikasi';
+                if ($tambahinstitusi == 'add'){
+                    $institusi->nama = $request->{'tambahinstitusi_'.$jenisanggota};
+                    $institusi->tipe_institusi = $jenisanggota;
+                    $institusi->save();
+                    $anggota->id_institusi = $institusi->id;
+                } elseif ($tambahinstitusi == null){
+                    $anggota->id_institusi = 7;
+                } else {
+                    $anggota->id_institusi = $request->{'namainstitusi_'.$jenisanggota};
+                }
 
-            $fakultas = $request->{'fakultas_'.$jenisanggota};
-            $jurusan = $request->{'jurusan_'.$jenisanggota};
+                $anggota->id_user = $user->id;
+                $anggota->id_jenis_keanggotaan = $jenisanggota;
+                $anggota->nama_lengkap = $request->fullname;
+                $anggota->no_hp = $request->telp;
+                $anggota->alamat = $request->address;
+                $anggota->verifikasi = 'Periksa';
 
-            if ($fakultas != null){
-                $anggota->fakultas = $fakultas;
-            }
+                $fakultas = $request->{'fakultas_'.$jenisanggota};
+                $jurusan = $request->{'jurusan_'.$jenisanggota};
 
-            if ($jurusan != null){
-                $anggota->prodi = $jurusan;
-            }
+                if ($fakultas != null){
+                    $anggota->fakultas = $fakultas;
+                }
 
-            // Get File Image
-            $ktp = $request->file('filektp_'.$jenisanggota);
-            $karpegktm = $request->file('filekarpegktm_'.$jenisanggota);
-            $ijazah = $request->file('fileijazah_'.$jenisanggota);
+                if ($jurusan != null){
+                    $anggota->prodi = $jurusan;
+                }
 
-            // Store File Image
-            if ($ktp != null){
-                $ktp->store('public/user/ktp');
-                $anggota->ktp_original = $ktp->getClientOriginalName();
-                $anggota->ktp_encrypt = $ktp->hashName();
-            }
+                // Get File Image
+                $ktp = $request->file('filektp_'.$jenisanggota);
+                $karpegktm = $request->file('filekarpegktm_'.$jenisanggota);
+                $ijazah = $request->file('fileijazah_'.$jenisanggota);
 
-            if ($karpegktm != null){
-                $karpegktm->store('public/user/karpegktm');
-                $anggota->karpeg_ktm_original = $karpegktm->getClientOriginalName();
-                $anggota->karpeg_ktm_encrypt = $karpegktm->hashName();
-            }
+                // Store File Image
+                if ($ktp != null){
+                    $ktp->store('public/user/ktp');
+                    $anggota->ktp_original = $ktp->getClientOriginalName();
+                    $anggota->ktp_encrypt = $ktp->hashName();
+                }
 
-            if ($ijazah != null){
-                $ijazah->store('public/user/ijazah');
-                $anggota->ijazah_original = $ijazah->getClientOriginalName();
-                $anggota->ijazah_encrypt = $ijazah->hashName();
-            }
+                if ($karpegktm != null){
+                    $karpegktm->store('public/user/karpegktm');
+                    $anggota->karpeg_ktm_original = $karpegktm->getClientOriginalName();
+                    $anggota->karpeg_ktm_encrypt = $karpegktm->hashName();
+                }
 
-            $anggota->save();
+                if ($ijazah != null){
+                    $ijazah->store('public/user/ijazah');
+                    $anggota->ijazah_original = $ijazah->getClientOriginalName();
+                    $anggota->ijazah_encrypt = $ijazah->hashName();
+                }
 
-        endif;
+                $anggota->save();
 
-        Alert::success('You are Successfully Registered', 'Please Login With the Registered Account');
+            endif;
 
-        return redirect()->route('login');
+            Alert::success('Anda Berhasil Mendaftar', 'Silahkan Masuk dengan Akun yang Telah Terdaftar');
 
+            return redirect()->route('login');
+        }
     }
 
     /**

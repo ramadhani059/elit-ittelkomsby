@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\M_Admin;
 use App\Models\M_Anggota;
+use App\Models\M_Buku;
+use App\Models\T_Donasi_Buku;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,14 +20,17 @@ class DashboardController extends Controller
     {
         $pageTitle = 'Dashboard Admin | ELIT ITTelkom Surabaya';
 
-        $admin = M_Admin::all();
-
         $anggota = M_Anggota::all();
+        $anggota_verify = M_Anggota::where('verifikasi', 'Terverifikasi');
+        $buku = M_Buku::all();
+        $donasi = T_Donasi_Buku::where('status_donasi', 'diajukan');
 
         return view('admin/dashboard', [
             'pageTitle' => $pageTitle,
-            'admin' => $admin,
             'anggota' => $anggota,
+            'buku' => $buku,
+            'donasi' => $donasi,
+            'anggota_verify' => $anggota_verify,
         ]);
     }
 

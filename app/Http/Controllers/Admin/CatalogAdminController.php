@@ -313,7 +313,7 @@ class CatalogAdminController extends Controller
             }
         }
 
-        Alert::success('You are Successfully Edit Book');
+        Alert::success('Anda Berhasil Mengubah Detail Buku');
 
         return redirect()->route('catalog-admin.index');
     }
@@ -365,7 +365,7 @@ class CatalogAdminController extends Controller
         // Delete Table
         $catalog->delete();
 
-        Alert::success('Deleted Successfully', 'Book Data Deleted Successfully');
+        Alert::success('Anda Berhasil Menghapus Buku Dari Sistem');
 
         return redirect()->route('catalog-admin.index');
     }

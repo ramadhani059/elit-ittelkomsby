@@ -125,12 +125,12 @@ $(".datatable").on("click", ".btn-delete", function (e) {
     var name = $(this).data("name");
 
     Swal.fire({
-        title: "Are you sure want to delete it ?",
-        text: "You wan't be able to revert this!",
+        title: "Apakah kamu yakin ingin menghapus ini ?",
+        text: "Anda tidak dapat mengembalikan ini !",
         icon: "warning",
         showCancelButton: true,
         confirmButtonClass: "bg-danger",
-        confirmButtonText: "Yes, Delete it !",
+        confirmButtonText: "Ya, Saya yakin",
     }).then((result) => {
         if (result.isConfirmed) {
             form.submit();
@@ -146,14 +146,48 @@ $(".datatable").on("click", ".btn-block", function (e) {
     var name = $(this).data("name");
 
     Swal.fire({
-        title: "Are you sure want to non active this user ?",
+        title: "Apakah anda yakin ingin menonaktifkan user ini ?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonClass: "bg-danger",
-        confirmButtonText: "Yes, block it !",
+        confirmButtonText: "Ya, Saya yakin",
     }).then((result) => {
         if (result.isConfirmed) {
             form.submit();
         }
+    });
+});
+
+// Sweet alert active data
+$(".datatable").on("click", ".btn-active", function (e) {
+    e.preventDefault();
+
+    var form = $(this).closest("form");
+    var name = $(this).data("name");
+
+    Swal.fire({
+        title: "Apakah anda yakin ingin mengaktifkan user ini ?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "bg-danger",
+        confirmButtonText: "Ya, Saya yakin",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});
+
+// Sweet alert block data
+$(".datatable").on("click", ".btn-not-delete", function (e) {
+    e.preventDefault();
+
+    var form = $(this).closest("form");
+    var name = $(this).data("name");
+
+    Swal.fire({
+        title: "Maaf anda tidak bisa menghapus ini !",
+        text: "Anda memiliki anggota dengan jenis keanggotaan ini",
+        icon: "warning",
     });
 });

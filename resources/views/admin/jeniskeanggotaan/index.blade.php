@@ -22,7 +22,6 @@
               <tr class="text-nowrap">
                 <th><strong>No.</strong></th>
                 <th><strong>Nama</strong></th>
-                <th><strong>Jumlah Institusi</strong></th>
                 <th><strong>Jumlah User</strong></th>
                 <th></th>
               </tr>
@@ -35,25 +34,28 @@
                     {{ $jenisanggota->nama }}
                 </td>
                 <td>
-                    {{ $jenisanggota->institusi->count('pivot.tipe_institusi') }} Institusi
-                </td>
-                <td>
                     {{ $jenisanggota->anggota->count('pivot.id_jenis_keanggotaan') }} User
                 </td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-icon btn-sm btn-primary me-2" data-toggle="tooltip" href="{{ route('jenis-keanggotaan.show', ['jenis_keanggotaan' => $jenisanggota->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-primary me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Show</span>" href="{{ route('jenis-keanggotaan.show', ['jenis_keanggotaan' => $jenisanggota->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span><iconify-icon icon="bx:show" class="tf-icons bx"></iconify-icon></span>
                         </a>
-                        <a class="btn btn-icon btn-sm btn-dark me-2" data-toggle="tooltip" href="{{ route('jenis-keanggotaan.edit', ['jenis_keanggotaan' => $jenisanggota->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-icon btn-sm btn-dark me-2" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Edit</span>" href="{{ route('jenis-keanggotaan.edit', ['jenis_keanggotaan' => $jenisanggota->id]) }}" role="button" aria-haspopup="true" aria-expanded="false">
                             <span><iconify-icon icon="bx:edit" class="tf-icons bx"></iconify-icon></span>
                         </a>
 
-                        <form action="{{ route('jenis-keanggotaan.destroy', ['jenis_keanggotaan' => $jenisanggota->id]) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" data-toggle="tooltip" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $jenisanggota->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
-                        </form>
+                        @if ($jenisanggota->anggota->count('pivot.id_jenis_keanggotaan') != 0)
+                            <a class="btn btn-icon btn-sm btn-danger btn-not-delete" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Delete</span>" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span>
+                            </a>
+                        @else
+                            <form action="{{ route('jenis-keanggotaan.destroy', ['jenis_keanggotaan' => $jenisanggota->id]) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" title="<span>Delete</span>" class="btn btn-icon btn-sm btn-danger btn-delete" data-name="{{ $jenisanggota->nama }}" ><span><iconify-icon icon="bx:trash" class="tf-icons bx"></iconify-icon></span></button>
+                            </form>
+                        @endif
                     </div>
                 </td>
               </tr>

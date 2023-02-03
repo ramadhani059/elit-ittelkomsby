@@ -93,7 +93,7 @@ class KoleksiBukuController extends Controller
         $koleksibuku->nama = $request->koleksibuku;
         $koleksibuku->save();
 
-        Alert::success('You are Successfully Edit Collection of Book');
+        Alert::success('Anda Berhasil Merubah Data Koleksi Buku');
 
         return redirect()->route('koleksi-buku.index');
     }
