@@ -74,11 +74,8 @@
                       <li class="nav-item">
                         <a class="nav-link {{  (request()->is('catalog*')) ? 'fw-semibold active' : '' }}" href="{{ route('catalog') }}">Katalog</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">Tentang Kami</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">Galeri</a>
+                      <li class="nav-item @if($route == 'aboutus') fw-semibold active @endif">
+                        <a class="nav-link" href="{{ route('aboutus') }}">Tentang Kami</a>
                       </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -122,7 +119,7 @@
                                         </li>
                                     @endif
                                     <li>
-                                      <a class="dropdown-item" href="#">
+                                      <a class="dropdown-item" href="{{ route('myprofileanggota') }}">
                                         <iconify-icon icon="bx:user" class="bx me-2"></iconify-icon>
                                         <span class="align-middle">Profil Saya</span>
                                       </a>
@@ -231,6 +228,8 @@
     <script src="{{ asset('assets/anggota/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/anggota/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/pages-account-settings-account.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script>
         $(document).ready(function () {
             // Sweet alert verifikasi

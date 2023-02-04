@@ -17,12 +17,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_admin')->nullable();
             $table->string('judul');
-            $table->string('isi');
+            $table->text('isi')->nullable();
             $table->date('tanggal');
             $table->string('img_original');
             $table->string('img_encrypt');
             $table->string('status');
-            $table->string('position');
             $table->timestamps();
 
             $table->foreign('id_admin')->references('id')->on('m__admins')->onDelete('set null');

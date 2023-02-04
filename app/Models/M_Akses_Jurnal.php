@@ -11,6 +11,6 @@ class M_Akses_Jurnal extends Model
 
     public function admin()
     {
-        return $this->belongsTo(M_Admin::class);
+        return $this->belongsTo('App\Models\M_Admin', 'id_admin');
     }
 }

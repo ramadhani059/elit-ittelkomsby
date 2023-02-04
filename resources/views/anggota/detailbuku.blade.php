@@ -568,7 +568,6 @@
                                 <tr class="text-nowrap">
                                   <th>#</th>
                                   <th>Barcode</th>
-                                  <th>Kode Investasi</th>
                                   <th>Tanggal Pengadaan</th>
                                   <th>Sumber Pengadaan</th>
                                   <th>Status</th>
@@ -579,7 +578,6 @@
                                     <tr>
                                         <th scope="row">{{ $eksemplar + 1 }}</th>
                                         <td>{{ $value->barcode }}</td>
-                                        <td>{{ $value->kode_inventaris }}</td>
                                         <td>{{ \Carbon\Carbon::parse($value->tanggal_pengadaan)->format('d/m/Y')}}</td>
                                         <td>
                                             <p class="text-capitalize">
@@ -649,12 +647,12 @@
                                 @foreach($file as $filebuku)
                                     @if($filebuku->buku->role_download == 0)
                                         @if($filebuku->file_place->nama == 'File')
-                                            <div class="row p-2 text-capitalize">
-                                                <a href="#">{{ $filebuku->buku->judul }}</a>
+                                            <div class="row p-2 text-capitalize booking">
+                                                <a class="btn-no-download" href="#">{{ $filebuku->buku->judul }}</a>
                                             </div>
                                         @else
-                                            <div class="row p-2">
-                                                <a href="#">{{ $filebuku->file_place->nama }}</a>
+                                            <div class="row p-2 booking">
+                                                <a class="btn-no-download" href="#">{{ $filebuku->file_place->nama }}</a>
                                             </div>
                                         @endif
                                     @else
@@ -681,12 +679,12 @@
                                                 @endif
                                             @else
                                                 @if($filebuku->file_place->nama == 'File')
-                                                    <div class="row p-2 text-capitalize">
-                                                        <a href="#">{{ $filebuku->buku->judul }}</a>
+                                                    <div class="row p-2 text-capitalize booking">
+                                                        <a class="btn-belum-verifikasi" href="#">{{ $filebuku->buku->judul }}</a>
                                                     </div>
                                                 @else
-                                                    <div class="row p-2">
-                                                        <a href="#">{{ $filebuku->file_place->nama }}</a>
+                                                    <div class="row p-2 booking">
+                                                        <a class="btn-belum-verifikasi" href="#">{{ $filebuku->file_place->nama }}</a>
                                                     </div>
                                                 @endif
                                             @endif
@@ -734,6 +732,25 @@
 
                 Swal.fire({
                     title: "Maaf Anda Telah Melampaui Batas Pinjam/Pesan Buku",
+                    icon: "error",
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Oke",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Warning Melampaui Batas Pinjam
+            $(".booking").on("click", ".btn-no-download", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Maaf File Ini Tidak Dapat Di Download !",
                     icon: "error",
                     confirmButtonClass: "bg-danger",
                     confirmButtonText: "Oke",

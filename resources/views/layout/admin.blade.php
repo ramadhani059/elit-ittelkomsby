@@ -170,13 +170,6 @@
               </a>
             </li>
 
-            <li class="menu-item">
-              <a href="#" class="menu-link">
-                <iconify-icon icon="bx:image" class="menu-icon tf-icons bx"></iconify-icon>
-                <div data-i18n="Analytics">Galeri</div>
-              </a>
-            </li>
-
             <li class="menu-item {{  (request()->is('admin/akses-jurnal*')) ? 'active' : '' }}">
               <a href="{{ route('akses-jurnal.index') }}" class="menu-link">
                 <iconify-icon icon="bx:link" class="menu-icon tf-icons bx"></iconify-icon>

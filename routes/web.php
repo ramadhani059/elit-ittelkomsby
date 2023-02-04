@@ -48,6 +48,11 @@ Route::get('/catalog/{slug}', [App\Http\Controllers\AnggotaController::class, 'd
 Route::get('/catalog/main/cari/',  [SearchController::class, 'searchCatalog'])->name('search.catalog');
 Route::get('/catalog/main/filter/',  [SearchController::class, 'filterCatalog'])->name('filter.catalog');
 
+Route::get('/tentangkami', function() {
+    $pageTitle = 'Tentang Kami | Dashboard';
+    return view('anggota.aboutus', compact('pageTitle'));
+})->name('aboutus');
+
 Auth::routes([
     'register' => false
 ]);
@@ -85,7 +90,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('admin/donasi-admin', DonasiAdminController::class);
         Route::get('admin/donasi-admin/check/{donasi_admin}', [App\Http\Controllers\Admin\DonasiAdminController::class, 'check'])->name('donasi-admin.check');
         Route::resource('admin/information-admin', InformationAdminController::class);
-        Route::resource('admin/gallery-admin', GalleryAdminController::class);
         Route::resource('user/jenis-keanggotaan', JenisAnggotaController::class);
         Route::resource('buku/jenis-buku', JenisBukuController::class);
         Route::resource('buku/sirkulasi', SirkulasiController::class);
@@ -98,8 +102,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('getKodeBuku/{kode}', [SearchController::class, 'getKodeBuku']);
         Route::get('getFilePlace/{id}', [SearchController::class, 'getFilePlace']);
         // My Profile
-        Route::get('myprofile', [AccountController::class, 'myadminprofile'])->name('myprofile');
-        Route::get('editmyprofile', [AccountController::class, 'editmyadminprofile'])->name('editmyprofile');
+        Route::get('myprofile', [App\Http\Controllers\Admin\AccountController::class, 'myadminprofile'])->name('myprofile');
+        Route::get('editmyprofile', [App\Http\Controllers\Admin\AccountController::class, 'editmyadminprofile'])->name('editmyprofile');
         Route::match(['put', 'patch'],'deleteaccount/{id}', [App\Http\Controllers\Admin\AccountController::class, 'nonactiveadminaccount'])->name('nonactiveaccount');
         Route::match(['put', 'patch'],'editmyprofile/{id}', [App\Http\Controllers\Admin\AccountController::class, 'updatemyadminprofile'])->name('updatemyprofile');
         // Check
@@ -122,6 +126,12 @@ Route::middleware(['auth'])->group(function () {
         Route::match(['put', 'patch'],'donasibuku/cancel/{donasi_cancel}', [App\Http\Controllers\Anggota\DonasiController::class, 'cancel'])->name('donasibuku.cancel');
         Route::resource('history', HistoryController::class);
         Route::resource('donasibuku', DonasiController::class);
+
+        // My Profile
+        Route::get('myanggotaprofile', [App\Http\Controllers\Anggota\AccountController::class, 'myanggotaprofile'])->name('myprofileanggota');
+        Route::get('editmyanggotaprofile', [App\Http\Controllers\Anggota\AccountController::class, 'editmyanggotaprofile'])->name('editmyanggotaprofile');
+        Route::match(['put', 'patch'],'deleteanggotaaccount/{id}', [App\Http\Controllers\Anggota\AccountController::class, 'nonactiveanggotaaccount'])->name('nonactiveanggotaaccount');
+        Route::match(['put', 'patch'],'editmyanggotaprofile/{id}', [App\Http\Controllers\Anggota\AccountController::class, 'updatemyanggotaprofile'])->name('updatemyanggotaprofile');
 
         // Route::resource('/catalog', CatalogController::class);
     });

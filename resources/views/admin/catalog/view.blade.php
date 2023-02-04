@@ -488,7 +488,6 @@
                                 <tr class="text-nowrap">
                                   <th>#</th>
                                   <th>Barcode</th>
-                                  <th>Kode Investasi</th>
                                   <th>Tanggal Pengadaan</th>
                                   <th>Sumber Pengadaan</th>
                                   <th>Status</th>
@@ -500,7 +499,6 @@
                                     <tr>
                                         <th scope="row">{{ $eksemplar + 1 }}</th>
                                         <td>{{ $value->barcode }}</td>
-                                        <td>{{ $value->kode_inventaris }}</td>
                                         <td>{{ \Carbon\Carbon::parse($value->tanggal_pengadaan)->format('d/m/Y')}}</td>
                                         <td>{{ucfirst(trans($value->jenis_sumber))}}</td>
                                         <td>{{ Str::ucfirst(Str::limit($value->status)) }}</td>

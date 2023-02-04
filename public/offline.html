@@ -1,66 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="title" content="InfyBonus">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | ELIT ITTelkom Surabaya</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        .error_body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            height: 100vh;
+        .container,
+        .container-fluid,
+        .container-xxl,
+        .container-xl,
+        .container-lg,
+        .container-md,
+        .container-sm {
             width: 100%;
-            background: #f9f9f9;
+            padding-right: var(--bs-gutter-x, 1.625rem);
+            padding-left: var(--bs-gutter-x, 1.625rem);
+            margin-right: auto;
+            margin-left: auto;
         }
-
-        .error_container .error_heading {
-            color: transparent;
-            font-size: 160px;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: 20px;
-            background-size: 100% 100%;
-            background: linear-gradient(90deg, #6b719b 38%, #9da3cc 53%, #979dce 65%);
-            -webkit-background-clip: text;
-            -moz-background-clip: text;
-            -ms-background-clip: text;
-        }
-
-        @media (max-width: 540px) {
-            .error_container .error_heading {
-                font-size: 120px;
-                letter-spacing: 10px;
+        @media (min-width: 1400px) {
+            .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+                max-width: 1440px;
             }
         }
-
-        .error_container .error_btn {
-            background-color: #6e749e !important;
-            border: none;
-            outline: none;
+        .container,
+        .container-fluid,
+        .container-sm,
+        .container-md,
+        .container-lg,
+        .container-xl,
+        .container-xxl {
+            padding-right: 1rem;
+            padding-left: 1rem;
         }
-
-        .error_container .error_btn:focus {
-            box-shadow: none !important;
+        @media (min-width: 992px) {
+            .container,
+            .container-fluid,
+            .container-sm,
+            .container-md,
+            .container-lg,
+            .container-xl,
+            .container-xxl {
+                padding-right: 1.625rem;
+                padding-left: 1.625rem;
+            }
         }
-
-        .error_container .error_message,
-        .error_container .error_paragraph {
-            color: #787878;
+        .container-p-y:not([class^=pt-]):not([class*=" pt-"]) {
+            padding-top: 1.625rem !important;
+        }
+        .container-p-y:not([class^=pb-]):not([class*=" pb-"]) {
+            padding-bottom: 1.625rem !important;
+        }
+        .misc-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - (1.625rem * 2));
+            text-align: center;
+        }
+        .mb-0 {
+            margin-bottom: 0 !important;
+        }
+        .mb-1 {
+            margin-bottom: 0.25rem !important;
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem !important;
+        }
+        .mb-3 {
+            margin-bottom: 1rem !important;
+        }
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
+        .mb-5 {
+            margin-bottom: 3rem !important;
+        }
+        .mb-auto {
+            margin-bottom: auto !important;
+        }
+        .mx-2 {
+            margin-right: 0.5rem !important;
+            margin-left: 0.5rem !important;
         }
     </style>
 </head>
 <body>
-<div class="error_body">
-    <div
-        class="container error_container d-flex justify-content-center align-items-center flex-column w-100 h-100 p-5 text-center">
-        <h2 class="error_message text-center mb-3">Boo! You don't have an internet connection</h2>
-        <p class="error_paragraph text-center mb-5">
-            Please check your network connection and try again.
-        </p>
+
+    <div class="misc-wrapper">
+      <h1 class="mb-2 mx-2">Connect to the internet !!</h1>
+      <p class="mb-4 mx-2">You're offline. Check your connection.</p>
     </div>
-</div>
+
 </body>
 </html>

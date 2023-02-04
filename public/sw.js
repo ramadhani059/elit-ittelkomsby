@@ -13,6 +13,8 @@ const filesToCache = [
     '/',
     '/home',
     '/catalog',
+    '/tentangkami',
+    '/assets/img/aboutus/perpustakaan-1.jpg',
     '/assets/img/favicon/favicon.png',
     '/assets/img/home/poster.jpg',
     '/assets/img/home/1.png',
@@ -36,6 +38,7 @@ const filesToCache = [
     '/assets/anggota/js/popper.js',
     '/assets/anggota/js/bootstrap.min.js',
     '/assets/anggota/js/main.js',
+    '/assets/vendor/css/pages/page-misc.css',
     '/offline.html',
     '/assets/anggota/js/owl.carousel.min.js',
 ];

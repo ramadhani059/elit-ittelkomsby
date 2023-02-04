@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\M_Akses_Jurnal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -68,6 +69,7 @@ class AksesJurnalController extends Controller
         // Store File Image
         $file->store('public/aksesjurnal');
 
+        $akses->id_admin = Auth::user()->admin->id;
         $akses->img_original = $file->getClientOriginalName();
         $akses->img_encrypt = $file->hashName();
         $akses->judul = $request->judulaksesjurnal;
@@ -134,6 +136,7 @@ class AksesJurnalController extends Controller
             $akses->img_encrypt = $file->hashName();
         }
 
+        $akses->id_admin = Auth::user()->admin->id;
         $akses->judul = $request->judulaksesjurnal;
         $akses->kategori = $request->kategoriaksesjurnal;
         $akses->link = $request->link;

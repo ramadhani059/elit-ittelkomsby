@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_buku');
             $table->string('barcode');
-            $table->string('kode_inventaris');
             $table->date('tanggal_pengadaan');
             $table->string('jenis_sumber');
             $table->string('status');

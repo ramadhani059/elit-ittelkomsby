@@ -72,6 +72,7 @@
         </div>
     </div>
     <!--/ Hoverable Table rows -->
+    {{ $akses->links('layout.pagination') }}
 </div>
 
 @endsection

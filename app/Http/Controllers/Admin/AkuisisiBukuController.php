@@ -178,7 +178,6 @@ class AkuisisiBukuController extends Controller
                 $dataeksemplar[] = array(
                     'id_buku' => $buku->id,
                     'barcode' => $request->{'isbn_'.$jenisbuku}.$zeros.$count,
-                    'kode_inventaris' => 1,
                     'tanggal_pengadaan' => Carbon::now(),
                     'jenis_sumber' => $request->{'jenis_pengadaan_'.$jenisbuku},
                     'status' => $request->{'status_pengadaan_'.$jenisbuku},

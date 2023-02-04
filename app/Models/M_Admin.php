@@ -16,7 +16,7 @@ class M_Admin extends Model
 
     public function akses_jurnal()
     {
-        return $this->hasMany(M_Akses_Jurnal::class);
+        return $this->hasMany('App\Models\M_Information', 'id_admin');
     }
 
     public function gallery()
@@ -26,6 +26,6 @@ class M_Admin extends Model
 
     public function information()
     {
-        return $this->hasMany(M_Information::class);
+        return $this->hasMany('App\Models\M_Information', 'id_admin');
     }
 }
