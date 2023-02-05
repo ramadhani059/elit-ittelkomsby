@@ -47,9 +47,10 @@ Route::get('/catalog', [App\Http\Controllers\AnggotaController::class, 'catalog'
 Route::get('/catalog/{slug}', [App\Http\Controllers\AnggotaController::class, 'detail_buku'])->name('catalog.detail');
 Route::get('/catalog/main/cari/',  [SearchController::class, 'searchCatalog'])->name('search.catalog');
 Route::get('/catalog/main/filter/',  [SearchController::class, 'filterCatalog'])->name('filter.catalog');
+Route::get('/informasi-penting/{slug}',  [App\Http\Controllers\AnggotaController::class, 'detailinformasi'])->name('detailinformasi');
 
 Route::get('/tentangkami', function() {
-    $pageTitle = 'Tentang Kami | Dashboard';
+    $pageTitle = 'Tentang Kami | ELIT ITTelkom Surabaya';
     return view('anggota.aboutus', compact('pageTitle'));
 })->name('aboutus');
 
@@ -74,6 +75,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('download/{filename}', [FilePdfController::class, 'downloadFile'])->name('download');
     Route::get('pdfDonasi/{id}/{originalname}', [FilePdfController::class, 'getPdfViewsDonasi'])->name('pdfDonasi');
     Route::get('fileSerahTerima/{id}',[FilePdfController::class, 'fileSerahTerima'])->name('BASerahTerima');
+
+    // My Profile
+    Route::get('myanggotaprofile', [App\Http\Controllers\Anggota\AccountController::class, 'myanggotaprofile'])->name('myprofileanggota');
+    Route::get('editmyanggotaprofile', [App\Http\Controllers\Anggota\AccountController::class, 'editmyanggotaprofile'])->name('editmyanggotaprofile');
+    Route::match(['put', 'patch'],'deleteanggotaaccount/{id}', [App\Http\Controllers\Anggota\AccountController::class, 'nonactiveanggotaaccount'])->name('nonactiveanggotaaccount');
+    Route::match(['put', 'patch'],'editmyanggotaprofile/{id}', [App\Http\Controllers\Anggota\AccountController::class, 'updatemyanggotaprofile'])->name('updatemyanggotaprofile');
+
+    // Notifikasi
+    // Route::get('/notifikasi', function() {
+    //     $pageTitle = 'Notifikasi | ELIT ITTelkom Surabaya';
+    //     return view('anggota.notifikasi.index', compact('pageTitle'));
+    // })->name('notifikasi');
+
+    // Route::get('/detailnotifikasi', function() {
+    //     $pageTitle = 'Detail Notifikasi | ELIT ITTelkom Surabaya';
+    //     return view('anggota.notifikasi.detailnotifikasi', compact('pageTitle'));
+    // })->name('detailnotifikasi');
 
      // For Admin
     Route::middleware(['is_admin'])->group(function () {
@@ -126,13 +144,6 @@ Route::middleware(['auth'])->group(function () {
         Route::match(['put', 'patch'],'donasibuku/cancel/{donasi_cancel}', [App\Http\Controllers\Anggota\DonasiController::class, 'cancel'])->name('donasibuku.cancel');
         Route::resource('history', HistoryController::class);
         Route::resource('donasibuku', DonasiController::class);
-
-        // My Profile
-        Route::get('myanggotaprofile', [App\Http\Controllers\Anggota\AccountController::class, 'myanggotaprofile'])->name('myprofileanggota');
-        Route::get('editmyanggotaprofile', [App\Http\Controllers\Anggota\AccountController::class, 'editmyanggotaprofile'])->name('editmyanggotaprofile');
-        Route::match(['put', 'patch'],'deleteanggotaaccount/{id}', [App\Http\Controllers\Anggota\AccountController::class, 'nonactiveanggotaaccount'])->name('nonactiveanggotaaccount');
-        Route::match(['put', 'patch'],'editmyanggotaprofile/{id}', [App\Http\Controllers\Anggota\AccountController::class, 'updatemyanggotaprofile'])->name('updatemyanggotaprofile');
-
         // Route::resource('/catalog', CatalogController::class);
     });
 });

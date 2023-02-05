@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('m__information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_admin')->nullable();
+            $table->string('slug')->unique();
             $table->string('judul');
             $table->text('isi')->nullable();
             $table->date('tanggal');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\M_Akses_Jurnal;
 use App\Models\M_Buku;
 use App\Models\M_Eksemplar;
+use App\Models\M_Information;
+use App\Models\M_Notification;
 use App\Models\R_File;
 use App\Models\R_Jenis_Buku;
 use App\Models\T_Peminjaman_Buku;
@@ -33,10 +35,11 @@ class AnggotaController extends Controller
         $pageTitle = 'Home | ELIT ITTelkom Surabaya';
 
         // ELOQUENT
-        $buku = M_Buku::all() ->take(10);
+        $buku = M_Buku::latest()->paginate(10);
         $akses = M_Akses_Jurnal::all();
+        $info = M_Information::latest()->paginate(8);
 
-        return view('anggota.home', compact('pageTitle', 'buku', 'akses'));
+        return view('anggota.home', compact('pageTitle', 'buku', 'akses', 'info'));
     }
 
     public function catalog()
@@ -44,7 +47,7 @@ class AnggotaController extends Controller
         $pageTitle = 'Katalog | ELIT ITTelkom Surabaya';
 
         // ELOQUENT
-        $buku = M_Buku::paginate(20);
+        $buku = M_Buku::latest()->paginate(15);
         $jenisbuku = R_Jenis_Buku::all();
 
         return view('anggota.katalog', compact('pageTitle', 'buku', 'jenisbuku'));
@@ -92,5 +95,31 @@ class AnggotaController extends Controller
         }
 
         return view('anggota.detailbuku', compact('pageTitle', 'buku', 'bookable', 'bataspinjam', 'file'));
+    }
+
+    public function detailinformasi($slug)
+    {
+        $info = M_Information::where('slug', $slug)->first();
+        $pageTitle = $info->judul.' | ELIT ITTelkom Surabaya';
+
+        $fullinfo = M_Information::latest()->paginate(20);
+
+        return view('anggota.detailinformasi', compact('pageTitle', 'info', 'fullinfo'));
+    }
+
+    public function detailnotifikasi($id)
+    {
+        $notifikasi = M_Notification::find($id);
+        $pageTitle = $notifikasi->judul.' | ELIT ITTelkom Surabaya';
+
+        return view('anggota.detailinformasi', compact('pageTitle', 'notifikasi'));
+    }
+
+    public function notifikasi($id)
+    {
+        $notifikasi = M_Notification::latest()->paginate(50);
+        $pageTitle = $notifikasi->judul.' | ELIT ITTelkom Surabaya';
+
+        return view('anggota.detailinformasi', compact('pageTitle', 'notifikasi'));
     }
 }

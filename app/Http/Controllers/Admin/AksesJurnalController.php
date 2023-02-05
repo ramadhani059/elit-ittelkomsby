@@ -20,7 +20,7 @@ class AksesJurnalController extends Controller
     {
         $pageTitle = 'Akses Jurnal | ELIT ITTelkom Surabaya';
 
-        $akses = M_Akses_Jurnal::paginate(30);
+        $akses = M_Akses_Jurnal::latest()->paginate(30);
 
         return view('admin/aksesjurnal/index', [
             'pageTitle' => $pageTitle,

@@ -5,7 +5,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row align-items-center d-flex media py-4">
         <div class="col-lg-6 col-12 media-body d-none d-lg-block f-grow-1">
-            <h5 class="fw-bold">Akses Jurnal/</h5>
+            <h5 class="fw-bold">Informasi Penting/</h5>
         </div>
         <div class="col-lg-6 col-12 text-end">
             <a class="btn btn-sm btn-primary" data-toggle="tooltip" href="{{ route('information-admin.create')}}" role="button" aria-haspopup="true" aria-expanded="false">

@@ -46,15 +46,9 @@
                 />
               </div>
               @if(Auth::user()->level == 'anggota')
-                @if(Auth::user()->anggota->verifikasi == 'Terverifikasi')
-                    <div class="d-grid gap-2 col-lg-12 px-3 mt-1 mb-1">
-                        <a type="submit" data-toggle="tooltip" class="btn btn-primary text-white" style="width: 100%" >Verifikasi</a>
-                    </div>
-                @endif
-              @else
-                @if(Auth::user()->admin->verifikasi == 'Terverifikasi')
-                    <div class="d-grid gap-2 col-lg-12 px-3 mt-1 mb-1">
-                        <a type="submit" data-toggle="tooltip" class="btn btn-primary text-white" style="width: 100%" >Verifikasi</a>
+                @if(Auth::user()->anggota->verifikasi != 'Terverifikasi')
+                    <div class="d-grid gap-2 col-lg-12 px-3 mt-1 mb-1 akun">
+                        <a type="submit" data-toggle="tooltip" class="btn btn-primary text-white btn-verifikasi" style="width: 100%" >Verifikasi</a>
                     </div>
                 @endif
               @endif
@@ -306,4 +300,29 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            // Warning Melampaui Batas Pinjam
+            $(".akun").on("click", ".btn-verifikasi", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Coming Soon...",
+                    icon: "info",
+                    confirmButtonClass: "bg-danger",
+                    confirmButtonText: "Oke",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

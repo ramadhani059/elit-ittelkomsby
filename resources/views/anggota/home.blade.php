@@ -24,7 +24,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade " id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- Pop Up --}}
+    {{-- <div class="modal fade " id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -44,7 +45,7 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> --}}
     <hr/>
     <section class="pb-5 pt-3">
         <div class="container-fluid">
@@ -102,11 +103,15 @@
             <div class="card pt-2">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">Informasi Penting</h5>
-                    <p class="card-text">
-                        <a href="#">
-                            <span class="badge bg-danger me-2">24/12/2022</span><?php echo \Illuminate\Support\Str::limit(strip_tags('TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest'), 60, $end='...') ?>
-                        </a>
-                    </p>
+                    @foreach($info as $key => $information)
+                        @if ($information->status == 'Aktif')
+                            <p class="card-text">
+                                <a href="{{ route('detailinformasi', ['slug' => $information->slug]) }}">
+                                    <span class="badge bg-danger me-2">{{ \Carbon\Carbon::parse($information->tanggal)->format('d/m/Y')}}</span><?php echo \Illuminate\Support\Str::limit(strip_tags($information->judul), 60, $end='...') ?>
+                                </a>
+                            </p>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="card pt-2">

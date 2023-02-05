@@ -165,15 +165,15 @@
                                             </li> --}}
                                         @endif
                                     @endif
-                                    <li>
-                                        <a class="dropdown-item" href="#">
+                                    {{-- <li>
+                                        <a class="dropdown-item" href="{{ route('myprofileanggota') }}">
                                             <span class="d-flex align-items-center align-middle">
                                                 <iconify-icon icon="bx:bell" class="me-2 flex-shrink-0 bx"></iconify-icon>
                                             <span class="flex-grow-1 align-middle">Notifikasi</span>
                                             <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                                             </span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                       <div class="dropdown-divider"></div>
                                     </li>

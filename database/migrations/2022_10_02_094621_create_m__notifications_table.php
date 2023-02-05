@@ -15,16 +15,17 @@ return new class extends Migration
     {
         Schema::create('m__notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_user_pengirim')->nullable();
             $table->unsignedBigInteger('id_user_penerima')->nullable();
             $table->string('tipe_penerima');
-            $table->string('judul');
             $table->string('subject');
-            $table->string('deskripsi');
-            $table->string('source');
+            $table->text('deskripsi');
+            $table->string('source')->nullable();
             $table->boolean('status_baca');
             $table->dateTime('tanggal');
             $table->timestamps();
 
+            $table->foreign('id_user_pengirim')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_user_penerima')->references('id')->on('users')->onDelete('cascade');
         });
     }

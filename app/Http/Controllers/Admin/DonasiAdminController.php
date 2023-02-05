@@ -32,7 +32,7 @@ class DonasiAdminController extends Controller
     {
         $pageTitle = 'Donasi Buku | ELIT ITTelkom Surabaya';
 
-        $donasi = T_Donasi_Buku::paginate(50);
+        $donasi = T_Donasi_Buku::latest()->paginate(50);
 
         return view('admin/donasi/index', [
             'pageTitle' => $pageTitle,

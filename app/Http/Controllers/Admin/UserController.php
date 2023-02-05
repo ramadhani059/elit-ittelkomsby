@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $pageTitle = 'List User | ELIT ITTelkom Surabaya';
 
-        $user = User::paginate(50);
+        $user = User::latest()->paginate(50);
 
         return view('admin/user/index', [
             'pageTitle' => $pageTitle,

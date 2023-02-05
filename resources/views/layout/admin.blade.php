@@ -225,7 +225,7 @@
                         <span class="align-middle">Profil Saya</span>
                       </a>
                     </li>
-                    <li>
+                    {{-- <li>
                       <a class="dropdown-item" href="#">
                         <span class="d-flex align-items-center align-middle">
                           <iconify-icon icon="bx:bell" class="flex-shrink-0 bx me-2"></iconify-icon>
@@ -233,7 +233,7 @@
                           <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
                       </a>
-                    </li>
+                    </li> --}}
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>

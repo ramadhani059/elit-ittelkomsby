@@ -33,7 +33,7 @@ class CatalogAdminController extends Controller
     {
         $pageTitle = 'Catalog Buku | ELIT ITTelkom Surabaya';
 
-        $catalog = M_Buku::paginate(50);
+        $catalog = M_Buku::latest()->paginate(50);
 
         return view('admin/catalog/index', [
             'pageTitle' => $pageTitle,

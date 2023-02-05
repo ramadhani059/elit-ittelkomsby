@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\M_Information;
 use Carbon\Carbon;
@@ -21,7 +22,7 @@ class InformationAdminController extends Controller
     {
         $pageTitle = 'Informasi Penting | ELIT ITTelkom Surabaya';
 
-        $info = M_Information::paginate(30);
+        $info = M_Information::latest()->paginate(30);
 
         return view('admin/informasipenting/index', [
             'pageTitle' => $pageTitle,
@@ -56,10 +57,11 @@ class InformationAdminController extends Controller
     {
         $messages = [
             'required' => ':Attribute is require',
+            'unique' => ':Attribute has already been taken',
         ];
 
         $request->validate([
-            'judul' => 'required',
+            'judul' => 'required|unique:m__information,judul',
             'img_info' => 'required',
             'status' => 'required',
         ], $messages);
@@ -72,6 +74,9 @@ class InformationAdminController extends Controller
         // Store File Image
         $file->store('public/information');
 
+        $judul = Str::of($request->judul)->lower();
+
+        $info->slug = Str::of($judul)->slug('-');
         $info->id_admin = Auth::user()->admin->id;
         $info->judul = $request->judul;
         $info->isi = $request->content;
@@ -93,7 +98,13 @@ class InformationAdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $info = M_Information::find($id);
+        $pageTitle = $info->judul.' | ELIT ITTelkom Surabaya';
+
+        return view('admin/informasipenting/view', [
+            'pageTitle' => $pageTitle,
+            'info' => $info,
+        ]);
     }
 
     /**
@@ -104,7 +115,16 @@ class InformationAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pageTitle = 'Edit Informasi Penting | ELIT ITTelkom Surabaya';
+        $info = M_Information::find($id);
+
+        $status = ["Aktif", "Tidak Aktif"];
+
+        return view('admin/informasipenting/edit', [
+            'pageTitle' => $pageTitle,
+            'status' => $status,
+            'info' => $info,
+        ]);
     }
 
     /**
@@ -116,7 +136,46 @@ class InformationAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required' => ':Attribute is require',
+            'unique' => ':Attribute has already been taken',
+        ];
+
+        $request->validate([
+            'judul' => 'required',
+            'status' => 'required',
+        ], $messages);
+
+        $info = M_Information::find($id);
+
+        // Get File Image
+        $file = $request->file('img_info');
+
+        if ($file != null) {
+            Storage::disk('public')->delete('information/'.$info->img_encrypt);
+
+            // Store File Image
+            $file->store('public/information');
+
+            $info->img_original = $file->getClientOriginalName();
+            $info->img_encrypt = $file->hashName();
+        }
+
+        if ($request->judul != $info->judul) {
+            $judul = Str::of($request->judul)->lower();
+
+            $info->slug = Str::of($judul)->slug('-');
+            $info->judul = $request->judul;
+        }
+
+        $info->id_admin = Auth::user()->admin->id;
+        $info->isi = $request->content;
+        $info->tanggal = Carbon::now();
+        $info->status = $request->status;
+        $info->save();
+
+        Alert::success('Anda Berhasil Merubah Informasi Penting');
+        return redirect()->route('information-admin.index');
     }
 
     /**

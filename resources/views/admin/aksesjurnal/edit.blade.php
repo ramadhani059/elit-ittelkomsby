@@ -29,7 +29,7 @@
                 />
                 <div class="button-wrapper">
                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                    <span class="d-none d-sm-block">Upload Image</span>
+                    <span class="d-none d-sm-block">Edit Image</span>
                     <i class="bx bx-upload d-block d-sm-none"></i>
                     <input
                         type="file"
