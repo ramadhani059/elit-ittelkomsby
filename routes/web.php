@@ -54,6 +54,11 @@ Route::get('/tentangkami', function() {
     return view('anggota.aboutus', compact('pageTitle'));
 })->name('aboutus');
 
+Route::get('/offline', function() {
+    $pageTitle = 'Offline | ELIT ITTelkom Surabaya';
+    return view('anggota.offline', compact('pageTitle'));
+})->name('offline');
+
 Auth::routes([
     'register' => false
 ]);
