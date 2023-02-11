@@ -103,10 +103,10 @@
             <div class="card pt-2">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">Informasi Penting</h5>
-                    @foreach($info as $key => $information)
+                    @foreach($info as $information)
                         @if ($information->status == 'Aktif')
                             <p class="card-text">
-                                <a href="{{ route('detailinformasi', ['slug' => $information->slug]) }}">
+                                <a href="{{ route('informasi.detail', ['slug' => $information->slug]) }}">
                                     <span class="badge bg-danger me-2">{{ \Carbon\Carbon::parse($information->tanggal)->format('d/m/Y')}}</span><?php echo \Illuminate\Support\Str::limit(strip_tags($information->judul), 60, $end='...') ?>
                                 </a>
                             </p>

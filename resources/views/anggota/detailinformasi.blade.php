@@ -36,7 +36,7 @@
                 @foreach($fullinfo as $daftarinfo)
                     @if ($daftarinfo->status == 'Aktif')
                         <p class="card-text">
-                            <a href="{{ route('detailinformasi', ['slug' => $daftarinfo->slug]) }}">
+                            <a href="{{ route('informasi.detail', ['slug' => $daftarinfo->slug]) }}">
                                 <span class="badge bg-danger me-2">{{ \Carbon\Carbon::parse($daftarinfo->tanggal)->format('d/m/Y')}}</span><?php echo \Illuminate\Support\Str::limit(strip_tags($daftarinfo->judul), 60, $end='...') ?>
                             </a>
                         </p>

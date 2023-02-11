@@ -47,7 +47,7 @@ Route::get('/catalog', [App\Http\Controllers\AnggotaController::class, 'catalog'
 Route::get('/catalog/{slug}', [App\Http\Controllers\AnggotaController::class, 'detail_buku'])->name('catalog.detail');
 Route::get('/catalog/main/cari/',  [SearchController::class, 'searchCatalog'])->name('search.catalog');
 Route::get('/catalog/main/filter/',  [SearchController::class, 'filterCatalog'])->name('filter.catalog');
-Route::get('/informasi-penting/{slug}',  [App\Http\Controllers\AnggotaController::class, 'detailinformasi'])->name('detailinformasi');
+Route::get('/informasi-penting/{slug}',  [App\Http\Controllers\AnggotaController::class, 'detailinformasi'])->name('informasi.detail');
 
 Route::get('/tentangkami', function() {
     $pageTitle = 'Tentang Kami | ELIT ITTelkom Surabaya';

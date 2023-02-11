@@ -22,7 +22,7 @@ class AnggotaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'catalog', 'detail_buku']]);
+        $this->middleware('auth', ['except' => ['index', 'catalog', 'detail_buku', 'detailinformasi']]);
     }
 
     /**
